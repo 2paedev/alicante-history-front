@@ -1,0 +1,19 @@
+@import 'src/theme/partials/mixins';
+
+.avatars-list {
+  &__name {
+    font-size: 1rem;
+    margin: 0;
+    padding-left: 1rem;
+  }
+
+  &__scroll {
+    display: flex;
+    position: relative;
+    width: 2000px;
+    white-space: nowrap;
+    overflow: hidden;
+    overflow-x: auto;
+    padding-top: 0;
+  }
+}

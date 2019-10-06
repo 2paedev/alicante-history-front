@@ -1,0 +1,20 @@
+<ion-card class="card faded faded-all text-shadow">
+  <ion-img class="card__image" src="assets/santa-barbara.jpg"></ion-img>
+
+  <div class="card__title">{{ title }}</div>
+  <div class="card__tags">
+    <app-tags-list [tags]="tags"></app-tags-list>
+  </div>
+  <div class="card__buttons">
+    <ion-button color="secondary" fill="clear">
+      <ion-icon size="small" name="add"></ion-icon>
+    </ion-button>
+    <ion-button color="secondary" (click)="goToArticle()">
+      <ion-icon slot="start" name="book"></ion-icon>
+      Leer
+    </ion-button>
+    <ion-button color="secondary" fill="clear">
+      <ion-icon size="small" name="heart-empty"></ion-icon>
+    </ion-button>
+  </div>
+</ion-card>

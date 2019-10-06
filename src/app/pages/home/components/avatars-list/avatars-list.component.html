@@ -1,0 +1,14 @@
+<ion-grid class="avatars-list">
+  <ion-row>
+    <ion-col>
+      <h2 class="avatars-list__name">{{ title }}</h2>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-list class="avatars-list__scroll">
+        <app-avatar-card *ngFor="let article of data" [data]="article"></app-avatar-card>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-grid>

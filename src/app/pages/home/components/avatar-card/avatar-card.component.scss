@@ -1,0 +1,37 @@
+@import 'src/theme/partials/mixins';
+
+.avatar-card {
+  margin-right: 0rem;
+  width: 100%;
+
+  &__item {
+    --background: var(--ion-color-primary);
+    --background-activated: var(--ion-color-primary-tint);
+    --border-color: var(--ion-color-primary-shade);
+    --border-radius: 0.3rem;
+    --border-width: 0.1rem;
+    --padding-start: 0px;
+    --padding-top: 0px;
+    --inner-padding-end: 0px;
+    --inner-padding-top: 0px;
+    width: 120px;
+
+    &--column {
+      @include aligns(center, center, column);
+      min-width: 120px;
+      padding: 0;
+    }
+
+    &--thumbnail {
+      width: 100%;
+    }
+
+    &--title {
+      padding: 0.7rem 0.2rem;
+      font-size: 0.6rem;
+      text-align: center;
+      width: 100%;
+      --color: var(--ion-color-secondary);
+    }
+  }
+}

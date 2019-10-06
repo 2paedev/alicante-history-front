@@ -1,0 +1,14 @@
+<ion-content *ngIf="homePageData">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <app-last-article [data]="lastArticleData"></app-last-article>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let articleList of lists">
+      <ion-col>
+        <app-avatars-list [title]="articleList.title" [data]="articleList.data"></app-avatars-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

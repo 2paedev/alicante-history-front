@@ -11,13 +11,14 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "es2015",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2018",
-      "dom"
-    ]
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2018", "dom"],
+    "paths": {
+      "@models/*": ["src/app/shared/models/*"],
+      "@services/*": ["src/app/shared/services/*"],
+      "@constants/*": ["src/app/shared/constants/*"],
+      "@components/*": ["src/app/shared/components/*"]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
