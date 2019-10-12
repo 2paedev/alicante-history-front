@@ -1,0 +1,9 @@
+<ion-item *ngIf="textAsHtml" class="text-format">
+  <ion-textarea
+    class="text-format__content"
+    [autoGrow]="true"
+    [innerHTML]="textAsHtml"
+    [disabled]="true"
+    [readonly]="true"
+  ></ion-textarea>
+</ion-item>

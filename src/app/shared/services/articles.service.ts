@@ -6,12 +6,16 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class HomeDataService {
-  private readonly url = API_ROUTE.HOME_DATA;
-
+export class ArticlesService {
   public constructor(private readonly http: HttpClient) {}
 
   getAllData(): Observable<any> {
-    return this.http.get(this.url);
+    const url = API_ROUTE.ARTICLES.ALL;
+    return this.http.get(url);
+  }
+
+  getDetail(id: string): Observable<any> {
+    const url = API_ROUTE.ARTICLES.DETAIL(id);
+    return this.http.get(url);
   }
 }

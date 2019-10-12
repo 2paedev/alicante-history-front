@@ -1,1 +1,28 @@
-<ion-content>Article Detail Page Works</ion-content>
+<ion-content *ngIf="articleData" class="article-detail" hide-header [scrollEvents]="true">
+  <ion-grid no-padding>
+    <ion-row>
+      <ion-col no-padding>
+        <app-article-image [data]="articleData" [showReadIcon]="false"></app-article-image>
+      </ion-col>
+    </ion-row>
+    <ion-row class="article-detail__info">
+      <ion-col class="article-detail__info--author">
+        <app-author-avatar
+          [name]="articleData.author.name"
+          [avatar]="articleData.author.avatar"
+        ></app-author-avatar>
+      </ion-col>
+      <ion-col class="article-detail__info--date">
+        <ion-label>{{ articleData.date }}</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="article-detail__text" no-padding>
+        <ion-button (click)="presentPopover()" class="article-detail__text--menu" fill="outline"
+          ><ion-icon name="menu"></ion-icon
+        ></ion-button>
+        <app-text-formatted [textAsHtml]="articleData.text"></app-text-formatted>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

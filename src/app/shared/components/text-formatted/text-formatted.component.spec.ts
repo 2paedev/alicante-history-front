@@ -1,18 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-import { LastArticleComponent } from './last-article.component';
+import { TextFormattedComponent } from './text-formatted.component';
 
-describe('LastArticleComponent', () => {
-  let component: LastArticleComponent;
-  let fixture: ComponentFixture<LastArticleComponent>;
+describe('TextFormattedComponent', () => {
+  let component: TextFormattedComponent;
+  let fixture: ComponentFixture<TextFormattedComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [LastArticleComponent],
+      declarations: [TextFormattedComponent],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(LastArticleComponent);
+    fixture = TestBed.createComponent(TextFormattedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

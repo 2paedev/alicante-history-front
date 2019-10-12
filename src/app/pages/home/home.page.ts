@@ -1,19 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ArticleResume, ArticleResumeData, HomeResume } from '@models/index';
-import { HomeDataService } from '@services/index';
+import { ArticlesService } from '@services/index';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss']
 })
-export class HomePage {
+export class HomePage implements OnInit {
   public homePageData: HomeResume;
   public lastArticleData: ArticleResumeData;
   public lists: ArticleResume[];
 
-  constructor(private homeDataService: HomeDataService) {
-    this.homeDataService.getAllData().subscribe(
+  constructor(private articlesService: ArticlesService) {}
+
+  public ngOnInit(): void {
+    this.getData();
+  }
+
+  private getData(): void {
+    this.articlesService.getAllData().subscribe(
       (response: HomeResume) => {
         this.homePageData = response;
         this.setLastArticle();
@@ -25,7 +31,9 @@ export class HomePage {
     );
   }
 
-  private setLastArticle() {
+  onScroll(event) {}
+
+  private setLastArticle(): void {
     const lastArticlesResume: ArticleResume[] = this.homePageData.list.filter(
       elem => elem.id === 'HR1'
     );

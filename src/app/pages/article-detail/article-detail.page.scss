@@ -1,0 +1,32 @@
+@import 'src/theme/partials/mixins';
+
+.article-detail {
+  &__info {
+    padding: 0 1rem;
+    background-color: var(--ion-color-primary-shade);
+
+    &--author {
+      @include aligns(center, flex-start, row);
+    }
+
+    &--date {
+      color: var(--ion-color-secondary-shade);
+      font-size: 0.5rem;
+      @include aligns(center, flex-end, row);
+    }
+  }
+
+  &__text {
+    background-color: var(--ion-color-secondary-tint);
+    text-align: right;
+
+    &--menu {
+      --background: var(--ion-color-secondary-tint);
+      --border-radius: 0.5rem;
+      --color: var(--ion-color-primary-shade);
+      margin-right: 1rem;
+      heigth: 3rem;
+      width: 3.5rem;
+    }
+  }
+}

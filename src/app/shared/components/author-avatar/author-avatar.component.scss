@@ -1,0 +1,21 @@
+@import 'src/theme/partials/mixins';
+
+.author-avatar {
+  margin: 0;
+
+  &__content {
+    padding: 0;
+    @include aligns(center, center, row);
+  }
+
+  &__image {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  &__text {
+    font-size: 0.7rem;
+    margin-left: 0.5rem;
+    color: var(--ion-color-secondary-tint);
+  }
+}

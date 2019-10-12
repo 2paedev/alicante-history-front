@@ -4,12 +4,13 @@ import { ROUTE } from '@constants/index';
 import { ArticleResumeData } from '@models/index';
 
 @Component({
-  selector: 'app-last-article',
-  templateUrl: './last-article.component.html',
-  styleUrls: ['./last-article.component.scss']
+  selector: 'app-article-image',
+  templateUrl: './article-image.component.html',
+  styleUrls: ['./article-image.component.scss']
 })
-export class LastArticleComponent implements OnInit {
+export class ArticleImageComponent implements OnInit {
   @Input() public data: ArticleResumeData;
+  @Input() public showReadIcon = true;
 
   public title: string;
   public tags: string[];

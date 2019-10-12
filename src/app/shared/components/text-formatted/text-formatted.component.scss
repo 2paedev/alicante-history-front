@@ -1,0 +1,14 @@
+.text-format {
+  --background: var(--ion-color-secondary-tint);
+  --color: var(--ion-color-primary-shade);
+
+  &__content {
+    color: var(--ion-color-primary-shade);
+    --background: var(--ion-color-secondary-tint);
+    padding: 0.5rem;
+
+    p {
+      text-indent: 1.5rem;
+    }
+  }
+}
