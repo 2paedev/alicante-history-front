@@ -1,1 +1,18 @@
-holaaaaaaaaaa
+<ion-list class="text-popover">
+  <ion-segment (ionChange)="segmentChanged($event)">
+    <ion-segment-button [checked]="isCheckedDay" [value]="READ_MODE.DAY">
+      <ion-icon name="sunny"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button [checked]="!isCheckedDay" [value]="READ_MODE.NIGHT">
+      <ion-icon name="moon"></ion-icon>
+    </ion-segment-button>
+  </ion-segment>
+  <ion-segment (ionChange)="segmentChanged($event)">
+    <ion-segment-button [checked]="isCheckedNormal" [value]="READ_MODE.NORMAL">
+      <ion-label class="normal-size">A</ion-label>
+    </ion-segment-button>
+    <ion-segment-button [checked]="!isCheckedNormal" [value]="READ_MODE.BIG">
+      <ion-label class="big-size">A</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-list>

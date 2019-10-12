@@ -1,9 +1,17 @@
-<ion-item *ngIf="textAsHtml" class="text-format">
+<div *ngIf="textAsHtml" class="text-format" [ngClass]="[getColorClass(), getSizeClass()]">
+  <ion-button
+    (click)="presentPopover()"
+    [ngClass]="[getColorClass(), getSizeClass()]"
+    class="text-format__menu"
+    fill="outline"
+    ><ion-icon name="menu"></ion-icon
+  ></ion-button>
   <ion-textarea
+    [ngClass]="[getColorClass(), getSizeClass()]"
     class="text-format__content"
     [autoGrow]="true"
     [innerHTML]="textAsHtml"
     [disabled]="true"
     [readonly]="true"
   ></ion-textarea>
-</ion-item>
+</div>

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { TextPopoverComponent } from '@components/index';
-import { PopoverController } from '@ionic/angular';
 import { ArticleResumeData } from '@models/index';
 import { ArticlesService } from '@services/index';
 
@@ -17,8 +15,7 @@ export class ArticleDetailPage implements OnInit {
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
-    private readonly articlesService: ArticlesService,
-    public readonly popoverController: PopoverController
+    private readonly articlesService: ArticlesService
   ) {}
 
   public ngOnInit(): void {
@@ -37,14 +34,5 @@ export class ArticleDetailPage implements OnInit {
         console.log(error);
       }
     );
-  }
-
-  public async presentPopover(ev: any) {
-    const popover = await this.popoverController.create({
-      component: TextPopoverComponent,
-      event: ev,
-      translucent: true
-    });
-    return await popover.present();
   }
 }
