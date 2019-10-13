@@ -18,7 +18,6 @@ export class TextFormattedComponent implements OnInit, OnDestroy {
 
   private userSubscription: Subscription;
   private userData: User;
-  public ready = false;
 
   constructor(
     public readonly popoverController: PopoverController,
@@ -30,7 +29,6 @@ export class TextFormattedComponent implements OnInit, OnDestroy {
     this.userSubscription = this.userService.getUser().subscribe((userData: User) => {
       this.userData = userData;
       this.storageService.setReadMode(this.userData.readMode.color, this.userData.readMode.size);
-      this.ready = true;
     });
   }
 
@@ -41,25 +39,19 @@ export class TextFormattedComponent implements OnInit, OnDestroy {
       translucent: true,
       cssClass: 'custom-popover',
       componentProps: {
-        isCheckedDay: true,
-        isCheckedNormal: true
+        isCheckedDay: this.storageService.getReadModeColor() === READ_MODE.DAY ? true : false,
+        isCheckedNormal: this.storageService.getReadModeSize() === READ_MODE.NORMAL ? true : false
       }
     });
     return await popover.present();
   }
 
   public getColorClass(): string {
-    if (this.ready) {
-      return this.userData.readMode.color === READ_MODE.DAY ? 'day' : 'night';
-    }
-    return '';
+    return this.storageService.getReadModeColor() === READ_MODE.DAY ? 'day' : 'night';
   }
 
   public getSizeClass(): string {
-    if (this.ready) {
-      return this.userData.readMode.size === READ_MODE.NORMAL ? 'normal' : 'big';
-    }
-    return '';
+    return this.storageService.getReadModeSize() === READ_MODE.NORMAL ? 'normal' : 'big';
   }
 
   public ngOnDestroy() {
