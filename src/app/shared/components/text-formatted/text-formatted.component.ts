@@ -50,7 +50,8 @@ export class TextFormattedComponent implements OnInit, OnDestroy {
     const popover = await this.popoverController.create({
       component: GalleryPopoverComponent,
       event: ev,
-      translucent: true
+      translucent: true,
+      cssClass: 'gallery-popover'
     });
     return await popover.present();
   }

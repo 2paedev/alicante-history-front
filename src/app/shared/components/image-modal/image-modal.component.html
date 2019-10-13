@@ -1,26 +1,27 @@
-<div class="image-modal" fullscreen>
-  <ion-item class="close-fake" lines="none" text-center>
-    <ion-button (click)="close()" fill="clear" color="light">
-      <ion-icon name="close" slot="start"></ion-icon>
-      Back
+<ion-card class="image-modal">
+  <ion-card-header>
+    <div class="image-modal__zoom">
+      <ion-label>Zoom</ion-label>
+      <ion-buttons class="image-modal__zoom-buttons">
+        <ion-button (click)="zoom(true)">
+          <ion-icon name="add-circle-outline"></ion-icon>
+        </ion-button>
+        <ion-button (click)="zoom(false)">
+          <ion-icon name="remove-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </div>
+    <ion-button class="image-modal__close" (click)="close()">
+      <ion-icon name="close"></ion-icon>
     </ion-button>
-    "
-    <ion-button (click)="zoom(true)" fill="clear" color="light">
-      <ion-icon name="add" slot="start"></ion-icon>
-      in
-    </ion-button>
-
-    <ion-button (click)="zoom(false)" fill="clear" color="light">
-      <ion-icon name="remove" slot="start"></ion-icon>
-      out
-    </ion-button>
-  </ion-item>
-
-  <ion-slides [options]="sliderOpts" #slider>
-    <ion-slide>
-      <div class="swiper-zoom-container">
-        <img src="assets/{{ img }}.jpg" />
-      </div>
-    </ion-slide>
-  </ion-slides>
-</div>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-slides zoom [options]="sliderOpts" #slider>
+      <ion-slide>
+        <div class="swiper-zoom-container">
+          <img src="assets/{{ img }}.jpg" />
+        </div>
+      </ion-slide>
+    </ion-slides>
+  </ion-card-content>
+</ion-card>

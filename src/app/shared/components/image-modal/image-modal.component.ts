@@ -9,7 +9,7 @@ import { ModalController, NavParams } from '@ionic/angular';
 export class ImageModalComponent implements OnInit {
   img: any;
 
-  @ViewChild('slider', { read: ElementRef, static: true }) slider: ElementRef;
+  @ViewChild('slider', { read: ElementRef, static: false }) slider: ElementRef;
 
   sliderOpts = {
     zoom: {

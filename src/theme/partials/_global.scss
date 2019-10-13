@@ -47,3 +47,9 @@ ion-button {
     @include faded($faded-wide-offset, $faded-wide-blur-radius, $faded-wide-spread-radius);
   }
 }
+
+ion-popover.gallerypopover {
+  div.popover-content {
+    top: 1rem !important;
+  }
+}

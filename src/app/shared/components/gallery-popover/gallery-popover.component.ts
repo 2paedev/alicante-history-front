@@ -10,9 +10,9 @@ import { ImageModalComponent } from './../image-modal/image-modal.component';
 export class GalleryPopoverComponent {
   public sliderOpts = {
     zoom: false,
-    slidesPerView: 1.5,
-    centeredSlides: true,
-    spaceBetween: 20
+    slidesPerView: 1.5
+    // centeredSlides: true
+    // spaceBetween: 20
   };
 
   constructor(private readonly modalCtrl: ModalController) {}
