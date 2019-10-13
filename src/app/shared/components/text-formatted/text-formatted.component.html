@@ -1,11 +1,21 @@
 <div *ngIf="textAsHtml" class="text-format" [ngClass]="[getColorClass(), getSizeClass()]">
-  <ion-button
-    (click)="presentPopover()"
-    [ngClass]="[getColorClass(), getSizeClass()]"
-    class="text-format__menu"
-    fill="outline"
-    ><ion-icon name="menu"></ion-icon
-  ></ion-button>
+  <ion-buttons class="text-format__buttons">
+    <ion-button
+      (click)="presentGalleryPopover()"
+      [ngClass]="[getColorClass(), getSizeClass()]"
+      class="text-format__buttons--camera"
+      fill="outline"
+      ><ion-icon name="camera"></ion-icon
+    ></ion-button>
+    <ion-button
+      (click)="presentReadModePopover()"
+      [ngClass]="[getColorClass(), getSizeClass()]"
+      class="text-format__buttons--menu"
+      fill="outline"
+      ><ion-icon name="menu"></ion-icon
+    ></ion-button>
+  </ion-buttons>
+
   <ion-textarea
     [ngClass]="[getColorClass(), getSizeClass()]"
     class="text-format__content"

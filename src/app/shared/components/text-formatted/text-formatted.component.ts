@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { TextPopoverComponent } from '../text-popover/text-popover.component';
 import { READ_MODE } from './../../constants/global.constants';
 import { StorageService } from './../../services/storage.service';
+import { GalleryPopoverComponent } from './../gallery-popover/gallery-popover.component';
 
 @Component({
   selector: 'app-text-formatted',
@@ -32,16 +33,24 @@ export class TextFormattedComponent implements OnInit, OnDestroy {
     });
   }
 
-  public async presentPopover(ev: any) {
+  public async presentReadModePopover(ev: any): Promise<void> {
     const popover = await this.popoverController.create({
       component: TextPopoverComponent,
       event: ev,
       translucent: true,
-      cssClass: 'custom-popover',
       componentProps: {
         isCheckedDay: this.storageService.getReadModeColor() === READ_MODE.DAY ? true : false,
         isCheckedNormal: this.storageService.getReadModeSize() === READ_MODE.NORMAL ? true : false
       }
+    });
+    return await popover.present();
+  }
+
+  public async presentGalleryPopover(ev: any): Promise<void> {
+    const popover = await this.popoverController.create({
+      component: GalleryPopoverComponent,
+      event: ev,
+      translucent: true
     });
     return await popover.present();
   }

@@ -2,19 +2,24 @@
 
 .text-format {
   @include aligns(center, center, column);
+  padding: 1rem;
 
-  &__menu {
-    --border-radius: 0.5rem;
-    margin: 1rem 1rem 0 0;
-    width: 3.5rem;
-    align-self: flex-end;
+  &__buttons {
+    width: 100%;
+    @include aligns(center, space-between, row);
 
-    &.day {
-      --border-color: var(--ion-color-primary-shade);
-    }
+    &--menu,
+    &--camera {
+      width: 3rem;
+      --border-radius: 0.5rem !important;
 
-    &.night {
-      --border-color: var(--ion-color-secondary-shade);
+      &.day {
+        --border-color: var(--ion-color-primary-shade);
+      }
+
+      &.night {
+        --border-color: var(--ion-color-secondary-shade);
+      }
     }
   }
 
@@ -32,7 +37,8 @@
   }
 }
 .text-format,
-.text-format__menu,
+.text-format__buttons--menu,
+.text-format__buttons--camera,
 .text-format__content {
   &.day {
     --color: var(--ion-color-primary-shade);
