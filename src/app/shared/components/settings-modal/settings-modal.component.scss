@@ -1,0 +1,55 @@
+@import 'src/theme/partials/mixins';
+
+.settings {
+  ion-card-header {
+    margin-top: 2rem;
+  }
+
+  &__item {
+    @include aligns(center, center, column);
+    background-color: var(--ion-color-primary-shade);
+    margin: 1rem 0.5rem 1.5rem 0.5rem;
+
+    &--label {
+      color: var(--ion-color-secondary-shade);
+      margin-bottom: 0.3rem;
+    }
+
+    &--options {
+      border: 0.2rem solid var(--ion-color-secondary-tint);
+      border-radius: 0.4rem;
+    }
+  }
+
+  .mail {
+    margin-left: 1rem;
+    margin-right: 1rem;
+
+    &--text {
+      padding: 0 0.8rem;
+    }
+
+    &--input {
+      margin-top: 0.5rem;
+      --background: var(--ion-color-secondary-shade);
+      --color: var(--ion-color-primary-shade);
+      --padding-start: 0.5rem;
+      --padding-end: 0.5rem;
+    }
+  }
+
+  &__contact {
+    background-color: var(--ion-color-secondary-shade);
+    border: 0.2rem solid var(--ion-color-secondary-tint);
+    border-radius: 0.4rem;
+
+    &--item {
+      --background: var(--ion-color-secondary-shade);
+      --color: var(--ion-color-primary-tint);
+    }
+
+    &--label {
+      margin-left: 0.5rem;
+    }
+  }
+}

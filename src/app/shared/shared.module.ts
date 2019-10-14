@@ -1,7 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { TextPopoverComponent } from '@components/index';
+import {
+  SearchModalComponent,
+  SettingsModalComponent,
+  TextPopoverComponent
+} from '@components/index';
 import { TagsListComponent } from '@components/tags-list/tags-list.component';
 import { IonicModule } from '@ionic/angular';
 import { ArticleImageComponent } from './components/article-image/article-image.component';
@@ -22,6 +26,8 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
     AvatarCardComponent,
     GalleryPopoverComponent,
     ImageModalComponent,
+    SearchModalComponent,
+    SettingsModalComponent,
     TagsListComponent,
     TextFormattedComponent,
     TextPopoverComponent,
@@ -36,12 +42,20 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
     AvatarCardComponent,
     GalleryPopoverComponent,
     ImageModalComponent,
+    SearchModalComponent,
+    SettingsModalComponent,
     TagsListComponent,
     TextFormattedComponent,
     TextPopoverComponent,
     SafeHtmlPipe,
     HideHeaderDirective
   ],
-  entryComponents: [TextPopoverComponent, GalleryPopoverComponent, ImageModalComponent]
+  entryComponents: [
+    TextPopoverComponent,
+    GalleryPopoverComponent,
+    ImageModalComponent,
+    SearchModalComponent,
+    SettingsModalComponent
+  ]
 })
 export class SharedModule {}

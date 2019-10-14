@@ -1,25 +1,10 @@
 @import 'src/theme/partials/mixins';
 
 .image-modal {
-  @include aligns(center, center, column);
-
-  ion-card-header {
-    @include aligns(center, center, row);
-    width: 100%;
-  }
-
   &__zoom {
     @include aligns(center, center, column);
     &--buttons {
       @include aligns(center, center, row);
     }
-  }
-
-  &__close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    font-size: 1.5rem;
-    --padding-end: 0;
   }
 }

@@ -8,8 +8,9 @@
   }
 
   &__title {
-    border-bottom: 0.02rem solid var(--ion-color-secondary);
+    //border-bottom: 0.02rem solid var(--ion-color-secondary-shade);
     padding: 0 2.5rem;
+    color: var(--ion-color-secondary-shade);
   }
 
   &__content {

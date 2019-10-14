@@ -1,0 +1,43 @@
+<ion-card class="settings modal modal--fullscreen">
+  <ion-button class="modal__close" (click)="close()">
+    <ion-icon name="close"></ion-icon>
+  </ion-button>
+  <ion-card-header class="modal__header">
+    <ion-title>Ajustes</ion-title>
+  </ion-card-header>
+  <ion-card-content>
+    <div class="settings__item">
+      <ion-label class="settings__item--label">Modo de lectura</ion-label>
+      <app-text-popover
+        class="settings__item--options"
+        [isCheckedDay]="isCheckedDay"
+        [isCheckedNormal]="isCheckedNormal"
+      ></app-text-popover>
+    </div>
+
+    <div class="settings__item mail">
+      <ion-label class="settings__item--label">Email</ion-label>
+      <ion-text class="mail--text"
+        >Introduce tu email si quiere que le avisemos cuando un nuevo artículo esté
+        disponible.</ion-text
+      >
+      <ion-input class="mail--input" placeholder="Email:"></ion-input>
+    </div>
+
+    <div class="settings__item">
+      <ion-label class="settings__item--label">Contacto</ion-label>
+      <ion-list class="settings__contact">
+        <ion-item class="settings__contact--item"
+          ><ion-icon name="mail" color="primary"></ion-icon
+          ><ion-label class="settings__contact--label"
+            >historiadealicanteapp@gmail.com</ion-label
+          ></ion-item
+        >
+        <ion-item class="settings__contact--item"
+          ><ion-icon name="logo-twitter" color="primary"></ion-icon
+          ><ion-label class="settings__contact--label">@historiadealicanteapp</ion-label></ion-item
+        >
+      </ion-list>
+    </div>
+  </ion-card-content>
+</ion-card>

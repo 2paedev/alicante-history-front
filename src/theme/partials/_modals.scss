@@ -1,0 +1,30 @@
+@import 'src/theme/partials/mixins';
+
+.modal {
+  @include aligns(center, center, column);
+  background-color: var(--ion-color-primary-shade);
+
+  &--fullscreen {
+    height: 100vh;
+    margin: 0;
+  }
+
+  &__header {
+    @include aligns(center, center, row);
+    color: var(--ion-color-secondary-shade);
+  }
+
+  &__close {
+    position: absolute;
+    --background: var(--ion-color-primary-shade);
+    top: 0;
+    right: 0;
+    margin: 0.5rem;
+    font-size: 1.5rem;
+    --padding-end: 0;
+  }
+}
+
+.modal-wrapper {
+  background: transparent !important;
+}

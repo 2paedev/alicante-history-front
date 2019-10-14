@@ -1,5 +1,8 @@
-<ion-card class="image-modal">
-  <ion-card-header>
+<ion-card class="image-modal modal modal--fullscreen">
+  <ion-button class="modal__close" (click)="close()">
+    <ion-icon name="close"></ion-icon>
+  </ion-button>
+  <ion-card-header class="modal__header">
     <div class="image-modal__zoom">
       <ion-label>Zoom</ion-label>
       <ion-buttons class="image-modal__zoom-buttons">
@@ -11,9 +14,6 @@
         </ion-button>
       </ion-buttons>
     </div>
-    <ion-button class="image-modal__close" (click)="close()">
-      <ion-icon name="close"></ion-icon>
-    </ion-button>
   </ion-card-header>
   <ion-card-content>
     <ion-slides zoom [options]="sliderOpts" #slider>
