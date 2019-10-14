@@ -4,18 +4,17 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { SharedModule } from '../../shared/shared.module';
-import { AvatarsListComponent } from './components/avatars-list/avatars-list.component';
-import { HomePage } from './home.page';
-import { HOME_ROUTES } from './home.routes';
+import { MyListPage } from './my-list.page';
+import { MY_LIST_ROUTES } from './my-list.routes';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(HOME_ROUTES),
+    RouterModule.forChild(MY_LIST_ROUTES),
     SharedModule
   ],
-  declarations: [HomePage, AvatarsListComponent]
+  declarations: [MyListPage]
 })
-export class HomePageModule {}
+export class MyListPageModule {}

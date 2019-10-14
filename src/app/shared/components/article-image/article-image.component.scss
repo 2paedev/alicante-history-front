@@ -1,8 +1,9 @@
+@import 'src/theme/partials/mixins';
+
 .card {
   position: relative;
   text-align: center;
   margin: 0;
-
   &__image {
     max-height: 70%;
     max-width: 100%;
@@ -28,6 +29,7 @@
   }
 
   &__buttons {
+    @include aligns(center, center, row);
     top: 80%;
   }
 }

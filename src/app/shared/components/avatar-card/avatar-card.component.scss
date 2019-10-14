@@ -1,24 +1,21 @@
 @import 'src/theme/partials/mixins';
 
 .avatar-card {
-  margin-right: 0rem;
-  width: 100%;
-
   &__item {
     --background: var(--ion-color-primary);
     --background-activated: var(--ion-color-primary-tint);
     --border-color: var(--ion-color-primary-shade);
     --border-radius: 0.3rem;
     --border-width: 0.1rem;
-    --padding-start: 0px;
-    --padding-top: 0px;
-    --inner-padding-end: 0px;
-    --inner-padding-top: 0px;
-    width: 120px;
+    --padding-start: 0;
+    --padding-top: 0;
+    --inner-padding-end: 0;
+    --inner-padding-top: 0;
+    width: 7.5rem;
 
     &--column {
       @include aligns(center, center, column);
-      min-width: 120px;
+      min-width: 7.5rem;
       padding: 0;
     }
 

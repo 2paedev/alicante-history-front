@@ -13,4 +13,10 @@ export class HeaderComponent {
   public goToHomePage(): void {
     this.router.navigate([ROUTE.HOME]);
   }
+
+  public goToMyList(): void {
+    this.router.navigate([ROUTE.MY_LIST]);
+  }
+
+  public openSearchModal() {}
 }

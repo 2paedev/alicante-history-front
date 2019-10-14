@@ -1,0 +1,27 @@
+@import 'src/theme/partials/mixins';
+
+.my-list {
+  ion-grid {
+    @include aligns(center, flex-start, column);
+    height: 100vh;
+    margin-top: 4rem;
+  }
+
+  &__title {
+    border-bottom: 0.02rem solid var(--ion-color-secondary);
+    padding: 0 2.5rem;
+  }
+
+  &__content {
+    @include aligns(center, center, row);
+    flex-wrap: wrap;
+    max-height: 100vh;
+
+    ion-item {
+      margin: 0.8rem;
+      max-width: 23vw;
+
+      border: 3px solid red;
+    }
+  }
+}

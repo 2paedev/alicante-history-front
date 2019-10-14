@@ -6,6 +6,7 @@ import { TagsListComponent } from '@components/tags-list/tags-list.component';
 import { IonicModule } from '@ionic/angular';
 import { ArticleImageComponent } from './components/article-image/article-image.component';
 import { AuthorAvatarComponent } from './components/author-avatar/author-avatar.component';
+import { AvatarCardComponent } from './components/avatar-card/avatar-card.component';
 import { GalleryPopoverComponent } from './components/gallery-popover/gallery-popover.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ImageModalComponent } from './components/image-modal/image-modal.component';
@@ -18,6 +19,7 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
     HeaderComponent,
     ArticleImageComponent,
     AuthorAvatarComponent,
+    AvatarCardComponent,
     GalleryPopoverComponent,
     ImageModalComponent,
     TagsListComponent,
@@ -31,6 +33,7 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
     HeaderComponent,
     ArticleImageComponent,
     AuthorAvatarComponent,
+    AvatarCardComponent,
     GalleryPopoverComponent,
     ImageModalComponent,
     TagsListComponent,

@@ -1,0 +1,19 @@
+<ion-content *ngIf="myListData" class="my-list" hide-header [scrollEvents]="true" fullscreen>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-title class="my-list__title">Mi lista</ion-title>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list class="my-list__content">
+          <app-avatar-card
+            *ngFor="let article of myListData.list"
+            [data]="article"
+          ></app-avatar-card>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

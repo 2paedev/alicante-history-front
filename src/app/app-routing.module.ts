@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: ROUTE.ARTICLE,
     loadChildren: './pages/article-detail/article-detail.module#ArticleDetailPageModule'
+  },
+  {
+    path: ROUTE.MY_LIST,
+    loadChildren: './pages/my-list/my-list.module#MyListPageModule'
   }
 ];
 
