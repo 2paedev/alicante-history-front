@@ -4,6 +4,7 @@ import { ModalController } from '@ionic/angular';
 import { User } from '@models/index';
 import { StorageService, UserService } from '@services/index';
 import { Subscription } from 'rxjs';
+import { CustomPost } from './../../models/custom-post';
 
 @Component({
   selector: 'app-settings-modal',
@@ -34,8 +35,17 @@ export class SettingsModalComponent implements OnInit, OnDestroy {
   }
 
   public sendMail(): void {
-    this.isMailSended = true;
-    this.storageService.setIsMailSended(this.isMailSended);
+    const bodyParams = { mail: this.mailText };
+    this.userService.setEmailUser(bodyParams).subscribe(
+      (response: CustomPost) => {
+        debugger;
+        this.isMailSended = true;
+        this.storageService.setIsMailSended(this.isMailSended);
+      },
+      (error: CustomPost) => {
+        console.log(error.error.message);
+      }
+    );
   }
 
   public close(): void {
