@@ -38,7 +38,6 @@ export class SettingsModalComponent implements OnInit, OnDestroy {
     const bodyParams = { mail: this.mailText };
     this.userService.setEmailUser(bodyParams).subscribe(
       (response: CustomPost) => {
-        debugger;
         this.isMailSended = true;
         this.storageService.setIsMailSended(this.isMailSended);
       },

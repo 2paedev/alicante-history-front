@@ -49,4 +49,35 @@ export class StorageService {
     }
     localStorage.setItem(STORAGE_KEY.MY_LIST, JSON.stringify(newList));
   }
+
+  public removeItemInMyList(item: ArticleResumeData): void {
+    const previousList = this.getMyList();
+    let newList = [];
+    if (previousList !== null) {
+      newList = previousList.filter(data => data.id !== item.id);
+    }
+    localStorage.setItem(STORAGE_KEY.MY_LIST, JSON.stringify(newList));
+  }
+
+  public getMyLikedList(): string[] {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY.MY_LIKED_LIST));
+  }
+
+  public setItemInMyLikedList(itemId: string): void {
+    const previousList = this.getMyLikedList();
+    let newList = [itemId];
+    if (previousList !== null) {
+      newList = [...previousList, itemId];
+    }
+    localStorage.setItem(STORAGE_KEY.MY_LIKED_LIST, JSON.stringify(newList));
+  }
+
+  public removeItemInMyLikedList(itemId: string): void {
+    const previousList = this.getMyLikedList();
+    let newList = [];
+    if (previousList !== null) {
+      newList = previousList.filter(id => id !== itemId);
+    }
+    localStorage.setItem(STORAGE_KEY.MY_LIKED_LIST, JSON.stringify(newList));
+  }
 }

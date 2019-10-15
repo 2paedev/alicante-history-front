@@ -17,5 +17,6 @@ export const STORAGE_KEY = {
   MAIL: {
     IS_SENDED: 'is-mail-sended'
   },
-  MY_LIST: 'my-list'
+  MY_LIST: 'my-list',
+  MY_LIKED_LIST: 'my-liked-list'
 };

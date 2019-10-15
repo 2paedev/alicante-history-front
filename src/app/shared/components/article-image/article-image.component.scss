@@ -31,5 +31,13 @@
   &__buttons {
     @include aligns(center, center, row);
     top: 80%;
+
+    &--like {
+      --color: var(--ion-color-primary-shade);
+
+      &.fav {
+        --color: red;
+      }
+    }
   }
 }

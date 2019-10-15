@@ -2,7 +2,7 @@ var Global = require('../../constants/global')
 var Fixture = require('./custom-post-response-fixture')
 
 module.exports = {
-  path: '/mail/subscription',
+  path: '/articles/:id/like',
   render: (req, res) => {
     data = Fixture.CUSTOM_POST_RESPONSE_OK
     status = 200
