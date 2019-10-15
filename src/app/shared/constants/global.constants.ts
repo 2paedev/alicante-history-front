@@ -13,5 +13,9 @@ export const STORAGE_KEY = {
   READ_MODE: {
     COLOR: 'read-mode-color',
     SIZE: 'read-mode-size'
-  }
+  },
+  MAIL: {
+    IS_SENDED: 'is-mail-sended'
+  },
+  MY_LIST: 'my-list'
 };

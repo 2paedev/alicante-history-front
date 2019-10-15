@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '@services/index';
+import { StorageService } from '@services/index';
+import { ArticleResumeData } from './../../shared/models/home-resume';
 
 @Component({
   selector: 'app-my-list',
@@ -7,22 +8,11 @@ import { UserService } from '@services/index';
   styleUrls: ['my-list.page.scss']
 })
 export class MyListPage implements OnInit {
-  public myListData: any;
+  public myListData: ArticleResumeData[] = [];
 
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly storageService: StorageService) {}
 
   public ngOnInit(): void {
-    this.getData();
-  }
-
-  private getData(): void {
-    this.userService.getMyListData().subscribe(
-      (response: any) => {
-        this.myListData = response;
-      },
-      (error: any) => {
-        console.log(error);
-      }
-    );
+    this.myListData = this.storageService.getMyList();
   }
 }

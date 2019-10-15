@@ -25,4 +25,9 @@
       border: 3px solid red;
     }
   }
+
+  &__warning {
+    font-size: 0.8rem;
+    color: var(--ion-color-secondary-shade);
+  }
 }

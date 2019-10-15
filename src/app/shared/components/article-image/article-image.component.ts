@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ROUTE } from '@constants/index';
 import { ArticleResumeData } from '@models/index';
+import { StorageService } from '@services/index';
 
 @Component({
   selector: 'app-article-image',
@@ -17,17 +18,21 @@ export class ArticleImageComponent implements OnInit {
 
   private id: string;
 
-  constructor(private readonly router: Router) {}
+  constructor(private readonly router: Router, private readonly storageService: StorageService) {}
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.assembleDataCard();
   }
 
-  public goToArticle() {
+  public addToMyList(): void {
+    this.storageService.setItemInMyList(this.data);
+  }
+
+  public goToArticle(): void {
     this.router.navigate([ROUTE.ARTICLE_DETAIL(this.id)]);
   }
 
-  assembleDataCard() {
+  private assembleDataCard(): void {
     this.id = this.data.id;
     this.title = this.data.title;
     this.tags = this.data.tags;

@@ -19,6 +19,14 @@
       border: 0.2rem solid var(--ion-color-secondary-tint);
       border-radius: 0.4rem;
     }
+
+    &--block {
+      @include aligns(center, center, column);
+    }
+
+    &--block-row {
+      @include aligns(center, center, row);
+    }
   }
 
   .mail {
@@ -35,6 +43,9 @@
       --color: var(--ion-color-primary-shade);
       --padding-start: 0.5rem;
       --padding-end: 0.5rem;
+    }
+    ion-button {
+      margin-top: 1rem;
     }
   }
 

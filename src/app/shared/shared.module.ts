@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import {
   SearchModalComponent,
@@ -34,7 +35,7 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
     SafeHtmlPipe,
     HideHeaderDirective
   ],
-  imports: [CommonModule, IonicModule, RouterModule],
+  imports: [CommonModule, IonicModule, RouterModule, FormsModule, ReactiveFormsModule],
   exports: [
     HeaderComponent,
     ArticleImageComponent,

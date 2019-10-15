@@ -3,10 +3,12 @@ import { Tag } from './tag';
 export interface ArticleResumeData {
   id: string;
   title: string;
-  img: string;
-  content: string;
   tags: string[];
-  likesNumber: number;
+  publicationImage: string;
+  publicationDate: string;
+  // img: string;
+  // content: string;
+  // likesNumber: number;
 }
 
 export interface ArticleResume {

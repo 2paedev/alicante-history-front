@@ -11,15 +11,10 @@ $faded-narrow-spread-radius: 10px !default;
 $faded-wide-offset: 80px !default;
 $faded-wide-blur-radius: 80px !default;
 $faded-wide-spread-radius: 28px !default;
-
 ion-button {
   text-transform: none;
   --border-radius: 0;
   --box-shadow: none;
-
-  &.secondary {
-    color: var(--bbva-medium-blue);
-  }
 }
 .faded {
   position: relative;

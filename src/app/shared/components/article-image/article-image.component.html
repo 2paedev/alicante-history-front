@@ -6,7 +6,7 @@
     <app-tags-list [tags]="tags"></app-tags-list>
   </div>
   <ion-buttons class="card__buttons">
-    <ion-button color="secondary" fill="clear">
+    <ion-button color="secondary" fill="clear" (click)="addToMyList()">
       <ion-icon size="small" name="add"></ion-icon>
     </ion-button>
     <ion-button *ngIf="showReadIcon" color="secondary" fill="solid" (click)="goToArticle()">
