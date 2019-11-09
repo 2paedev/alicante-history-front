@@ -2,7 +2,7 @@ var ArticlesAllFixture = require('./articles-all-fixture')
 var Errors = require('../../../constants/errors')
 
 module.exports = {
-  path: '/articles/all',
+  path: '/articles/resume',
   method: 'GET',
   delay: 1000,
   render: (req, res) => {

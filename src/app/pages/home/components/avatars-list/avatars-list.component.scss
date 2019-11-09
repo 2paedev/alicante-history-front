@@ -7,13 +7,30 @@
     padding-left: 1rem;
   }
 
-  &__scroll {
-    display: flex;
-    position: relative;
-    width: 2000px;
-    white-space: nowrap;
-    overflow: hidden;
-    overflow-x: auto;
-    padding-top: 0;
+  &__wrapper {
+    @include aligns(flex-start, center, column);
+  }
+
+  &__content {
+    @include aligns(center, center, row);
+    flex-wrap: wrap;
+    margin-bottom: 0;
+
+    &.collapsed {
+      max-height: 10rem;
+    }
+
+    &--show {
+      margin-top: 0;
+      align-self: center;
+      font-size: 0.7rem;
+      ion-icon {
+        margin-left: 0.3rem;
+      }
+    }
+
+    &.all {
+      max-height: 100%;
+    }
   }
 }

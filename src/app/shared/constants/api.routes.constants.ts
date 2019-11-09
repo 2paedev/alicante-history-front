@@ -1,12 +1,14 @@
-const API_URL = 'http://localhost:3000';
+import { environment } from './../../../environments/environment';
+
+const API_URL = environment.baseUrl;
 
 export const API_ROUTE = {
   ARTICLES: {
-    ALL: `${API_URL}/articles/all`,
-    DETAIL: (articleId: string): string => `${API_URL}/articles/${articleId}`,
-    LIKES: (articleId: string): string => `${API_URL}/articles/${articleId}/like`
+    RESUME: `${API_URL}/resume/`,
+    DETAIL: (articleId: string): string => `${API_URL}/articles/${articleId}/`,
+    LIKES: (articleId: string): string => `${API_URL}/articles/${articleId}/like/`
   },
   USER: {
-    MAIL_SUBSCRIPTION: `${API_URL}/mail/subscription`
+    MAIL_SUBSCRIPTION: `${API_URL}/mail/subscription/`
   }
 };

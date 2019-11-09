@@ -1,18 +1,24 @@
 @import 'src/theme/partials/mixins';
 
 .settings {
+  @include aligns(center, flex-start, column);
+
   ion-card-header {
     margin-top: 2rem;
+    margin-bottom: 2rem;
   }
 
   &__item {
     @include aligns(center, center, column);
     background-color: var(--ion-color-primary-shade);
     margin: 1rem 0.5rem 1.5rem 0.5rem;
-
     &--label {
       color: var(--ion-color-secondary-shade);
       margin-bottom: 0.3rem;
+
+      ion-icon {
+        vertical-align: middle;
+      }
     }
 
     &--options {

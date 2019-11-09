@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleResume, ArticleResumeData, HomeResume } from '@models/index';
+import { Article, ArticleResume } from '@models/index';
 import { ArticlesService } from '@services/index';
 
 @Component({
@@ -8,9 +8,8 @@ import { ArticlesService } from '@services/index';
   styleUrls: ['home.page.scss']
 })
 export class HomePage implements OnInit {
-  public homePageData: HomeResume;
-  public lastArticleData: ArticleResumeData;
-  public lists: ArticleResume[];
+  public homePageData: ArticleResume[];
+  public lastArticleData: Article;
 
   constructor(private articlesService: ArticlesService) {}
 
@@ -20,10 +19,9 @@ export class HomePage implements OnInit {
 
   private getData(): void {
     this.articlesService.getAllData().subscribe(
-      (response: HomeResume) => {
+      (response: ArticleResume[]) => {
         this.homePageData = response;
-        this.setLastArticle();
-        this.lists = this.homePageData.list;
+        this.lastArticleData = this.homePageData[0].articles[0];
       },
       (error: any) => {
         console.log(error);
@@ -31,13 +29,7 @@ export class HomePage implements OnInit {
     );
   }
 
-  onScroll(event) {}
-
-  private setLastArticle(): void {
-    const lastArticlesResume: ArticleResume[] = this.homePageData.list.filter(
-      elem => elem.id === 'HR1'
-    );
-    const LAST_TEN_ARTICLES_LENGTH = lastArticlesResume[0].data.length;
-    this.lastArticleData = lastArticlesResume[0].data[LAST_TEN_ARTICLES_LENGTH - 1];
+  public getLastArticleImage(): string {
+    return this.lastArticleData.images[0].url;
   }
 }

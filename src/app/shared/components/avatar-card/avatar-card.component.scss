@@ -1,8 +1,11 @@
 @import 'src/theme/partials/mixins';
 
 .avatar-card {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+
   &__item {
-    --background: var(--ion-color-primary);
+    --background: var(--ion-color-primary-shade);
     --background-activated: var(--ion-color-primary-tint);
     --border-color: var(--ion-color-primary-shade);
     --border-radius: 0.3rem;
@@ -17,6 +20,7 @@
       @include aligns(center, center, column);
       min-width: 7.5rem;
       padding: 0;
+      max-height: 7rem;
     }
 
     &--thumbnail {

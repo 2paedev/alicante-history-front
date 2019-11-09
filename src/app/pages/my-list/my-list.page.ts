@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from '@services/index';
-import { ArticleResumeData } from './../../shared/models/home-resume';
+import { Article } from '../../shared/models/articles';
 
 @Component({
   selector: 'app-my-list',
@@ -8,7 +8,7 @@ import { ArticleResumeData } from './../../shared/models/home-resume';
   styleUrls: ['my-list.page.scss']
 })
 export class MyListPage implements OnInit {
-  public myListData: ArticleResumeData[] = [];
+  public myListData: Article[] = [];
 
   constructor(private readonly storageService: StorageService) {}
 

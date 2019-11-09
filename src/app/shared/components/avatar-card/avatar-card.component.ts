@@ -1,19 +1,26 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ROUTE } from '@constants/index';
-import { ArticleResumeData } from '@models/index';
+import { Article } from '@models/index';
+import { HelpersService } from '@services/index';
 
 @Component({
   selector: 'app-avatar-card',
   templateUrl: './avatar-card.component.html',
   styleUrls: ['./avatar-card.component.scss']
 })
-export class AvatarCardComponent {
-  @Input() public data: ArticleResumeData;
+export class AvatarCardComponent implements OnInit {
+  @Input() public data: Article;
 
-  constructor(private readonly router: Router) {}
+  public imageUrl: string;
 
-  public goToArticle(article: ArticleResumeData) {
+  constructor(private readonly router: Router, private readonly helper: HelpersService) {}
+
+  public ngOnInit(): void {
+    this.imageUrl = this.helper.getImageUrl(this.data.images[0].url);
+  }
+
+  public goToArticle(article: Article): void {
     this.router.navigate([ROUTE.ARTICLE_DETAIL(article.id)]);
   }
 }

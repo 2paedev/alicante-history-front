@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Tag } from '@models/index';
 
 @Component({
   selector: 'app-tags-list',
@@ -6,5 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['tags-list.component.scss']
 })
 export class TagsListComponent {
-  @Input() public tags: string[];
+  @Input() public tags: Tag[];
 }

@@ -17,7 +17,7 @@ export class ArticlesService {
   public constructor(private readonly http: HttpClient) {}
 
   public getAllData(): Observable<any> {
-    const url = API_ROUTE.ARTICLES.ALL;
+    const url = API_ROUTE.ARTICLES.RESUME;
     return this.http.get(url);
   }
 

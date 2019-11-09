@@ -1,5 +1,8 @@
 <div class="gallery" fullscreen>
-  <img src="assets/santa-barbara.jpg" tappable (click)="openPreview('santa-barbara')" />
-  <img src="assets/lucentum.jpg" tappable (click)="openPreview('lucentum')" />
-  <img src="assets/ilustres.jpg" tappable (click)="openPreview('ilustres')" />
+  <img
+    *ngFor="let image of images"
+    [src]="getImageUrl(image.url)"
+    tappable
+    (click)="openPreview(image)"
+  />
 </div>

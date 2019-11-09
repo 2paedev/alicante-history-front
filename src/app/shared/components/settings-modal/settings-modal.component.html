@@ -7,8 +7,17 @@
   </ion-card-header>
   <ion-card-content>
     <div class="settings__item">
-      <ion-label class="settings__item--label">Modo de lectura</ion-label>
+      <ion-label class="settings__item--label"
+        >Modo de lectura
+        <ion-icon
+          *ngIf="!readModeShowed"
+          name="arrow-dropdown"
+          (click)="toggleReadMode()"
+        ></ion-icon>
+        <ion-icon *ngIf="readModeShowed" name="arrow-dropup" (click)="toggleReadMode()"></ion-icon>
+      </ion-label>
       <app-text-popover
+        *ngIf="readModeShowed"
         class="settings__item--options"
         [isCheckedDay]="isCheckedDay"
         [isCheckedNormal]="isCheckedNormal"
@@ -16,8 +25,12 @@
     </div>
 
     <div class="settings__item mail">
-      <ion-label class="settings__item--label">Email</ion-label>
-      <div class="settings__item--block" *ngIf="!isMailSended">
+      <ion-label class="settings__item--label"
+        >Email
+        <ion-icon *ngIf="!emailShowed" name="arrow-dropdown" (click)="toggleEmail()"></ion-icon>
+        <ion-icon *ngIf="emailShowed" name="arrow-dropup" (click)="toggleEmail()"></ion-icon>
+      </ion-label>
+      <div class="settings__item--block" *ngIf="!isMailSended && emailShowed">
         <ion-text class="mail--text"
           >Introduce tu email si quiere que le avisemos cuando un nuevo artículo esté
           disponible.</ion-text
@@ -44,8 +57,12 @@
     </div>
 
     <div class="settings__item">
-      <ion-label class="settings__item--label">Contacto</ion-label>
-      <ion-list class="settings__contact">
+      <ion-label class="settings__item--label"
+        >Contacto
+        <ion-icon *ngIf="!contactShowed" name="arrow-dropdown" (click)="toggleContact()"></ion-icon>
+        <ion-icon *ngIf="contactShowed" name="arrow-dropup" (click)="toggleContact()"></ion-icon>
+      </ion-label>
+      <ion-list class="settings__contact" *ngIf="contactShowed">
         <ion-item class="settings__contact--item"
           ><ion-icon color="danger" name="mail"></ion-icon
           ><ion-label class="settings__contact--label"

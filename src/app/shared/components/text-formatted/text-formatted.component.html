@@ -1,14 +1,14 @@
 <div *ngIf="textAsHtml" class="text-format" [ngClass]="[getColorClass(), getSizeClass()]">
   <ion-buttons class="text-format__buttons">
     <ion-button
-      (click)="presentGalleryPopover()"
+      (click)="presentGalleryPopover($event)"
       [ngClass]="[getColorClass(), getSizeClass()]"
       class="text-format__buttons--camera"
       fill="outline"
       ><ion-icon name="camera"></ion-icon
     ></ion-button>
     <ion-button
-      (click)="presentReadModePopover()"
+      (click)="presentReadModePopover($event)"
       [ngClass]="[getColorClass(), getSizeClass()]"
       class="text-format__buttons--menu"
       fill="outline"

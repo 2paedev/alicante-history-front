@@ -16,6 +16,9 @@ export class SettingsModalComponent implements OnInit, OnDestroy {
   public isCheckedNormal: boolean;
   public isMailSended: boolean;
   public mailText: string;
+  public readModeShowed = false;
+  public emailShowed = false;
+  public contactShowed = false;
 
   private userSubscription: Subscription;
 
@@ -56,6 +59,18 @@ export class SettingsModalComponent implements OnInit, OnDestroy {
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     );
     return regexp.test(email);
+  }
+
+  public toggleReadMode() {
+    this.readModeShowed = !this.readModeShowed;
+  }
+
+  public toggleEmail() {
+    this.emailShowed = !this.emailShowed;
+  }
+
+  public toggleContact() {
+    this.contactShowed = !this.contactShowed;
   }
 
   public ngOnDestroy() {

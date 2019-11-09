@@ -1,11 +1,10 @@
 import { Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { READ_MODE } from '@constants/index';
 import { PopoverController } from '@ionic/angular';
-import { User } from '@models/index';
-import { UserService } from '@services/index';
+import { CustomImage, User } from '@models/index';
+import { StorageService, UserService } from '@services/index';
 import { Subscription } from 'rxjs';
 import { TextPopoverComponent } from '../text-popover/text-popover.component';
-import { READ_MODE } from './../../constants/global.constants';
-import { StorageService } from './../../services/storage.service';
 import { GalleryPopoverComponent } from './../gallery-popover/gallery-popover.component';
 
 @Component({
@@ -16,6 +15,7 @@ import { GalleryPopoverComponent } from './../gallery-popover/gallery-popover.co
 })
 export class TextFormattedComponent implements OnInit, OnDestroy {
   @Input() public textAsHtml: string;
+  @Input() public articleImages: CustomImage[];
 
   private userSubscription: Subscription;
   private userData: User;
@@ -51,7 +51,10 @@ export class TextFormattedComponent implements OnInit, OnDestroy {
       component: GalleryPopoverComponent,
       event: ev,
       translucent: true,
-      cssClass: 'gallery-popover'
+      cssClass: 'gallery-popover',
+      componentProps: {
+        images: this.articleImages
+      }
     });
     return await popover.present();
   }

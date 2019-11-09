@@ -1,10 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ROUTE } from '@constants/index';
-import { ArticleResumeData } from '@models/index';
-import { StorageService } from '@services/index';
-import { CustomPost } from './../../models/custom-post';
-import { ArticlesService } from './../../services/articles.service';
+import { Article, CustomPost, Tag } from '@models/index';
+import { ArticlesService, HelpersService, StorageService } from '@services/index';
 
 @Component({
   selector: 'app-article-image',
@@ -12,20 +10,21 @@ import { ArticlesService } from './../../services/articles.service';
   styleUrls: ['./article-image.component.scss']
 })
 export class ArticleImageComponent implements OnInit {
-  @Input() public data: ArticleResumeData;
   @Input() public showReadIcon = true;
+  @Input() public image: string;
+  @Input() public title: string;
+  @Input() public tags: Tag[];
+  @Input() public data: Article;
 
-  public title: string;
-  public tags: string[];
   public isAddedInMyList: boolean;
   public isLiked: boolean;
-
-  private id: string;
+  public imageUrl;
 
   constructor(
     private readonly router: Router,
     private readonly storageService: StorageService,
-    private readonly articlesService: ArticlesService
+    private readonly articlesService: ArticlesService,
+    private readonly helper: HelpersService
   ) {}
 
   public ngOnInit(): void {
@@ -43,14 +42,14 @@ export class ArticleImageComponent implements OnInit {
   }
 
   public goToArticle(): void {
-    this.router.navigate([ROUTE.ARTICLE_DETAIL(this.id)]);
+    this.router.navigate([ROUTE.ARTICLE_DETAIL(this.data.id)]);
   }
 
   public addLike(): void {
-    this.articlesService.setLike(this.id).subscribe(
+    this.articlesService.setLike(this.data.id).subscribe(
       (response: CustomPost) => {
         this.isLiked = true;
-        this.storageService.setItemInMyLikedList(this.id);
+        this.storageService.setItemInMyLikedList(this.data.id);
       },
       (error: CustomPost) => {
         console.log(error.error.message);
@@ -59,10 +58,10 @@ export class ArticleImageComponent implements OnInit {
   }
 
   public removeLike(): void {
-    this.articlesService.removeLike(this.id).subscribe(
+    this.articlesService.removeLike(this.data.id).subscribe(
       (response: CustomPost) => {
         this.isLiked = false;
-        this.storageService.removeItemInMyLikedList(this.id);
+        this.storageService.removeItemInMyLikedList(this.data.id);
       },
       (error: CustomPost) => {
         console.log(error.error.message);
@@ -75,15 +74,11 @@ export class ArticleImageComponent implements OnInit {
   }
 
   private assembleDataCard(): void {
-    this.id = this.data.id;
-    this.title = this.data.title;
-    this.tags = this.data.tags;
-
+    this.imageUrl = this.helper.getImageUrl(this.image);
     const likeList = this.storageService.getMyLikedList();
     if (likeList !== null) {
-      this.isLiked = likeList.includes(this.id);
+      this.isLiked = likeList.includes(this.data.id);
     }
-
     const myList = this.storageService.getMyList();
     if (myList !== null) {
       this.isAddedInMyList = myList.includes(this.data);

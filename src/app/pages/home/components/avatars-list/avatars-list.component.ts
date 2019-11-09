@@ -10,5 +10,13 @@ export class AvatarsListComponent {
   @Input() public title: string;
   @Input() public data: ArticleResume;
 
-  constructor() {}
+  public showAll = false;
+
+  public toggleShowMore(): void {
+    this.showAll = !this.showAll;
+  }
+
+  public getClassContent(): string {
+    return this.showAll ? 'all' : 'collapsed';
+  }
 }

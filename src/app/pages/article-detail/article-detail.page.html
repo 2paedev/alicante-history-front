@@ -8,14 +8,21 @@
   <ion-grid no-padding>
     <ion-row>
       <ion-col no-padding>
-        <app-article-image [data]="articleData" [showReadIcon]="false"></app-article-image>
+        <app-article-image
+          [data]="articleData"
+          [title]="articleData.title"
+          [image]="getArticleImage()"
+          [tags]="articleData.tags"
+          [showReadIcon]="false"
+        ></app-article-image>
       </ion-col>
     </ion-row>
     <ion-row class="article-detail__info">
       <ion-col class="article-detail__info--author">
         <app-author-avatar
           [name]="articleData.author.name"
-          [avatar]="articleData.author.avatar"
+          [surname]="articleData.author.surname"
+          [image]="articleData.author.image"
         ></app-author-avatar>
       </ion-col>
       <ion-col class="article-detail__info--date">
@@ -24,7 +31,10 @@
     </ion-row>
     <ion-row>
       <ion-col class="article-detail__text" no-padding>
-        <app-text-formatted [textAsHtml]="articleData.text"></app-text-formatted>
+        <app-text-formatted
+          [articleImages]="articleData.images"
+          [textAsHtml]="articleData.text"
+        ></app-text-formatted>
       </ion-col>
     </ion-row>
   </ion-grid>

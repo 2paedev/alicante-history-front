@@ -5,10 +5,16 @@
     </ion-col>
   </ion-row>
   <ion-row>
-    <ion-col>
-      <ion-list class="avatars-list__scroll">
+    <ion-col class="avatars-list__wrapper">
+      <ion-list class="avatars-list__content" [ngClass]="getClassContent()">
         <app-avatar-card *ngFor="let article of data" [data]="article"></app-avatar-card>
       </ion-list>
+      <ion-button *ngIf="!showAll" class="avatars-list__content--show" (click)="toggleShowMore()"
+        >Ver más<ion-icon name="arrow-dropdown"></ion-icon
+      ></ion-button>
+      <ion-button *ngIf="showAll" class="avatars-list__content--show" (click)="toggleShowMore()"
+        >Ver menos<ion-icon name="arrow-dropup"></ion-icon
+      ></ion-button>
     </ion-col>
   </ion-row>
 </ion-grid>

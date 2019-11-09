@@ -2,12 +2,20 @@
   <ion-grid no-padding>
     <ion-row>
       <ion-col no-padding>
-        <app-article-image [data]="lastArticleData"></app-article-image>
+        <app-article-image
+          [data]="lastArticleData"
+          [title]="lastArticleData.title"
+          [image]="getLastArticleImage()"
+          [tags]="lastArticleData.tags"
+        ></app-article-image>
       </ion-col>
     </ion-row>
-    <ion-row *ngFor="let articleList of lists">
+    <ion-row *ngFor="let articlesList of homePageData">
       <ion-col>
-        <app-avatars-list [title]="articleList.title" [data]="articleList.data"></app-avatars-list>
+        <app-avatars-list
+          [title]="articlesList.title"
+          [data]="articlesList.articles"
+        ></app-avatars-list>
       </ion-col>
     </ion-row>
   </ion-grid>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { STORAGE_KEY } from '@constants/index';
-import { ArticleResumeData } from '@models/index';
+import { Article } from '@models/index';
 
 @Injectable({ providedIn: 'root' })
 export class StorageService {
@@ -37,11 +37,11 @@ export class StorageService {
     localStorage.setItem(STORAGE_KEY.MAIL.IS_SENDED, JSON.stringify(value));
   }
 
-  public getMyList(): ArticleResumeData[] {
+  public getMyList(): Article[] {
     return JSON.parse(localStorage.getItem(STORAGE_KEY.MY_LIST));
   }
 
-  public setItemInMyList(item: ArticleResumeData): void {
+  public setItemInMyList(item: Article): void {
     const previousList = this.getMyList();
     let newList = [item];
     if (previousList !== null) {
@@ -50,7 +50,7 @@ export class StorageService {
     localStorage.setItem(STORAGE_KEY.MY_LIST, JSON.stringify(newList));
   }
 
-  public removeItemInMyList(item: ArticleResumeData): void {
+  public removeItemInMyList(item: Article): void {
     const previousList = this.getMyList();
     let newList = [];
     if (previousList !== null) {
