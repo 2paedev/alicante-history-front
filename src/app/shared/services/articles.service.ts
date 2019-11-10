@@ -27,7 +27,7 @@ export class ArticlesService {
   }
 
   public setLike(id: string): Observable<CustomPost> {
-    return this.http.post<any>(`${API_ROUTE.ARTICLES.LIKES(id)}`, this.httpOptions);
+    return this.http.put<any>(`${API_ROUTE.ARTICLES.LIKES(id)}`, this.httpOptions);
   }
 
   public removeLike(id: string): Observable<CustomPost> {
