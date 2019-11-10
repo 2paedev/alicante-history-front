@@ -42,7 +42,7 @@ export class ArticleImageComponent implements OnInit {
   }
 
   public goToArticle(): void {
-    this.router.navigate([ROUTE.ARTICLE_DETAIL(this.data.id)]);
+    this.router.navigate([ROUTE.ARTICLE_DETAIL]);
   }
 
   public addLike(): void {

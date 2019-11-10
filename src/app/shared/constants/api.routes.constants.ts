@@ -5,6 +5,8 @@ const API_URL = environment.baseUrl;
 export const API_ROUTE = {
   ARTICLES: {
     RESUME: `${API_URL}/resume/`,
+    LAST_FIVE: `${API_URL}/resume/lastfive/`,
+    ALL: `${API_URL}/articles/`,
     DETAIL: (articleId: string): string => `${API_URL}/articles/${articleId}/`,
     LIKES: (articleId: string): string => `${API_URL}/articles/${articleId}/like/`
   },

@@ -15,6 +15,10 @@ const routes: Routes = [
   {
     path: ROUTE.MY_LIST,
     loadChildren: './pages/my-list/my-list.module#MyListPageModule'
+  },
+  {
+    path: ROUTE.ALL_ARTICLES,
+    loadChildren: './pages/all-articles/all-articles.module#AllArticlesPageModule'
   }
 ];
 

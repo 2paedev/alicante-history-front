@@ -5,5 +5,6 @@ export const ROUTE = {
   ARTICLE_DETAIL(id: string): string {
     return `${ROUTE.ARTICLE}/${id}`;
   },
+  ALL_ARTICLES: 'all-articles',
   MY_LIST: 'my-list'
 };

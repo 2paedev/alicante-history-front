@@ -1,13 +1,31 @@
 <ion-content *ngIf="homePageData" hide-header class="home" [scrollEvents]="true" fullscreen>
+  <ion-refresher slot="fixed" (ionRefresh)="refreshPage($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Desliza para abajo"
+      refreshingSpinner="circles"
+      refreshingText="Actualizando..."
+    >
+    </ion-refresher-content>
+  </ion-refresher>
   <ion-grid no-padding>
     <ion-row>
       <ion-col no-padding>
         <app-article-image
+          *ngIf="lastArticleData"
           [data]="lastArticleData"
           [title]="lastArticleData.title"
           [image]="getLastArticleImage()"
           [tags]="lastArticleData.tags"
         ></app-article-image>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <app-avatars-list
+          title="Últimas 5 historias"
+          [data]="lastFiveArticlesData"
+        ></app-avatars-list>
       </ion-col>
     </ion-row>
     <ion-row *ngFor="let articlesList of homePageData">

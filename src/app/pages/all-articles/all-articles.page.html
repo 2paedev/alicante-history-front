@@ -1,0 +1,16 @@
+<ion-content class="all-articles" hide-header [scrollEvents]="true" fullscreen>
+  <ion-refresher slot="fixed" (ionRefresh)="refreshPage($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Desliza para abajo"
+      refreshingSpinner="circles"
+      refreshingText="Actualizando..."
+    >
+    </ion-refresher-content>
+  </ion-refresher>
+  <app-articles-set
+    title="Todas las historias"
+    [data]="allArticlesData"
+    noDataText="No hay historias actualmente."
+  ></app-articles-set>
+</ion-content>

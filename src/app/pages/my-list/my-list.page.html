@@ -1,19 +1,7 @@
 <ion-content class="my-list" hide-header [scrollEvents]="true" fullscreen>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-title class="my-list__title">Mi lista</ion-title>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-list *ngIf="myListData" class="my-list__content">
-          <app-avatar-card *ngFor="let article of myListData" [data]="article"></app-avatar-card>
-        </ion-list>
-        <ion-label *ngIf="!myListData" class="my-list__warning"
-          >No hay artículos en tu lista.</ion-label
-        >
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <app-articles-set
+    title="Mi lista"
+    [data]="myListData"
+    noDataText="No hay historias en tu lista."
+  ></app-articles-set>
 </ion-content>

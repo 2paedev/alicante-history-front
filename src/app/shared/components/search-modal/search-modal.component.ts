@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { ROUTE } from '@constants/index';
 import { ModalController } from '@ionic/angular';
 
 @Component({
@@ -7,9 +9,14 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['search-modal.component.scss']
 })
 export class SearchModalComponent {
-  constructor(private readonly modalCtrl: ModalController) {}
+  constructor(private readonly modalCtrl: ModalController, private readonly router: Router) {}
 
-  close() {
+  public close(): void {
     this.modalCtrl.dismiss();
+  }
+
+  public goToAllArticles(): void {
+    this.router.navigate([ROUTE.ALL_ARTICLES]);
+    this.close();
   }
 }

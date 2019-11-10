@@ -12,12 +12,12 @@
   }
 
   &__content {
-    @include aligns(center, center, row);
+    @include aligns(center, flex-start, row);
     flex-wrap: wrap;
     margin-bottom: 0;
 
     &.collapsed {
-      max-height: 10rem;
+      max-height: 8.3rem;
     }
 
     &--show {
