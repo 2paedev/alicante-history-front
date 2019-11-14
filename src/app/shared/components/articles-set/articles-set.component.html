@@ -4,16 +4,24 @@
       <ion-title class="articles-set__title">{{ title }}</ion-title>
     </ion-col>
   </ion-row>
-  <ion-row>
+  <ion-row *ngIf="data && results">
     <ion-col>
-      <ion-list *ngIf="data" class="articles-set__content">
-        <app-avatar-card *ngFor="let article of data" [data]="article"></app-avatar-card>
+      <ion-list class="articles-set__content">
+        <app-avatar-card
+          *ngFor="let article of results"
+          [data]="article"
+        ></app-avatar-card>
       </ion-list>
-      <!-- <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
-        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
-        </ion-infinite-scroll-content>
-      </ion-infinite-scroll> -->
-      <ion-label *ngIf="!data" class="articles-set__warning">{{ noDataText }}</ion-label>
+      <ion-label *ngIf="!data.results" class="articles-set__warning">{{
+        noDataText
+      }}</ion-label>
     </ion-col>
   </ion-row>
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Cargando más historias..."
+    >
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-grid>

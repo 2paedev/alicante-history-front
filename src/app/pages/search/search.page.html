@@ -1,0 +1,27 @@
+<ion-content class="search" hide-header [scrollEvents]="true" fullscreen>
+  <ion-grid no-padding>
+    <ion-row>
+      <ion-col class="search__bar" no-padding>
+        <ion-searchbar
+          [formControl]="searchControl"
+          (ionChange)="onSearchInput()"
+          placeholder="¿Qué quieres buscar?"
+        ></ion-searchbar>
+        <div *ngIf="searching" class="spinner-container" no-padding>
+          <ion-spinner></ion-spinner>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <app-articles-set
+          *ngIf="searchData && results"
+          title="Historias encontradas"
+          [data]="searchData"
+          [results]="results"
+          noDataText="No hay historias actualmente."
+        ></app-articles-set>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

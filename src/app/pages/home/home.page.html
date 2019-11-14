@@ -1,4 +1,10 @@
-<ion-content *ngIf="homePageData" hide-header class="home" [scrollEvents]="true" fullscreen>
+<ion-content
+  *ngIf="homePageData"
+  hide-header
+  class="home"
+  [scrollEvents]="true"
+  fullscreen
+>
   <ion-refresher slot="fixed" (ionRefresh)="refreshPage($event)">
     <ion-refresher-content
       pullingIcon="arrow-dropdown"

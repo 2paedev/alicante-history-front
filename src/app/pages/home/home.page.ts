@@ -1,13 +1,13 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Article, ArticleResume } from '@models/index';
-import { ArticlesService } from '@services/index';
-import { Subscription } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Article, ArticleResume } from "@models/index";
+import { ArticlesService } from "@services/index";
+import { Subscription } from "rxjs";
+import { filter } from "rxjs/operators";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss']
+  selector: "app-home",
+  templateUrl: "home.page.html",
+  styleUrls: ["home.page.scss"]
 })
 export class HomePage implements OnInit, OnDestroy {
   public homePageData: ArticleResume[] = [];
@@ -31,7 +31,10 @@ export class HomePage implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    if (Array.isArray(this.lastFiveArticlesData) && this.lastFiveArticlesData.length === 0) {
+    if (
+      Array.isArray(this.lastFiveArticlesData) &&
+      this.lastFiveArticlesData.length === 0
+    ) {
       this.getLastFiveArticles();
     }
 

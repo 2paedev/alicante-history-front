@@ -1,15 +1,15 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { API_ROUTE } from '@constants/index';
-import { Article, ArticleResume, CustomPost } from '@models/index';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { API_ROUTE } from "@constants/index";
+import { Article, ArticlePage, ArticleResume, CustomPost } from "@models/index";
+import { BehaviorSubject, Observable } from "rxjs";
+import { tap } from "rxjs/operators";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class ArticlesService {
-  public readonly articlesSubject = new BehaviorSubject<Article[]>(null);
+  public readonly articlesSubject = new BehaviorSubject<ArticlePage>(null);
   public readonly articles$ = this.articlesSubject.asObservable();
 
   public readonly resumeSubject = new BehaviorSubject<ArticleResume[]>(null);
@@ -18,18 +18,34 @@ export class ArticlesService {
   public readonly lastFiveSubject = new BehaviorSubject<Article[]>(null);
   public readonly lastFive$ = this.lastFiveSubject.asObservable();
 
+  public items: any = [];
+
   private readonly httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json; charset=utf-8'
+      "Content-Type": "application/json; charset=utf-8"
     })
   };
 
   public constructor(private readonly http: HttpClient) {
     // this.articlesSubject.next([]);
     // this.resumeSubject.next([]);
+    this.items = [
+      { title: "one" },
+      { title: "two" },
+      { title: "three" },
+      { title: "four" },
+      { title: "five" },
+      { title: "six" }
+    ];
   }
 
-  public updateArticles(articles?: Article[]): void {
+  public filterArticles(searchTerm: string, articles: Article[]) {
+    return articles.filter(article => {
+      return article.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+    });
+  }
+
+  public updateArticles(articles?: ArticlePage): void {
     const currentArticles = this.articlesSubject.value;
     this.articlesSubject.next(articles || currentArticles);
   }
@@ -62,10 +78,13 @@ export class ArticlesService {
     );
   }
 
-  public getAll(): Observable<any> {
-    const url = API_ROUTE.ARTICLES.ALL;
+  public getAll(urlNextPage?: string): Observable<any> {
+    let url = API_ROUTE.ARTICLES.ALL;
+    if (urlNextPage) {
+      url = urlNextPage;
+    }
     return this.http.get(url).pipe(
-      tap((articles: Article[]): void => {
+      tap((articles: ArticlePage): void => {
         this.updateArticles(articles);
       })
     );
@@ -77,7 +96,10 @@ export class ArticlesService {
   }
 
   public setLike(id: string): Observable<CustomPost> {
-    return this.http.put<any>(`${API_ROUTE.ARTICLES.LIKES(id)}`, this.httpOptions);
+    return this.http.put<any>(
+      `${API_ROUTE.ARTICLES.LIKES(id)}`,
+      this.httpOptions
+    );
   }
 
   public removeLike(id: string): Observable<CustomPost> {

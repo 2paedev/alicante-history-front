@@ -7,13 +7,15 @@
       <ion-button (click)="goToMyList()">
         <ion-icon slot="icon-only" name="list-box"></ion-icon>
       </ion-button>
-      <ion-button (click)="presentSearchModal()">
+      <ion-button (click)="goToSearchPage()">
         <ion-icon slot="icon-only" name="search"></ion-icon>
       </ion-button>
       <ion-button (click)="presentSettingsModal()">
         <ion-icon slot="icon-only" name="settings"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title class="header__toolbar--title" (click)="goToHomePage()">HdA</ion-title>
+    <ion-title class="header__toolbar--title" (click)="goToHomePage()"
+      >HdA</ion-title
+    >
   </ion-toolbar>
 </ion-header>

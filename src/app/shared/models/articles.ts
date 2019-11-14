@@ -1,6 +1,14 @@
-import { Author } from './author';
-import { CustomImage } from './custom-image';
-import { Tag } from './tag';
+import { Author } from "./author";
+import { CustomImage } from "./custom-image";
+import { Tag } from "./tag";
+
+export interface ArticlePage {
+  next: string;
+  previous: string;
+  count: number;
+  limit: number;
+  results: Article[];
+}
 
 export interface Article {
   id: string;

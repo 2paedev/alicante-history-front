@@ -1,4 +1,4 @@
-@import 'src/theme/partials/mixins';
+@import "src/theme/partials/mixins";
 
 $faded-offset: 40px !default;
 $faded-blur-radius: 40px !default;
@@ -22,7 +22,7 @@ ion-button {
   color: var(--ion-background-color);
 
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     display: block;
     top: 0;
@@ -35,11 +35,19 @@ ion-button {
   @include faded($faded-offset, $faded-blur-radius, $faded-spread-radius);
 
   &.faded-narrow {
-    @include faded($faded-narrow-offset, $faded-narrow-blur-radius, $faded-narrow-spread-radius);
+    @include faded(
+      $faded-narrow-offset,
+      $faded-narrow-blur-radius,
+      $faded-narrow-spread-radius
+    );
   }
 
   &.faded-wide {
-    @include faded($faded-wide-offset, $faded-wide-blur-radius, $faded-wide-spread-radius);
+    @include faded(
+      $faded-wide-offset,
+      $faded-wide-blur-radius,
+      $faded-wide-spread-radius
+    );
   }
 }
 
@@ -47,4 +55,10 @@ ion-popover.gallerypopover {
   div.popover-content {
     top: 1rem !important;
   }
+}
+
+.spinner-container {
+  width: 100%;
+  text-align: center;
+  padding: 10px;
 }
