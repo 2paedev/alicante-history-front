@@ -1,13 +1,17 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ROUTE } from '@constants/index';
-import { Article, CustomPost, Tag } from '@models/index';
-import { ArticlesService, HelpersService, StorageService } from '@services/index';
+import { Article, Tag } from '@models/index';
+import {
+  ArticlesService,
+  HelpersService,
+  StorageService,
+} from '@services/index';
 
 @Component({
   selector: 'app-article-image',
   templateUrl: './article-image.component.html',
-  styleUrls: ['./article-image.component.scss']
+  styleUrls: ['./article-image.component.scss'],
 })
 export class ArticleImageComponent implements OnInit {
   @Input() public showReadIcon = true;
@@ -47,24 +51,24 @@ export class ArticleImageComponent implements OnInit {
 
   public addLike(): void {
     this.articlesService.setLike(this.data.id).subscribe(
-      (response: CustomPost) => {
+      () => {
         this.isLiked = true;
         this.storageService.setItemInMyLikedList(this.data.id);
       },
-      (error: CustomPost) => {
-        console.log(error.error.message);
+      () => {
+        // console.log(error.error.message);
       }
     );
   }
 
   public removeLike(): void {
     this.articlesService.removeLike(this.data.id).subscribe(
-      (response: CustomPost) => {
+      () => {
         this.isLiked = false;
         this.storageService.removeItemInMyLikedList(this.data.id);
       },
-      (error: CustomPost) => {
-        console.log(error.error.message);
+      () => {
+        // console.log(error.error.message);
       }
     );
   }

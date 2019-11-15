@@ -6,7 +6,7 @@ import { HelpersService } from '@services/index';
 @Component({
   selector: 'app-image-modal',
   templateUrl: 'image-modal.component.html',
-  styleUrls: ['image-modal.component.scss']
+  styleUrls: ['image-modal.component.scss'],
 })
 export class ImageModalComponent implements OnInit {
   img: CustomImage;
@@ -17,8 +17,8 @@ export class ImageModalComponent implements OnInit {
 
   sliderOpts = {
     zoom: {
-      maxRatio: 5
-    }
+      maxRatio: 5,
+    },
   };
 
   constructor(
@@ -32,8 +32,8 @@ export class ImageModalComponent implements OnInit {
     this.imageUrl = this.helper.getImageUrl(this.img.url);
   }
 
-  zoom(zoomIn: boolean) {
-    const zoom = this.slider.nativeElement.swiper.zoom;
+  public zoom(zoomIn: boolean): void {
+    const { zoom } = this.slider.nativeElement.swiper;
     if (zoomIn) {
       zoom.in();
     } else {
@@ -41,7 +41,7 @@ export class ImageModalComponent implements OnInit {
     }
   }
 
-  close() {
+  public close(): void {
     this.modalCtrl.dismiss();
   }
 }

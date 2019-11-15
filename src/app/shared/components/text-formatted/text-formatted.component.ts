@@ -1,17 +1,23 @@
-import { Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewEncapsulation,
+} from '@angular/core';
 import { READ_MODE } from '@constants/index';
 import { PopoverController } from '@ionic/angular';
 import { CustomImage, User } from '@models/index';
 import { StorageService, UserService } from '@services/index';
 import { Subscription } from 'rxjs';
+import { GalleryPopoverComponent } from '../gallery-popover/gallery-popover.component';
 import { TextPopoverComponent } from '../text-popover/text-popover.component';
-import { GalleryPopoverComponent } from './../gallery-popover/gallery-popover.component';
 
 @Component({
   selector: 'app-text-formatted',
   templateUrl: './text-formatted.component.html',
   styleUrls: ['./text-formatted.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class TextFormattedComponent implements OnInit, OnDestroy {
   @Input() public textAsHtml: string;
@@ -27,10 +33,15 @@ export class TextFormattedComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit(): void {
-    this.userSubscription = this.userService.getUser().subscribe((userData: User) => {
-      this.userData = userData;
-      this.storageService.setReadMode(this.userData.readMode.color, this.userData.readMode.size);
-    });
+    this.userSubscription = this.userService
+      .getUser()
+      .subscribe((userData: User) => {
+        this.userData = userData;
+        this.storageService.setReadMode(
+          this.userData.readMode.color,
+          this.userData.readMode.size
+        );
+      });
   }
 
   public async presentReadModePopover(ev: any): Promise<void> {
@@ -39,11 +50,12 @@ export class TextFormattedComponent implements OnInit, OnDestroy {
       event: ev,
       translucent: true,
       componentProps: {
-        isCheckedDay: this.storageService.getReadModeColor() === READ_MODE.DAY ? true : false,
-        isCheckedNormal: this.storageService.getReadModeSize() === READ_MODE.NORMAL ? true : false
-      }
+        isCheckedDay: this.storageService.getReadModeColor() === READ_MODE.DAY,
+        isCheckedNormal:
+          this.storageService.getReadModeSize() === READ_MODE.NORMAL,
+      },
     });
-    return await popover.present();
+    await popover.present();
   }
 
   public async presentGalleryPopover(ev: any): Promise<void> {
@@ -53,21 +65,25 @@ export class TextFormattedComponent implements OnInit, OnDestroy {
       translucent: true,
       cssClass: 'gallery-popover',
       componentProps: {
-        images: this.articleImages
-      }
+        images: this.articleImages,
+      },
     });
-    return await popover.present();
+    await popover.present();
   }
 
   public getColorClass(): string {
-    return this.storageService.getReadModeColor() === READ_MODE.DAY ? 'day' : 'night';
+    return this.storageService.getReadModeColor() === READ_MODE.DAY
+      ? 'day'
+      : 'night';
   }
 
   public getSizeClass(): string {
-    return this.storageService.getReadModeSize() === READ_MODE.NORMAL ? 'normal' : 'big';
+    return this.storageService.getReadModeSize() === READ_MODE.NORMAL
+      ? 'normal'
+      : 'big';
   }
 
-  public ngOnDestroy() {
+  public ngOnDestroy(): void {
     this.userSubscription.unsubscribe();
   }
 }

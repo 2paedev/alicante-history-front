@@ -9,7 +9,7 @@ describe('TextFormattedComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TextFormattedComponent],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TextFormattedComponent);

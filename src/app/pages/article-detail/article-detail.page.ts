@@ -6,7 +6,7 @@ import { ArticlesService } from '@services/index';
 @Component({
   selector: 'app-article-detail',
   templateUrl: 'article-detail.page.html',
-  styleUrls: ['article-detail.page.scss']
+  styleUrls: ['article-detail.page.scss'],
 })
 export class ArticleDetailPage implements OnInit {
   public articleData: Article;
@@ -34,8 +34,8 @@ export class ArticleDetailPage implements OnInit {
       (response: Article) => {
         this.articleData = response;
       },
-      (error: any) => {
-        console.log(error);
+      () => {
+        // console.log(error);
       }
     );
   }

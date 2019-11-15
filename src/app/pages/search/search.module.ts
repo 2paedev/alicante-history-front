@@ -1,11 +1,11 @@
-import { CommonModule } from "@angular/common";
-import { NgModule } from "@angular/core";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { RouterModule } from "@angular/router";
-import { IonicModule } from "@ionic/angular";
-import { SharedModule } from "../../shared/shared.module";
-import { SearchPage } from "./search.page";
-import { SEARCH_ROUTES } from "./search.routes";
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
+import { SharedModule } from '../../shared/shared.module';
+import { SearchPage } from './search.page';
+import { SEARCH_ROUTES } from './search.routes';
 
 @NgModule({
   imports: [
@@ -14,8 +14,8 @@ import { SEARCH_ROUTES } from "./search.routes";
     FormsModule,
     IonicModule,
     RouterModule.forChild(SEARCH_ROUTES),
-    SharedModule
+    SharedModule,
   ],
-  declarations: [SearchPage]
+  declarations: [SearchPage],
 })
 export class SearchPageModule {}

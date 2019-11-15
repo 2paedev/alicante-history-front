@@ -1,21 +1,21 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
-import { FormControl } from "@angular/forms";
-import { Article, ArticlePage } from "@models/index";
-import { ArticlesService } from "@services/index";
-import { Subscription } from "rxjs";
-import { debounceTime, filter } from "rxjs/operators";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Article, ArticlePage } from '@models/index';
+import { ArticlesService } from '@services/index';
+import { Subscription } from 'rxjs';
+import { debounceTime, filter } from 'rxjs/operators';
 
 @Component({
-  selector: "app-search",
-  templateUrl: "search.page.html",
-  styleUrls: ["search.page.scss"]
+  selector: 'app-search',
+  templateUrl: 'search.page.html',
+  styleUrls: ['search.page.scss'],
 })
 export class SearchPage implements OnInit, OnDestroy {
   public searchData: ArticlePage;
   public results: Article[];
   public searchControl: FormControl;
   public items: any;
-  public searching: boolean = false;
+  public searching = false;
 
   private articlesSubscription: Subscription;
 
@@ -30,7 +30,7 @@ export class SearchPage implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    //this.setFilteredItems("");
+    // this.setFilteredItems("");
     this.searchControl.valueChanges
       .pipe(debounceTime(700))
       .subscribe(search => {
@@ -63,8 +63,8 @@ export class SearchPage implements OnInit, OnDestroy {
         this.searchData = response;
         this.results = this.searchData.results;
       },
-      (error: any) => {
-        console.log(error);
+      () => {
+        // console.log(error);
       }
     );
   }

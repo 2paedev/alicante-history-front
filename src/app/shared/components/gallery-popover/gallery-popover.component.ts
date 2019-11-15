@@ -2,12 +2,12 @@ import { Component, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { CustomImage } from '@models/index';
 import { HelpersService } from '@services/index';
-import { ImageModalComponent } from './../image-modal/image-modal.component';
+import { ImageModalComponent } from '../image-modal/image-modal.component';
 
 @Component({
   selector: 'app-gallery-popover',
   templateUrl: 'gallery-popover.component.html',
-  styleUrls: ['gallery-popover.component.scss']
+  styleUrls: ['gallery-popover.component.scss'],
 })
 export class GalleryPopoverComponent {
   @Input() public articleImages: CustomImage[];
@@ -16,7 +16,7 @@ export class GalleryPopoverComponent {
 
   public sliderOpts = {
     zoom: false,
-    slidesPerView: 1.5
+    slidesPerView: 1.5,
     // centeredSlides: true
     // spaceBetween: 20
   };
@@ -35,8 +35,8 @@ export class GalleryPopoverComponent {
       .create({
         component: ImageModalComponent,
         componentProps: {
-          img
-        }
+          img,
+        },
       })
       .then(modal => modal.present());
   }

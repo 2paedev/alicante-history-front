@@ -9,7 +9,7 @@ describe('MyListPage', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [MyListPage],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(MyListPage);

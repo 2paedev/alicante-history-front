@@ -14,8 +14,8 @@ import { HOME_ROUTES } from './home.routes';
     FormsModule,
     IonicModule,
     RouterModule.forChild(HOME_ROUTES),
-    SharedModule
+    SharedModule,
   ],
-  declarations: [HomePage, AvatarsListComponent]
+  declarations: [HomePage, AvatarsListComponent],
 })
 export class HomePageModule {}

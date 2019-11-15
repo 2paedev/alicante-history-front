@@ -1,11 +1,11 @@
-import { Component, Input } from "@angular/core";
-import { Article, ArticlePage } from "@models/index";
-import { ArticlesService } from "@services/index";
+import { Component, Input } from '@angular/core';
+import { Article, ArticlePage } from '@models/index';
+import { ArticlesService } from '@services/index';
 
 @Component({
-  selector: "app-articles-set",
-  templateUrl: "./articles-set.component.html",
-  styleUrls: ["./articles-set.component.scss"]
+  selector: 'app-articles-set',
+  templateUrl: './articles-set.component.html',
+  styleUrls: ['./articles-set.component.scss'],
 })
 export class ArticlesSetComponent {
   @Input() public title: string;
@@ -15,12 +15,13 @@ export class ArticlesSetComponent {
   constructor(private readonly articlesService: ArticlesService) {}
 
   public loadData(event: any): void {
+    const loadEvent = event;
     setTimeout(() => {
       if (this.data.next === null) {
-        event.target.disabled = true;
+        loadEvent.target.disabled = true;
       } else {
         this.retrieveNextPage();
-        event.target.complete();
+        loadEvent.target.complete();
       }
     }, 500);
   }
@@ -30,12 +31,14 @@ export class ArticlesSetComponent {
       (response: ArticlePage) => {
         this.data = this.assembleNewPageData(response);
       },
-      (error: any) => {}
+      () => {
+        // error
+      }
     );
   }
 
   private assembleNewPageData(newData: ArticlePage): ArticlePage {
-    let formattedData = newData;
+    const formattedData = newData;
     formattedData.results = [...this.data.results, ...newData.results];
     this.results = formattedData.results;
     return formattedData;

@@ -4,8 +4,8 @@ import { HomePage } from './home.page';
 export const HOME_ROUTES: Routes = [
   {
     path: '',
-    component: HomePage
-  }
+    component: HomePage,
+  },
 ];
 
 export class HomeRoutingModule {}

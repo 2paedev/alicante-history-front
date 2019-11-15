@@ -9,7 +9,7 @@ describe('AvatarCardComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [AvatarCardComponent],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AvatarCardComponent);

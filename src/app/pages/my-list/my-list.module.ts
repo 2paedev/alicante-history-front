@@ -13,8 +13,8 @@ import { MY_LIST_ROUTES } from './my-list.routes';
     FormsModule,
     IonicModule,
     RouterModule.forChild(MY_LIST_ROUTES),
-    SharedModule
+    SharedModule,
   ],
-  declarations: [MyListPage]
+  declarations: [MyListPage],
 })
 export class MyListPageModule {}

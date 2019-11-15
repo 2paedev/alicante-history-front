@@ -1,12 +1,12 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { API_ROUTE } from "@constants/index";
-import { Article, ArticlePage, ArticleResume, CustomPost } from "@models/index";
-import { BehaviorSubject, Observable } from "rxjs";
-import { tap } from "rxjs/operators";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { API_ROUTE } from '@constants/index';
+import { Article, ArticlePage, ArticleResume, CustomPost } from '@models/index';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root',
 })
 export class ArticlesService {
   public readonly articlesSubject = new BehaviorSubject<ArticlePage>(null);
@@ -22,24 +22,24 @@ export class ArticlesService {
 
   private readonly httpOptions = {
     headers: new HttpHeaders({
-      "Content-Type": "application/json; charset=utf-8"
-    })
+      'Content-Type': 'application/json; charset=utf-8',
+    }),
   };
 
   public constructor(private readonly http: HttpClient) {
     // this.articlesSubject.next([]);
     // this.resumeSubject.next([]);
     this.items = [
-      { title: "one" },
-      { title: "two" },
-      { title: "three" },
-      { title: "four" },
-      { title: "five" },
-      { title: "six" }
+      { title: 'one' },
+      { title: 'two' },
+      { title: 'three' },
+      { title: 'four' },
+      { title: 'five' },
+      { title: 'six' },
     ];
   }
 
-  public filterArticles(searchTerm: string, articles: Article[]) {
+  public filterArticles(searchTerm: string, articles: Article[]): Article[] {
     return articles.filter(article => {
       return article.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
     });

@@ -5,7 +5,7 @@ import { Article } from '../../shared/models/articles';
 @Component({
   selector: 'app-my-list',
   templateUrl: 'my-list.page.html',
-  styleUrls: ['my-list.page.scss']
+  styleUrls: ['my-list.page.scss'],
 })
 export class MyListPage implements OnInit {
   public myListData: Article[] = [];

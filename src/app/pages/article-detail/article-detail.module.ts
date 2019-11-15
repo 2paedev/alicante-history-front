@@ -13,8 +13,8 @@ import { ARTICLE_DETAIL_ROUTES } from './article-detail.routes';
     FormsModule,
     IonicModule,
     RouterModule.forChild(ARTICLE_DETAIL_ROUTES),
-    SharedModule
+    SharedModule,
   ],
-  declarations: [ArticleDetailPage]
+  declarations: [ArticleDetailPage],
 })
 export class ArticleDetailPageModule {}

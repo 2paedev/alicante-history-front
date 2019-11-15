@@ -3,8 +3,8 @@ import { Directive, Renderer } from '@angular/core';
 @Directive({
   selector: '[hide-header]',
   host: {
-    '(ionScroll)': 'onContentScroll($event)'
-  }
+    '(ionScroll)': 'onContentScroll($event)',
+  },
 })
 export class HideHeaderDirective {
   public header: HTMLElement;

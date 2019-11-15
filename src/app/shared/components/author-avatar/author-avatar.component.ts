@@ -4,7 +4,7 @@ import { HelpersService } from '@services/index';
 @Component({
   selector: 'app-author-avatar',
   templateUrl: './author-avatar.component.html',
-  styleUrls: ['./author-avatar.component.scss']
+  styleUrls: ['./author-avatar.component.scss'],
 })
 export class AuthorAvatarComponent implements OnInit {
   @Input() public name: string;

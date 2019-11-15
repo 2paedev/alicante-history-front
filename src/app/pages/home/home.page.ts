@@ -1,13 +1,13 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
-import { Article, ArticleResume } from "@models/index";
-import { ArticlesService } from "@services/index";
-import { Subscription } from "rxjs";
-import { filter } from "rxjs/operators";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Article, ArticleResume } from '@models/index';
+import { ArticlesService } from '@services/index';
+import { Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 @Component({
-  selector: "app-home",
-  templateUrl: "home.page.html",
-  styleUrls: ["home.page.scss"]
+  selector: 'app-home',
+  templateUrl: 'home.page.html',
+  styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit, OnDestroy {
   public homePageData: ArticleResume[] = [];
@@ -21,7 +21,7 @@ export class HomePage implements OnInit, OnDestroy {
       .pipe(filter((lastFive): boolean => !!lastFive))
       .subscribe((lastFive): void => {
         this.lastFiveArticlesData = lastFive;
-        this.lastArticleData = lastFive[0];
+        [this.lastArticleData] = lastFive;
       });
     this.articlesService.resume$
       .pipe(filter((resume): boolean => !!resume))
@@ -59,10 +59,10 @@ export class HomePage implements OnInit, OnDestroy {
     this.articlesSubscription = this.articlesService.getLastFive().subscribe(
       (response: Article[]) => {
         this.lastFiveArticlesData = response;
-        this.lastArticleData = response[0];
+        [this.lastArticleData] = response;
       },
-      (error: any) => {
-        console.log(error);
+      () => {
+        // console.log(error);
       }
     );
   }
@@ -72,8 +72,8 @@ export class HomePage implements OnInit, OnDestroy {
       (response: ArticleResume[]) => {
         this.homePageData = response;
       },
-      (error: any) => {
-        console.log(error);
+      () => {
+        // console.log(error);
       }
     );
   }

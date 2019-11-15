@@ -1,12 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { ReadMode } from '@models/index';
 import { UserService } from '@services/index';
-import { READ_MODE } from './../../constants/global.constants';
+import { READ_MODE } from '../../constants/global.constants';
 
 @Component({
   selector: 'app-text-popover',
   templateUrl: './text-popover.component.html',
-  styleUrls: ['./text-popover.component.scss']
+  styleUrls: ['./text-popover.component.scss'],
 })
 export class TextPopoverComponent {
   @Input() public isCheckedDay: boolean;

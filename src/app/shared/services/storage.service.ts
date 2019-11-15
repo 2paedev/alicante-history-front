@@ -4,7 +4,7 @@ import { Article } from '@models/index';
 
 @Injectable({ providedIn: 'root' })
 export class StorageService {
-  public setReadMode(color: string, size: string) {
+  public setReadMode(color: string, size: string): void {
     this.setReadModeColor(color);
     this.setReadModeSize(size);
   }

@@ -9,7 +9,7 @@ describe('TagsListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TagsListComponent],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TagsListComponent);
