@@ -9,17 +9,17 @@ import { HelpersService } from '@services/index';
   styleUrls: ['image-modal.component.scss'],
 })
 export class ImageModalComponent implements OnInit {
-  img: CustomImage;
+  private image: CustomImage;
 
   public imageUrl: string;
 
-  @ViewChild('slider', { read: ElementRef, static: false }) slider: ElementRef;
-
-  sliderOpts = {
+  public sliderOpts = {
     zoom: {
       maxRatio: 5,
     },
   };
+
+  @ViewChild('slider', { read: ElementRef, static: false }) slider: ElementRef;
 
   constructor(
     private readonly navParams: NavParams,
@@ -28,8 +28,8 @@ export class ImageModalComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.img = this.navParams.get('img');
-    this.imageUrl = this.helper.getImageUrl(this.img.url);
+    this.image = this.navParams.get('img');
+    this.imageUrl = this.helper.getImageUrl(this.image.url);
   }
 
   public zoom(zoomIn: boolean): void {

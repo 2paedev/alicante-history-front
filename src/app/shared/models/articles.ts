@@ -1,5 +1,5 @@
+import { CustomImage } from '@models/index';
 import { Author } from './author';
-import { CustomImage } from './custom-image';
 import { Tag } from './tag';
 
 export interface ArticlePage {
@@ -11,18 +11,25 @@ export interface ArticlePage {
 }
 
 export interface Article {
-  id: string;
+  id: number;
+  created: string;
   title: string;
   tags: Tag[];
   images: CustomImage[];
   date: string;
   author: Author;
   text: string;
+  likes: number;
 }
 
 export interface ArticleResume {
-  id: string;
+  id: number;
+  created: string;
+  date: string;
+  text: string;
   title: string;
   tags: Tag[];
-  articles: Article[];
+  likes: number;
+  images: CustomImage[];
+  author: Author;
 }

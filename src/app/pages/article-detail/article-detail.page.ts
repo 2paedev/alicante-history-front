@@ -11,7 +11,7 @@ import { ArticlesService } from '@services/index';
 export class ArticleDetailPage implements OnInit {
   public articleData: Article;
 
-  private id: string;
+  private id: number;
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
@@ -19,23 +19,24 @@ export class ArticleDetailPage implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.activatedRoute.paramMap.subscribe((data: any) => {
-      this.id = data.params.id;
-      this.getArticleData();
-    });
+    [this.id] = this.activatedRoute.snapshot.data.params;
+    this.getArticleData();
   }
 
   public getArticleImage(): string {
+    if (!this.articleData) {
+      throw new Error('No se han podido obtener los datos.');
+    }
     return this.articleData.images[0].url;
   }
 
-  private getArticleData(): void {
+  public getArticleData(): void {
     this.articlesService.getDetail(this.id).subscribe(
       (response: Article) => {
         this.articleData = response;
       },
       () => {
-        // console.log(error);
+        throw new Error('No se han podido obtener los datos.');
       }
     );
   }

@@ -1,23 +1,32 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { ModalController, NavParams } from '@ionic/angular';
+import { HelpersService } from '@services/index';
+import { Shallow } from 'shallow-render';
+import {
+  ModalControllerMock,
+  NavParamsMock,
+} from '../../mocks/ionic-services.mocks';
+import { SharedModule } from '../../shared.module';
 import { ImageModalComponent } from './image-modal.component';
 
+const HELPERS_SERVICE_MOCK = {
+  getImageUrl(url: string): string {
+    return 'aFakeUrl';
+  },
+};
+
 describe('ImageModalComponent', () => {
-  let component: ImageModalComponent;
-  let fixture: ComponentFixture<ImageModalComponent>;
+  let shallow: Shallow<ImageModalComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ImageModalComponent],
-      imports: [IonicModule.forRoot()],
-    }).compileComponents();
+  beforeEach((): void => {
+    shallow = new Shallow(ImageModalComponent, SharedModule)
+      .provide(HelpersService, ModalController, NavParams)
+      .mock(HelpersService, HELPERS_SERVICE_MOCK)
+      .mock(NavParams, NavParamsMock)
+      .mock(ModalController, ModalControllerMock);
+  });
 
-    fixture = TestBed.createComponent(ImageModalComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  }));
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create', async (): Promise<void> => {
+    const { element } = await shallow.render();
+    expect(element).toBeTruthy();
   });
 });

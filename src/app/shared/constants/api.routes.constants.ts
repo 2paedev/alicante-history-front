@@ -7,8 +7,8 @@ export const API_ROUTE = {
     RESUME: `${API_URL}/resume/`,
     LAST_FIVE: `${API_URL}/resume/lastfive/`,
     ALL: `${API_URL}/articles/`,
-    DETAIL: (articleId: string): string => `${API_URL}/articles/${articleId}/`,
-    LIKES: (articleId: string): string =>
+    DETAIL: (articleId: number): string => `${API_URL}/articles/${articleId}/`,
+    LIKES: (articleId: number): string =>
       `${API_URL}/articles/${articleId}/like/`,
   },
   USER: {

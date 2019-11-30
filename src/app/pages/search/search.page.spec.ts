@@ -1,23 +1,30 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { ArticlesService } from '@services/index';
+import { of } from 'rxjs';
+import { Shallow } from 'shallow-render';
+import { buildArticlePageFixture } from 'src/app/shared/fixtures/articles';
+import { SearchPageModule } from './search.module';
 import { SearchPage } from './search.page';
 
+const ARTICLES_SERVICE_MOCK = {
+  articles$: of(buildArticlePageFixture()),
+};
+
 describe('SearchPage', () => {
-  let component: SearchPage;
-  let fixture: ComponentFixture<SearchPage>;
+  let shallow: Shallow<SearchPage>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [SearchPage],
-      imports: [IonicModule.forRoot()],
-    }).compileComponents();
+  beforeEach((): void => {
+    shallow = new Shallow(SearchPage, SearchPageModule)
+      .provide(ArticlesService)
+      .mock(ArticlesService, ARTICLES_SERVICE_MOCK);
+  });
 
-    fixture = TestBed.createComponent(SearchPage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  }));
+  it('should create', async (): Promise<void> => {
+    const { element } = await shallow.render();
+    expect(element).toBeTruthy();
+  });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should render a searchbar', async (): Promise<void> => {
+    const { find } = await shallow.render();
+    expect(find('ion-searchbar')).toHaveFoundOne();
   });
 });

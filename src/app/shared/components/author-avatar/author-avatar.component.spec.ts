@@ -1,23 +1,25 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { HelpersService } from '@services/index';
+import { Shallow } from 'shallow-render';
+import { SharedModule } from '../../shared.module';
 import { AuthorAvatarComponent } from './author-avatar.component';
 
+const HELPERS_SERVICE_MOCK = {
+  getImageUrl(url: string): string {
+    return 'aFakeUrl';
+  },
+};
+
 describe('AuthorAvatarComponent', () => {
-  let component: AuthorAvatarComponent;
-  let fixture: ComponentFixture<AuthorAvatarComponent>;
+  let shallow: Shallow<AuthorAvatarComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [AuthorAvatarComponent],
-      imports: [IonicModule.forRoot()],
-    }).compileComponents();
+  beforeEach((): void => {
+    shallow = new Shallow(AuthorAvatarComponent, SharedModule)
+      .provide(HelpersService)
+      .mock(HelpersService, HELPERS_SERVICE_MOCK);
+  });
 
-    fixture = TestBed.createComponent(AuthorAvatarComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  }));
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create', async (): Promise<void> => {
+    const { element } = await shallow.render();
+    expect(element).toBeTruthy();
   });
 });

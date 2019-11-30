@@ -1,23 +1,16 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { Shallow } from 'shallow-render';
+import { SharedModule } from '../../shared.module';
 import { TagsListComponent } from './tags-list.component';
 
 describe('TagsListComponent', () => {
-  let component: TagsListComponent;
-  let fixture: ComponentFixture<TagsListComponent>;
+  let shallow: Shallow<TagsListComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [TagsListComponent],
-      imports: [IonicModule.forRoot()],
-    }).compileComponents();
+  beforeEach((): void => {
+    shallow = new Shallow(TagsListComponent, SharedModule);
+  });
 
-    fixture = TestBed.createComponent(TagsListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  }));
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create', async (): Promise<void> => {
+    const { element } = await shallow.render();
+    expect(element).toBeTruthy();
   });
 });

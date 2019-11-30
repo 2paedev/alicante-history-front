@@ -1,23 +1,25 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+import { Shallow } from 'shallow-render';
+import {
+  ModalControllerMock,
+  RouterMock,
+} from '../../mocks/ionic-services.mocks';
+import { SharedModule } from '../../shared.module';
 import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {
-  let component: HeaderComponent;
-  let fixture: ComponentFixture<HeaderComponent>;
+  let shallow: Shallow<HeaderComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [HeaderComponent],
-      imports: [IonicModule.forRoot()],
-    }).compileComponents();
+  beforeEach((): void => {
+    shallow = new Shallow(HeaderComponent, SharedModule)
+      .provide(Router, ModalController)
+      .mock(Router, RouterMock)
+      .mock(ModalController, ModalControllerMock);
+  });
 
-    fixture = TestBed.createComponent(HeaderComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  }));
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create', async (): Promise<void> => {
+    const { element } = await shallow.render();
+    expect(element).toBeTruthy();
   });
 });

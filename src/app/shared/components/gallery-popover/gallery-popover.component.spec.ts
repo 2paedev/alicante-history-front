@@ -1,23 +1,28 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
+import { HelpersService } from '@services/index';
+import { Shallow } from 'shallow-render';
+import { ModalControllerMock } from '../../mocks/ionic-services.mocks';
+import { SharedModule } from '../../shared.module';
 import { GalleryPopoverComponent } from './gallery-popover.component';
 
+const HELPERS_SERVICE_MOCK = {
+  getImageUrl(url: string): string {
+    return 'aFakeUrl';
+  },
+};
+
 describe('GalleryPopoverComponent', () => {
-  let component: GalleryPopoverComponent;
-  let fixture: ComponentFixture<GalleryPopoverComponent>;
+  let shallow: Shallow<GalleryPopoverComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [GalleryPopoverComponent],
-      imports: [IonicModule.forRoot()],
-    }).compileComponents();
+  beforeEach((): void => {
+    shallow = new Shallow(GalleryPopoverComponent, SharedModule)
+      .provide(HelpersService, ModalController)
+      .mock(HelpersService, HELPERS_SERVICE_MOCK)
+      .mock(ModalController, ModalControllerMock);
+  });
 
-    fixture = TestBed.createComponent(GalleryPopoverComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  }));
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create', async (): Promise<void> => {
+    const { element } = await shallow.render();
+    expect(element).toBeTruthy();
   });
 });

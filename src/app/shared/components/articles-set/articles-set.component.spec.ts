@@ -1,23 +1,26 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { ArticlesService } from '@services/index';
+import { Observable, of } from 'rxjs';
+import { Shallow } from 'shallow-render';
+import { SharedModule } from '../../shared.module';
 import { ArticlesSetComponent } from './articles-set.component';
 
+const ARTICLES_SERVICE_MOCK = {
+  getAll(): Observable<any> {
+    return of({});
+  },
+};
+
 describe('ArticlesSetComponent', () => {
-  let component: ArticlesSetComponent;
-  let fixture: ComponentFixture<ArticlesSetComponent>;
+  let shallow: Shallow<ArticlesSetComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ArticlesSetComponent],
-      imports: [IonicModule.forRoot()],
-    }).compileComponents();
+  beforeEach((): void => {
+    shallow = new Shallow(ArticlesSetComponent, SharedModule)
+      .provide(ArticlesService)
+      .mock(ArticlesService, ARTICLES_SERVICE_MOCK);
+  });
 
-    fixture = TestBed.createComponent(ArticlesSetComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  }));
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create', async (): Promise<void> => {
+    const { element } = await shallow.render();
+    expect(element).toBeTruthy();
   });
 });

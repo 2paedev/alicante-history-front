@@ -18,8 +18,6 @@ export class ArticlesService {
   public readonly lastFiveSubject = new BehaviorSubject<Article[]>(null);
   public readonly lastFive$ = this.lastFiveSubject.asObservable();
 
-  public items: any = [];
-
   private readonly httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8',
@@ -29,14 +27,6 @@ export class ArticlesService {
   public constructor(private readonly http: HttpClient) {
     // this.articlesSubject.next([]);
     // this.resumeSubject.next([]);
-    this.items = [
-      { title: 'one' },
-      { title: 'two' },
-      { title: 'three' },
-      { title: 'four' },
-      { title: 'five' },
-      { title: 'six' },
-    ];
   }
 
   public filterArticles(searchTerm: string, articles: Article[]): Article[] {
@@ -90,19 +80,19 @@ export class ArticlesService {
     );
   }
 
-  public getDetail(id: string): Observable<any> {
+  public getDetail(id: number): Observable<any> {
     const url = API_ROUTE.ARTICLES.DETAIL(id);
     return this.http.get(url);
   }
 
-  public setLike(id: string): Observable<CustomPost> {
+  public setLike(id: number): Observable<CustomPost> {
     return this.http.put<any>(
       `${API_ROUTE.ARTICLES.LIKES(id)}`,
       this.httpOptions
     );
   }
 
-  public removeLike(id: string): Observable<CustomPost> {
+  public removeLike(id: number): Observable<CustomPost> {
     return this.http.delete<any>(`${API_ROUTE.ARTICLES.LIKES(id)}`);
   }
 }

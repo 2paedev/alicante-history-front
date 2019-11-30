@@ -62,7 +62,7 @@ export class HomePage implements OnInit, OnDestroy {
         [this.lastArticleData] = response;
       },
       () => {
-        // console.log(error);
+        throw new Error('No se han podido obtener los datos.');
       }
     );
   }
@@ -73,7 +73,7 @@ export class HomePage implements OnInit, OnDestroy {
         this.homePageData = response;
       },
       () => {
-        // console.log(error);
+        throw new Error('No se han podido obtener los datos.');
       }
     );
   }

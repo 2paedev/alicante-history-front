@@ -1,5 +1,6 @@
 export interface CustomImage {
-  id: string;
+  id: number;
+  created: string;
   name: string;
   url: string;
 }

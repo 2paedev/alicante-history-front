@@ -59,11 +59,11 @@ export class StorageService {
     localStorage.setItem(STORAGE_KEY.MY_LIST, JSON.stringify(newList));
   }
 
-  public getMyLikedList(): string[] {
+  public getMyLikedList(): number[] {
     return JSON.parse(localStorage.getItem(STORAGE_KEY.MY_LIKED_LIST));
   }
 
-  public setItemInMyLikedList(itemId: string): void {
+  public setItemInMyLikedList(itemId: number): void {
     const previousList = this.getMyLikedList();
     let newList = [itemId];
     if (previousList !== null) {
@@ -72,7 +72,7 @@ export class StorageService {
     localStorage.setItem(STORAGE_KEY.MY_LIKED_LIST, JSON.stringify(newList));
   }
 
-  public removeItemInMyLikedList(itemId: string): void {
+  public removeItemInMyLikedList(itemId: number): void {
     const previousList = this.getMyLikedList();
     let newList = [];
     if (previousList !== null) {
