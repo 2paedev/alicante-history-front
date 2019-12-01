@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Article, ArticlePage } from '@models/index';
-import { ArticlesService } from '@services/index';
+import { ArticlesService, ToastService } from '@services/index';
 import { Subscription } from 'rxjs';
 import { debounceTime, filter } from 'rxjs/operators';
 
@@ -19,7 +19,10 @@ export class SearchPage implements OnInit, OnDestroy {
 
   private articlesSubscription: Subscription;
 
-  constructor(private readonly articlesService: ArticlesService) {
+  constructor(
+    private readonly articlesService: ArticlesService,
+    private readonly toastService: ToastService
+  ) {
     this.searchControl = new FormControl();
     this.articlesSubscription = this.articlesService.articles$
       .pipe(filter((articles: ArticlePage): boolean => !!articles))
@@ -64,7 +67,8 @@ export class SearchPage implements OnInit, OnDestroy {
         this.results = this.searchData.results;
       },
       () => {
-        // console.log(error);
+        this.toastService.presentToastError();
+        throw new Error('No se han podido obtener los datos.');
       }
     );
   }

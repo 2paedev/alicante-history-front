@@ -6,6 +6,5 @@ export const ROUTE = {
     return `${ROUTE.ARTICLE}/${id}`;
   },
   SEARCH: 'search',
-  SPLASH: 'splash',
   MY_LIST: 'my-list',
 };

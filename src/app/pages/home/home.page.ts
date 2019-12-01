@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Article, ArticleResume } from '@models/index';
-import { ArticlesService } from '@services/index';
+import { ArticlesService, ToastService } from '@services/index';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
@@ -16,7 +16,10 @@ export class HomePage implements OnInit, OnDestroy {
 
   private articlesSubscription: Subscription;
 
-  constructor(private articlesService: ArticlesService) {
+  constructor(
+    private articlesService: ArticlesService,
+    private toastService: ToastService
+  ) {
     this.articlesService.lastFive$
       .pipe(filter((lastFive): boolean => !!lastFive))
       .subscribe((lastFive): void => {
@@ -62,6 +65,7 @@ export class HomePage implements OnInit, OnDestroy {
         [this.lastArticleData] = response;
       },
       () => {
+        this.toastService.presentToastError();
         throw new Error('No se han podido obtener los datos.');
       }
     );
@@ -73,6 +77,7 @@ export class HomePage implements OnInit, OnDestroy {
         this.homePageData = response;
       },
       () => {
+        this.toastService.presentToastError();
         throw new Error('No se han podido obtener los datos.');
       }
     );

@@ -29,6 +29,7 @@
     <ion-row>
       <ion-col>
         <app-avatars-list
+          *ngIf="lastFiveArticlesData.length > 0"
           title="Últimas 5 historias"
           [data]="lastFiveArticlesData"
         ></app-avatars-list>

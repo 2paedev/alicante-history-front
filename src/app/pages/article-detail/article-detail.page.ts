@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Article } from '@models/index';
-import { ArticlesService } from '@services/index';
+import { ArticlesService, ToastService } from '@services/index';
 
 @Component({
   selector: 'app-article-detail',
@@ -15,18 +15,19 @@ export class ArticleDetailPage implements OnInit {
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
-    private readonly articlesService: ArticlesService
+    private readonly articlesService: ArticlesService,
+    private readonly toastService: ToastService
   ) {}
 
   public ngOnInit(): void {
-    [this.id] = this.activatedRoute.snapshot.data.params;
+    [this.id] = this.activatedRoute.snapshot.params.id;
     this.getArticleData();
   }
 
   public getArticleImage(): string {
-    if (!this.articleData) {
-      throw new Error('No se han podido obtener los datos.');
-    }
+    // if (!this.articleData) {
+    //   throw new Error('No se han podido obtener los datos.');
+    // }
     return this.articleData.images[0].url;
   }
 
@@ -36,6 +37,7 @@ export class ArticleDetailPage implements OnInit {
         this.articleData = response;
       },
       () => {
+        this.toastService.presentToastError();
         throw new Error('No se han podido obtener los datos.');
       }
     );
