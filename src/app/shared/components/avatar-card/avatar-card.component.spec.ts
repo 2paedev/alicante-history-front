@@ -6,7 +6,7 @@ import { SharedModule } from '../../shared.module';
 import { AvatarCardComponent } from './avatar-card.component';
 
 const HELPERS_SERVICE_MOCK = {
-  getImageUrl(url: string): string {
+  getImageUrl(): string {
     return 'aFakeUrl';
   },
 };

@@ -9,7 +9,7 @@ import { SharedModule } from '../../shared.module';
 import { ImageModalComponent } from './image-modal.component';
 
 const HELPERS_SERVICE_MOCK = {
-  getImageUrl(url: string): string {
+  getImageUrl(): string {
     return 'aFakeUrl';
   },
 };

@@ -41,6 +41,7 @@ module.exports = {
     '@typescript-eslint/no-parameter-properties': 'off',
     'no-useless-constructor': 'off',
     'no-empty-function': ['error', { allow: ['constructors'] }],
+    '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     'lines-between-class-members': [
       'error',

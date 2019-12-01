@@ -14,7 +14,7 @@ const USER_SERVICE_MOCK = {
       },
     });
   },
-  setEmailUser(params: any): Observable<CustomPost> {
+  setEmailUser(): Observable<CustomPost> {
     return of({
       message: 'aMessage',
       error: null,

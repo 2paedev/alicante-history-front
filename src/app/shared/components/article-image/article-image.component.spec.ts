@@ -12,25 +12,29 @@ import { SharedModule } from '../../shared.module';
 import { ArticleImageComponent } from './article-image.component';
 
 const ARTICLES_SERVICE_MOCK = {
-  setLike(id: number): Observable<any> {
+  setLike(): Observable<any> {
     return of({});
   },
-  removeLike(id: number): Observable<any> {
+  removeLike(): Observable<any> {
     return of({});
   },
 };
 
 const HELPERS_SERVICE_MOCK = {
-  getImageUrl(url: string): string {
+  getImageUrl(): string {
     return 'aFakeUrl';
   },
 };
 
 const STORAGE_SERVICE_MOCK = {
-  setItemInMyList(item: Article): void {},
-  removeItemInMyList(item: Article): void {},
-  setItemInMyLikedList(itemId: number): void {},
-  removeItemInMyLikedList(itemId: number): void {},
+  // eslint-disable-next-line no-empty-function
+  setItemInMyList(): void {},
+  // eslint-disable-next-line no-empty-function
+  removeItemInMyList(): void {},
+  // eslint-disable-next-line no-empty-function
+  setItemInMyLikedList(): void {},
+  // eslint-disable-next-line no-empty-function
+  removeItemInMyLikedList(): void {},
   getMyLikedList(): number[] {
     return [];
   },

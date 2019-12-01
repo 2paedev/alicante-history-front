@@ -6,7 +6,7 @@ import { SharedModule } from '../../shared.module';
 import { GalleryPopoverComponent } from './gallery-popover.component';
 
 const HELPERS_SERVICE_MOCK = {
-  getImageUrl(url: string): string {
+  getImageUrl(): string {
     return 'aFakeUrl';
   },
 };

@@ -1,7 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { Article } from '@models/index';
 import { ArticlesService } from '@services/index';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Shallow } from 'shallow-render';
 import { buildArticleDetailFixture } from 'src/app/shared/fixtures/articles';
 import { ArticleDetailPageModule } from './article-detail.module';
@@ -9,10 +9,8 @@ import { ArticleDetailPage } from './article-detail.page';
 
 const ACTIVATED_ROUTE_MOCK = {
   snapshot: {
-    data: {
-      params: {
-        id: 0,
-      },
+    params: {
+      id: 0,
     },
   },
 };
@@ -67,7 +65,7 @@ describe('ArticleDetailPage', () => {
     const { instance } = await shallow
       .provide(ArticlesService)
       .mock(ArticlesService, {
-        getDetail(id: number): Observable<Article> {
+        getDetail(): Observable<Article> {
           return of(null);
         },
       })
@@ -75,18 +73,5 @@ describe('ArticleDetailPage', () => {
     expect((): void => {
       instance.getArticleImage();
     }).toThrowError(EXPECTED_ERROR);
-  });
-
-  xit('should throw an error if retrieve article data service fail', async (): Promise<
-    void
-  > => {
-    const { instance, fixture } = await shallow
-      .provide(ArticlesService)
-      .mock(ArticlesService, {
-        getDetail(id: number): Observable<Article> {
-          return throwError(EXPECTED_ERROR);
-        },
-      })
-      .render();
   });
 });

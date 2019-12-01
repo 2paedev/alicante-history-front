@@ -16,8 +16,10 @@ const STORAGE_SERVICE_MOCK = {
   getReadModeSize(): string {
     return 'aFakeModeSize';
   },
-  setReadMode(color: string, size: string): void {},
-  setIsMailSended(value: boolean): void {},
+  // eslint-disable-next-line no-empty-function
+  setReadMode(): void {},
+  // eslint-disable-next-line no-empty-function
+  setIsMailSended(): void {},
 };
 
 const USER_SERVICE_MOCK = {
@@ -29,7 +31,7 @@ const USER_SERVICE_MOCK = {
       },
     });
   },
-  setEmailUser(params: any): Observable<CustomPost> {
+  setEmailUser(): Observable<CustomPost> {
     return of({
       message: 'aMessage',
       error: null,

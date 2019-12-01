@@ -25,9 +25,9 @@ export class ArticleDetailPage implements OnInit {
   }
 
   public getArticleImage(): string {
-    // if (!this.articleData) {
-    //   throw new Error('No se han podido obtener los datos.');
-    // }
+    if (!this.articleData) {
+      throw new Error('No se han podido obtener los datos.');
+    }
     return this.articleData.images[0].url;
   }
 
