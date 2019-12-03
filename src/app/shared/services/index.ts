@@ -1,3 +1,4 @@
+export * from './admob.service';
 export * from './articles.service';
 export * from './helpers.service';
 export * from './storage.service';

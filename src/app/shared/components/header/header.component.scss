@@ -1,5 +1,9 @@
 .header {
   &__toolbar {
     --opacity: 0.5;
+
+    &--logo {
+      margin-left: 1rem;
+    }
   }
 }

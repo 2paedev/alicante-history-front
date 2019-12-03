@@ -13,6 +13,8 @@ export class MyListPage implements OnInit {
   constructor(private readonly storageService: StorageService) {}
 
   public ngOnInit(): void {
-    this.myListData = this.storageService.getMyList();
+    this.storageService.getMyList().then(value => {
+      this.myListData = JSON.parse(value);
+    });
   }
 }

@@ -45,8 +45,8 @@ export class ArticleImageComponent implements OnInit {
     this.storageService.removeItemInMyList(this.data);
   }
 
-  public goToArticle(): void {
-    this.router.navigate([ROUTE.ARTICLE_DETAIL]);
+  public goToArticle(article: Article): void {
+    this.router.navigate([ROUTE.ARTICLE_DETAIL(article.id)]);
   }
 
   public addLike(): void {
@@ -79,13 +79,17 @@ export class ArticleImageComponent implements OnInit {
 
   private assembleDataCard(): void {
     this.imageUrl = this.helper.getImageUrl(this.image);
-    const likeList = this.storageService.getMyLikedList();
-    if (likeList !== null) {
-      this.isLiked = likeList.includes(this.data.id);
-    }
-    const myList = this.storageService.getMyList();
-    if (myList !== null) {
-      this.isAddedInMyList = myList.includes(this.data);
-    }
+    this.storageService.getMyLikedList().then(value => {
+      if (value !== null) {
+        const valueAsJson = JSON.parse(value);
+        this.isLiked = valueAsJson.includes(this.data.id);
+      }
+    });
+    this.storageService.getMyList().then(value => {
+      if (value !== null) {
+        const valueAsJson = JSON.parse(value);
+        this.isAddedInMyList = valueAsJson.includes(this.data);
+      }
+    });
   }
 }

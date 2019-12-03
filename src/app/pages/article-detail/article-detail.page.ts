@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Article } from '@models/index';
-import { ArticlesService, ToastService } from '@services/index';
+import { AdMobService, ArticlesService, ToastService } from '@services/index';
 
 @Component({
   selector: 'app-article-detail',
@@ -16,10 +16,12 @@ export class ArticleDetailPage implements OnInit {
   constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly articlesService: ArticlesService,
-    private readonly toastService: ToastService
+    private readonly toastService: ToastService,
+    private readonly adMobService: AdMobService
   ) {}
 
   public ngOnInit(): void {
+    this.adMobService.pushInterstitialTest();
     [this.id] = this.activatedRoute.snapshot.params.id;
     this.getArticleData();
   }

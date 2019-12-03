@@ -28,11 +28,16 @@ export class SettingsModalComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit(): void {
-    this.isMailSended = this.storageService.getIsMailSended();
-    this.isCheckedDay =
-      this.storageService.getReadModeColor() === READ_MODE.DAY;
-    this.isCheckedNormal =
-      this.storageService.getReadModeSize() === READ_MODE.NORMAL;
+    this.storageService.getIsMailSended().then(value => {
+      this.isMailSended = JSON.parse(value);
+    });
+    this.storageService.getReadModeColor().then(value => {
+      this.isCheckedDay = JSON.parse(value) === READ_MODE.DAY;
+    });
+    this.storageService.getReadModeSize().then(value => {
+      this.isCheckedNormal = JSON.parse(value) === READ_MODE.NORMAL;
+    });
+
     this.userSubscription = this.userService
       .getUser()
       .subscribe((userData: User) => {

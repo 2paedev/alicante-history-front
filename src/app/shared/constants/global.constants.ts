@@ -20,3 +20,21 @@ export const STORAGE_KEY = {
   MY_LIST: 'my-list',
   MY_LIKED_LIST: 'my-liked-list',
 };
+
+export const ADD_MOBS = {
+  BANNER_TEST: {
+    id: 'ca-app-pub-3940256099942544/6300978111',
+    isTesting: true,
+    autoShow: true,
+  },
+  INTERSTITIAL_TEST: {
+    id: 'ca-app-pub-3940256099942544/1033173712',
+    isTesting: true,
+    autoShow: true,
+  },
+  INTERSTITIAL_VIDEO_TEST: {
+    id: 'ca-app-pub-3940256099942544/8691691433',
+    isTesting: true,
+    autoShow: true,
+  },
+};

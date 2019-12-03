@@ -1,83 +1,94 @@
 import { Injectable } from '@angular/core';
 import { STORAGE_KEY } from '@constants/index';
+import { Storage } from '@ionic/storage';
 import { Article } from '@models/index';
 
 @Injectable({ providedIn: 'root' })
 export class StorageService {
+  constructor(private readonly storage: Storage) {}
+
   public setReadMode(color: string, size: string): void {
     this.setReadModeColor(color);
     this.setReadModeSize(size);
   }
 
-  public getReadModeColor(): string {
-    return localStorage.getItem(STORAGE_KEY.READ_MODE.COLOR);
+  public getReadModeColor(): Promise<any> {
+    return this.storage.get(STORAGE_KEY.READ_MODE.COLOR);
   }
 
   private setReadModeColor(value: string): void {
-    localStorage.setItem(STORAGE_KEY.READ_MODE.COLOR, value);
+    this.storage.set(STORAGE_KEY.READ_MODE.COLOR, value);
   }
 
-  public getReadModeSize(): string {
-    return localStorage.getItem(STORAGE_KEY.READ_MODE.SIZE);
+  public getReadModeSize(): Promise<any> {
+    return this.storage.get(STORAGE_KEY.READ_MODE.SIZE);
   }
 
   private setReadModeSize(value: string): void {
-    localStorage.setItem(STORAGE_KEY.READ_MODE.SIZE, value);
+    this.storage.set(STORAGE_KEY.READ_MODE.SIZE, value);
   }
 
-  public getIsMailSended(): boolean {
-    const key = localStorage.getItem(STORAGE_KEY.MAIL.IS_SENDED);
-    if (key) {
-      return JSON.parse(key);
-    }
-    return false;
+  public getIsMailSended(): Promise<any> {
+    return this.storage.get(STORAGE_KEY.MAIL.IS_SENDED);
   }
 
   public setIsMailSended(value: boolean): void {
-    localStorage.setItem(STORAGE_KEY.MAIL.IS_SENDED, JSON.stringify(value));
+    this.storage.set(STORAGE_KEY.MAIL.IS_SENDED, JSON.stringify(value));
   }
 
-  public getMyList(): Article[] {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY.MY_LIST));
+  public getMyList(): Promise<any> {
+    return this.storage.get(STORAGE_KEY.MY_LIST);
   }
 
   public setItemInMyList(item: Article): void {
-    const previousList = this.getMyList();
-    let newList = [item];
-    if (previousList !== null) {
-      newList = [...previousList, item];
-    }
-    localStorage.setItem(STORAGE_KEY.MY_LIST, JSON.stringify(newList));
+    let previousList = [];
+    this.getMyList().then(value => {
+      previousList = JSON.parse(value);
+      let newList = [item];
+      if (previousList !== null) {
+        newList = [...previousList, item];
+      }
+      this.storage.set(STORAGE_KEY.MY_LIST, JSON.stringify(newList));
+    });
   }
 
   public removeItemInMyList(item: Article): void {
-    const previousList = this.getMyList();
-    let newList = [];
-    if (previousList !== null) {
-      newList = previousList.filter(data => data.id !== item.id);
-    }
-    localStorage.setItem(STORAGE_KEY.MY_LIST, JSON.stringify(newList));
+    let previousList = [];
+    this.getMyList().then(value => {
+      previousList = JSON.parse(value);
+      let newList = [];
+      if (previousList !== null) {
+        newList = previousList.filter(data => data.id !== item.id);
+      }
+      this.storage.set(STORAGE_KEY.MY_LIST, JSON.stringify(newList));
+    });
   }
 
-  public getMyLikedList(): number[] {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY.MY_LIKED_LIST));
+  public getMyLikedList(): Promise<any> {
+    return this.storage.get(STORAGE_KEY.MY_LIKED_LIST);
   }
 
   public setItemInMyLikedList(itemId: number): void {
-    const previousList = this.getMyLikedList();
-    let newList = [itemId];
-    if (previousList !== null) {
-      newList = [...previousList, itemId];
-    }
-    localStorage.setItem(STORAGE_KEY.MY_LIKED_LIST, JSON.stringify(newList));
+    let previousList = [];
+    this.getMyLikedList().then(value => {
+      previousList = JSON.parse(value);
+      let newList = [itemId];
+      if (previousList !== null) {
+        newList = [...previousList, itemId];
+      }
+      this.storage.set(STORAGE_KEY.MY_LIKED_LIST, JSON.stringify(newList));
+    });
   }
 
   public removeItemInMyLikedList(itemId: number): void {
-    const previousList = this.getMyLikedList();
-    let newList = [];
-    if (previousList !== null) {
-      newList = previousList.filter(id => id !== itemId);
-    }
-    localStorage.setItem(STORAGE_KEY.MY_LIKED_LIST, JSON.stringify(newList));
+    let previousList = [];
+    this.getMyLikedList().then(value => {
+      previousList = JSON.parse(value);
+      let newList = [];
+      if (previousList !== null) {
+        newList = previousList.filter(id => id !== itemId);
+      }
+      this.storage.set(STORAGE_KEY.MY_LIKED_LIST, JSON.stringify(newList));
+    });
   }
 }

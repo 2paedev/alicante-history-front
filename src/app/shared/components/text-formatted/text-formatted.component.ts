@@ -25,6 +25,8 @@ export class TextFormattedComponent implements OnInit, OnDestroy {
 
   private userSubscription: Subscription;
   private userData: User;
+  private isCheckedDay: boolean;
+  private isCheckedNormal: boolean;
 
   constructor(
     public readonly popoverController: PopoverController,
@@ -41,7 +43,17 @@ export class TextFormattedComponent implements OnInit, OnDestroy {
           this.userData.readMode.color,
           this.userData.readMode.size
         );
+        this.isCheckedDay = this.userData.readMode.color === READ_MODE.DAY;
+        this.isCheckedNormal = this.userData.readMode.size === READ_MODE.NORMAL;
       });
+
+    this.storageService.getReadModeColor().then(value => {
+      this.isCheckedDay = value === READ_MODE.DAY;
+    });
+
+    this.storageService.getReadModeSize().then(value => {
+      this.isCheckedNormal = value === READ_MODE.NORMAL;
+    });
   }
 
   public async presentReadModePopover(ev: any): Promise<void> {
@@ -50,9 +62,8 @@ export class TextFormattedComponent implements OnInit, OnDestroy {
       event: ev,
       translucent: true,
       componentProps: {
-        isCheckedDay: this.storageService.getReadModeColor() === READ_MODE.DAY,
-        isCheckedNormal:
-          this.storageService.getReadModeSize() === READ_MODE.NORMAL,
+        isCheckedDay: this.isCheckedDay,
+        isCheckedNormal: this.isCheckedNormal,
       },
     });
     await popover.present();
@@ -72,15 +83,11 @@ export class TextFormattedComponent implements OnInit, OnDestroy {
   }
 
   public getColorClass(): string {
-    return this.storageService.getReadModeColor() === READ_MODE.DAY
-      ? 'day'
-      : 'night';
+    return this.isCheckedDay ? 'day' : 'night';
   }
 
   public getSizeClass(): string {
-    return this.storageService.getReadModeSize() === READ_MODE.NORMAL
-      ? 'normal'
-      : 'big';
+    return this.isCheckedNormal ? 'normal' : 'big';
   }
 
   public ngOnDestroy(): void {

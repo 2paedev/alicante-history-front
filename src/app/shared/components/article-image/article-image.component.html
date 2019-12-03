@@ -1,25 +1,50 @@
 <ion-card *ngIf="data" class="card faded faded-all text-shadow">
-  <ion-img class="card__image" [src]="imageUrl"></ion-img>
+  <img class="card__image" [src]="imageUrl" />
 
   <div class="card__title">{{ title }}</div>
   <div class="card__tags">
     <app-tags-list [tags]="tags"></app-tags-list>
   </div>
   <ion-buttons class="card__buttons">
-    <ion-button *ngIf="!isAddedInMyList" color="secondary" fill="clear" (click)="addToMyList()">
+    <ion-button
+      *ngIf="!isAddedInMyList"
+      color="secondary"
+      fill="clear"
+      (click)="addToMyList()"
+    >
       <ion-icon size="small" name="add"></ion-icon>
     </ion-button>
-    <ion-button *ngIf="isAddedInMyList" color="secondary" fill="clear" (click)="removeToMyList()">
+    <ion-button
+      *ngIf="isAddedInMyList"
+      color="secondary"
+      fill="clear"
+      (click)="removeToMyList()"
+    >
       <ion-icon size="small" name="add" color="success"></ion-icon>
     </ion-button>
-    <ion-button *ngIf="showReadIcon" color="secondary" fill="solid" (click)="goToArticle()">
+    <ion-button
+      *ngIf="showReadIcon"
+      color="secondary"
+      fill="solid"
+      (click)="goToArticle(data)"
+    >
       <ion-icon slot="start" name="book"></ion-icon>
       Leer
     </ion-button>
-    <ion-button *ngIf="!isLiked" color="secondary" fill="clear" (click)="addLike()">
+    <ion-button
+      *ngIf="!isLiked"
+      color="secondary"
+      fill="clear"
+      (click)="addLike()"
+    >
       <ion-icon size="small" name="heart-empty"></ion-icon>
     </ion-button>
-    <ion-button *ngIf="isLiked" color="secondary" fill="clear" (click)="removeLike()">
+    <ion-button
+      *ngIf="isLiked"
+      color="secondary"
+      fill="clear"
+      (click)="removeLike()"
+    >
       <ion-icon size="normal" color="danger" name="heart"></ion-icon>
     </ion-button>
   </ion-buttons>

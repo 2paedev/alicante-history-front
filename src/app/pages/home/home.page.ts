@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Article, ArticleResume } from '@models/index';
-import { ArticlesService, ToastService } from '@services/index';
+import { AdMobService, ArticlesService, ToastService } from '@services/index';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
@@ -18,8 +18,10 @@ export class HomePage implements OnInit, OnDestroy {
 
   constructor(
     private articlesService: ArticlesService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private adMobService: AdMobService
   ) {
+    this.adMobService.pushBannerTest();
     this.articlesService.lastFive$
       .pipe(filter((lastFive): boolean => !!lastFive))
       .subscribe((lastFive): void => {
