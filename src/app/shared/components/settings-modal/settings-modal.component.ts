@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { READ_MODE } from '@constants/index';
+import { ERRORS, READ_MODE } from '@constants/index';
 import { ModalController } from '@ionic/angular';
 import { User } from '@models/index';
 import { StorageService, ToastService, UserService } from '@services/index';
@@ -57,8 +57,8 @@ export class SettingsModalComponent implements OnInit, OnDestroy {
         this.storageService.setIsMailSended(this.isMailSended);
       },
       () => {
-        this.toastService.presentToastError();
-        throw new Error('Error al registrar el email.');
+        this.toastService.presentToastError(ERRORS.MESSAGES.UPDATE);
+        throw new Error(ERRORS.MESSAGES.UPDATE);
       }
     );
   }

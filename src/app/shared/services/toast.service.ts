@@ -5,10 +5,10 @@ import { ToastController } from '@ionic/angular';
 export class ToastService {
   constructor(private readonly toastController: ToastController) {}
 
-  async presentToastError(): Promise<void> {
+  async presentToastError(message: string): Promise<void> {
     const toast = await this.toastController.create({
       header: '¡Error!',
-      message: 'Problemas al obtener las historias.',
+      message,
       position: 'top',
       duration: 2000,
       cssClass: 'custom-toast',

@@ -38,3 +38,12 @@ export const ADD_MOBS = {
     autoShow: true,
   },
 };
+
+export const ERRORS = {
+  MESSAGES: {
+    ALL_ARTICLES: 'ERROR al obtener los artículos',
+    ONE_ARTICLE: 'ERROR al obtener el artículo',
+    IMAGE: 'ERROR al obtener la imagen',
+    UPDATE: 'ERROR al actualizar',
+  },
+};

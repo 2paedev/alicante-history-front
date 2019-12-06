@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ERRORS } from '@constants/index';
 import { Article } from '@models/index';
 import { AdMobService, ArticlesService, ToastService } from '@services/index';
 
@@ -28,7 +29,7 @@ export class ArticleDetailPage implements OnInit {
 
   public getArticleImage(): string {
     if (!this.articleData) {
-      throw new Error('No se han podido obtener los datos.');
+      throw new Error(ERRORS.MESSAGES.IMAGE);
     }
     return this.articleData.images[0].url;
   }
@@ -39,8 +40,8 @@ export class ArticleDetailPage implements OnInit {
         this.articleData = response;
       },
       () => {
-        this.toastService.presentToastError();
-        throw new Error('No se han podido obtener los datos.');
+        this.toastService.presentToastError(ERRORS.MESSAGES.ONE_ARTICLE);
+        throw new Error(ERRORS.MESSAGES.ONE_ARTICLE);
       }
     );
   }

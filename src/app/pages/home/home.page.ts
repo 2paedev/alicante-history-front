@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ERRORS } from '@constants/index';
 import { Article, ArticleResume } from '@models/index';
 import { AdMobService, ArticlesService, ToastService } from '@services/index';
 import { Subscription } from 'rxjs';
@@ -67,8 +68,8 @@ export class HomePage implements OnInit, OnDestroy {
         [this.lastArticleData] = response;
       },
       () => {
-        this.toastService.presentToastError();
-        throw new Error('No se han podido obtener los datos.');
+        this.toastService.presentToastError(ERRORS.MESSAGES.ALL_ARTICLES);
+        throw new Error(ERRORS.MESSAGES.ALL_ARTICLES);
       }
     );
   }
@@ -79,8 +80,8 @@ export class HomePage implements OnInit, OnDestroy {
         this.homePageData = response;
       },
       () => {
-        this.toastService.presentToastError();
-        throw new Error('No se han podido obtener los datos.');
+        this.toastService.presentToastError(ERRORS.MESSAGES.ALL_ARTICLES);
+        throw new Error(ERRORS.MESSAGES.ALL_ARTICLES);
       }
     );
   }

@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ERRORS } from '@constants/index';
 import { Article, ArticlePage } from '@models/index';
 import { ArticlesService, ToastService } from '@services/index';
 import { Subscription } from 'rxjs';
@@ -67,8 +68,8 @@ export class SearchPage implements OnInit, OnDestroy {
         this.results = this.searchData.results;
       },
       () => {
-        this.toastService.presentToastError();
-        throw new Error('No se han podido obtener los datos.');
+        this.toastService.presentToastError(ERRORS.MESSAGES.ALL_ARTICLES);
+        throw new Error(ERRORS.MESSAGES.ALL_ARTICLES);
       }
     );
   }

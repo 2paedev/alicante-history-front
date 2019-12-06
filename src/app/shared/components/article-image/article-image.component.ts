@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ROUTE } from '@constants/index';
+import { ERRORS, ROUTE } from '@constants/index';
 import { Article, Tag } from '@models/index';
 import {
   ArticlesService,
@@ -58,14 +58,13 @@ export class ArticleImageComponent implements OnInit {
         this.storageService.setItemInMyLikedList(this.data.id);
       },
       () => {
-        this.toastService.presentToastError();
-        throw new Error('Error al añadir like.');
+        this.toastService.presentToastError(ERRORS.MESSAGES.UPDATE);
+        throw new Error(ERRORS.MESSAGES.UPDATE);
       }
     );
   }
 
   public removeLike(): void {
-    debugger;
     this.articlesService.removeLike(this.data.id).subscribe(
       () => {
         debugger;
@@ -73,8 +72,8 @@ export class ArticleImageComponent implements OnInit {
         this.storageService.removeItemInMyLikedList(this.data.id);
       },
       () => {
-        this.toastService.presentToastError();
-        throw new Error('Error al quitar el like.');
+        this.toastService.presentToastError(ERRORS.MESSAGES.UPDATE);
+        throw new Error(ERRORS.MESSAGES.UPDATE);
       }
     );
   }
