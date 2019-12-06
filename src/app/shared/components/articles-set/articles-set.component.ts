@@ -12,6 +12,8 @@ export class ArticlesSetComponent {
   @Input() public data: ArticlePage;
   @Input() public results: Article[];
 
+  public noDataText = 'Sin artículos';
+
   constructor(private readonly articlesService: ArticlesService) {}
 
   public loadData(event: any): void {

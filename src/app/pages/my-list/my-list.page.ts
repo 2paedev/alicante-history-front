@@ -10,6 +10,8 @@ import { Article } from '../../shared/models/articles';
 export class MyListPage implements OnInit {
   public myListData: Article[] = [];
 
+  public noDataText = 'Sin artículos';
+
   constructor(private readonly storageService: StorageService) {}
 
   public ngOnInit(): void {

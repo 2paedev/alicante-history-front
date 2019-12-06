@@ -1,6 +1,6 @@
 <div class="gallery" fullscreen>
   <img
-    *ngFor="let image of images"
+    *ngFor="let image of articleImages"
     [src]="getImageUrl(image.url)"
     tappable
     (click)="openPreview(image)"
