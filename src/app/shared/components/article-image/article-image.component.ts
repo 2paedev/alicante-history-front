@@ -6,6 +6,7 @@ import {
   ArticlesService,
   HelpersService,
   StorageService,
+  ToastService,
 } from '@services/index';
 
 @Component({
@@ -28,7 +29,8 @@ export class ArticleImageComponent implements OnInit {
     private readonly router: Router,
     private readonly storageService: StorageService,
     private readonly articlesService: ArticlesService,
-    private readonly helper: HelpersService
+    private readonly helper: HelpersService,
+    private readonly toastService: ToastService
   ) {}
 
   public ngOnInit(): void {
@@ -56,19 +58,23 @@ export class ArticleImageComponent implements OnInit {
         this.storageService.setItemInMyLikedList(this.data.id);
       },
       () => {
-        // console.log(error.error.message);
+        this.toastService.presentToastError();
+        throw new Error('Error al añadir like.');
       }
     );
   }
 
   public removeLike(): void {
+    debugger;
     this.articlesService.removeLike(this.data.id).subscribe(
       () => {
+        debugger;
         this.isLiked = false;
         this.storageService.removeItemInMyLikedList(this.data.id);
       },
       () => {
-        // console.log(error.error.message);
+        this.toastService.presentToastError();
+        throw new Error('Error al quitar el like.');
       }
     );
   }

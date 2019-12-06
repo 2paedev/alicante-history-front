@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { READ_MODE } from '@constants/index';
 import { ModalController } from '@ionic/angular';
 import { User } from '@models/index';
-import { StorageService, UserService } from '@services/index';
+import { StorageService, ToastService, UserService } from '@services/index';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -24,18 +24,19 @@ export class SettingsModalComponent implements OnInit, OnDestroy {
   constructor(
     private readonly modalCtrl: ModalController,
     private readonly userService: UserService,
-    private readonly storageService: StorageService
+    private readonly storageService: StorageService,
+    private readonly toastService: ToastService
   ) {}
 
   public ngOnInit(): void {
     this.storageService.getIsMailSended().then(value => {
-      this.isMailSended = JSON.parse(value);
+      this.isMailSended = value;
     });
     this.storageService.getReadModeColor().then(value => {
-      this.isCheckedDay = JSON.parse(value) === READ_MODE.DAY;
+      this.isCheckedDay = value === READ_MODE.DAY;
     });
     this.storageService.getReadModeSize().then(value => {
-      this.isCheckedNormal = JSON.parse(value) === READ_MODE.NORMAL;
+      this.isCheckedNormal = value === READ_MODE.NORMAL;
     });
 
     this.userSubscription = this.userService
@@ -56,7 +57,8 @@ export class SettingsModalComponent implements OnInit, OnDestroy {
         this.storageService.setIsMailSended(this.isMailSended);
       },
       () => {
-        // console.log(error.error.message);
+        this.toastService.presentToastError();
+        throw new Error('Error al registrar el email.');
       }
     );
   }

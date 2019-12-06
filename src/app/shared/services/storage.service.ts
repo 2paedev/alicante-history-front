@@ -33,7 +33,7 @@ export class StorageService {
   }
 
   public setIsMailSended(value: boolean): void {
-    this.storage.set(STORAGE_KEY.MAIL.IS_SENDED, JSON.stringify(value));
+    this.storage.set(STORAGE_KEY.MAIL.IS_SENDED, value);
   }
 
   public getMyList(): Promise<any> {

@@ -12,6 +12,6 @@ export const API_ROUTE = {
       `${API_URL}/articles/${articleId}/like/`,
   },
   USER: {
-    MAIL_SUBSCRIPTION: `${API_URL}/mail/subscription/`,
+    MAIL_SUBSCRIPTION: `${API_URL}/email-subscription/`,
   },
 };
