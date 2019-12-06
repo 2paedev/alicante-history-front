@@ -22,7 +22,7 @@ export class ArticleDetailPage implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.adMobService.pushInterstitialTest();
+    this.adMobService.pushInterstitial();
     [this.id] = this.activatedRoute.snapshot.params.id;
     this.getArticleData();
   }

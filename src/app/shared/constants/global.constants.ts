@@ -22,18 +22,23 @@ export const STORAGE_KEY = {
 };
 
 export const ADD_MOBS = {
+  BANNER: {
+    id: 'ca-app-pub-3822477186581976/3726960974',
+    isTesting: false,
+    autoShow: true,
+  },
   BANNER_TEST: {
     id: 'ca-app-pub-3940256099942544/6300978111',
     isTesting: true,
     autoShow: true,
   },
-  INTERSTITIAL_TEST: {
-    id: 'ca-app-pub-3940256099942544/1033173712',
-    isTesting: true,
+  INTERSTITIAL: {
+    id: 'ca-app-pub-3822477186581976/5277762086',
+    isTesting: false,
     autoShow: true,
   },
-  INTERSTITIAL_VIDEO_TEST: {
-    id: 'ca-app-pub-3940256099942544/8691691433',
+  INTERSTITIAL_TEST: {
+    id: 'ca-app-pub-3940256099942544/1033173712',
     isTesting: true,
     autoShow: true,
   },
@@ -45,5 +50,6 @@ export const ERRORS = {
     ONE_ARTICLE: 'ERROR al obtener el artículo',
     IMAGE: 'ERROR al obtener la imagen',
     UPDATE: 'ERROR al actualizar',
+    AD_MOBS: 'ERROR en AdMobs',
   },
 };

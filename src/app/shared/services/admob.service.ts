@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { ADD_MOBS } from '@constants/index';
+import { ADD_MOBS, ERRORS } from '@constants/index';
 import { AdMobFree } from '@ionic-native/admob-free/ngx';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -8,24 +9,24 @@ import { AdMobFree } from '@ionic-native/admob-free/ngx';
 export class AdMobService {
   public constructor(private readonly adMobFree: AdMobFree) {}
 
-  public pushBannerTest(): void {
-    this.adMobFree.banner.config(ADD_MOBS.BANNER_TEST);
+  public pushBanner(): void {
+    this.adMobFree.banner.config(this.getBannerConfig());
     this.adMobFree.banner
       .prepare()
       .then(() => {
         this.adMobFree.banner.show();
       })
       .catch(() => {
-        throw new Error('Problema al cargar admob');
+        throw new Error(ERRORS.MESSAGES.AD_MOBS);
       });
   }
 
-  public pushInterstitialTest(): void {
-    const isVideo = Math.random() >= 0.5;
-    let config = ADD_MOBS.INTERSTITIAL_TEST;
-    if (isVideo) {
-      config = ADD_MOBS.INTERSTITIAL_VIDEO_TEST;
-    }
+  private getBannerConfig(): any {
+    return environment.production ? ADD_MOBS.BANNER : ADD_MOBS.BANNER_TEST;
+  }
+
+  public pushInterstitial(): void {
+    const config = this.getInterstitialConfig();
     this.adMobFree.interstitial.config(config);
     this.adMobFree.interstitial
       .prepare()
@@ -33,7 +34,13 @@ export class AdMobService {
         this.adMobFree.interstitial.show();
       })
       .catch(() => {
-        throw new Error('Problema al cargar admob');
+        throw new Error(ERRORS.MESSAGES.AD_MOBS);
       });
+  }
+
+  private getInterstitialConfig(): any {
+    return environment.production
+      ? ADD_MOBS.INTERSTITIAL
+      : ADD_MOBS.INTERSTITIAL_TEST;
   }
 }

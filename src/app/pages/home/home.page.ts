@@ -22,7 +22,7 @@ export class HomePage implements OnInit, OnDestroy {
     private toastService: ToastService,
     private adMobService: AdMobService
   ) {
-    this.adMobService.pushBannerTest();
+    this.adMobService.pushBanner();
     this.articlesService.lastFive$
       .pipe(filter((lastFive): boolean => !!lastFive))
       .subscribe((lastFive): void => {
