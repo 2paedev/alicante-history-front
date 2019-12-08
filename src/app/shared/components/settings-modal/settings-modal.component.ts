@@ -13,11 +13,12 @@ import { Subscription } from 'rxjs';
 export class SettingsModalComponent implements OnInit, OnDestroy {
   public isCheckedDay: boolean;
   public isCheckedNormal: boolean;
-  public isMailSended: boolean;
+  public isMailSent: boolean;
   public mailText: string;
   public readModeShowed = false;
   public emailShowed = false;
   public contactShowed = false;
+  public mailIsBeingSent = false;
 
   private userSubscription: Subscription;
 
@@ -50,13 +51,16 @@ export class SettingsModalComponent implements OnInit, OnDestroy {
   }
 
   public sendMail(): void {
+    this.mailIsBeingSent = true;
     const bodyParams = { mail: this.mailText };
     this.userService.setEmailUser(bodyParams).subscribe(
       () => {
         this.isMailSended = true;
+        this.mailIsBeingSent = false;
         this.storageService.setIsMailSended(this.isMailSended);
       },
       () => {
+        this.mailIsBeingSent = true;
         this.toastService.presentToastError(ERRORS.MESSAGES.UPDATE);
         throw new Error(ERRORS.MESSAGES.UPDATE);
       }
