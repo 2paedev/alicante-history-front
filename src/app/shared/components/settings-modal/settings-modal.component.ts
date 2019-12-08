@@ -30,8 +30,8 @@ export class SettingsModalComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit(): void {
-    this.storageService.getIsMailSended().then(value => {
-      this.isMailSended = value;
+    this.storageService.getIsMailSent().then(value => {
+      this.isMailSent = value;
     });
     this.storageService.getReadModeColor().then(value => {
       this.isCheckedDay = value === READ_MODE.DAY;
@@ -55,9 +55,9 @@ export class SettingsModalComponent implements OnInit, OnDestroy {
     const bodyParams = { mail: this.mailText };
     this.userService.setEmailUser(bodyParams).subscribe(
       () => {
-        this.isMailSended = true;
+        this.isMailSent = true;
         this.mailIsBeingSent = false;
-        this.storageService.setIsMailSended(this.isMailSended);
+        this.storageService.setIsMailSent(this.isMailSent);
       },
       () => {
         this.mailIsBeingSent = true;

@@ -42,7 +42,7 @@
           (click)="toggleEmail()"
         ></ion-icon>
       </ion-label>
-      <div class="settings__item--block" *ngIf="!isMailSended && emailShowed">
+      <div class="settings__item--block" *ngIf="!isMailSent && emailShowed">
         <ion-text class="mail--text"
           >Introduce tu email si quiere que le avisemos cuando un nuevo artículo
           esté disponible.</ion-text
@@ -62,7 +62,7 @@
           >Enviar</ion-button
         >
       </div>
-      <div class="settings__item--block-row" *ngIf="isMailSended">
+      <div class="settings__item--block-row" *ngIf="isMailSent">
         <ion-icon color="success" name="cloud-done" size="large"></ion-icon>
         <ion-label class="mail--text">Email ya enviado.</ion-label>
       </div>

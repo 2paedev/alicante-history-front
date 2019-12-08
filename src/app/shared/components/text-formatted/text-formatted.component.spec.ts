@@ -7,7 +7,7 @@ import { SharedModule } from '../../shared.module';
 import { TextFormattedComponent } from './text-formatted.component';
 
 const STORAGE_SERVICE_MOCK = {
-  getIsMailSended(): boolean {
+  getIsMailSent(): boolean {
     return true;
   },
   getReadModeColor(): string {
@@ -19,7 +19,7 @@ const STORAGE_SERVICE_MOCK = {
   // eslint-disable-next-line no-empty-function
   setReadMode(): void {},
   // eslint-disable-next-line no-empty-function
-  setIsMailSended(): void {},
+  setIsMailSent(): void {},
 };
 
 const USER_SERVICE_MOCK = {

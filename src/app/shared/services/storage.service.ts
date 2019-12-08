@@ -28,11 +28,11 @@ export class StorageService {
     this.storage.set(STORAGE_KEY.READ_MODE.SIZE, value);
   }
 
-  public getIsMailSended(): Promise<any> {
+  public getIsMailSent(): Promise<any> {
     return this.storage.get(STORAGE_KEY.MAIL.IS_SENDED);
   }
 
-  public setIsMailSended(value: boolean): void {
+  public setIsMailSent(value: boolean): void {
     this.storage.set(STORAGE_KEY.MAIL.IS_SENDED, value);
   }
 
