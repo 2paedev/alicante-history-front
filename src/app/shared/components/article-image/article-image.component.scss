@@ -23,13 +23,14 @@
   }
 
   &__title {
-    top: 45%;
+    top: 40%;
     font-size: 1rem;
     font-weight: bold;
+    padding: 0 1.2rem;
   }
 
   &__tags {
-    top: 60%;
+    top: 55%;
   }
 
   &__buttons {
@@ -42,6 +43,14 @@
       &.fav {
         --color: red;
       }
+    }
+
+    ion-icon {
+      font-size: 1.6rem;
+    }
+
+    .read {
+      font-size: 1rem;
     }
   }
 }

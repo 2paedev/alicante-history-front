@@ -67,7 +67,6 @@ export class ArticleImageComponent implements OnInit {
   public removeLike(): void {
     this.articlesService.removeLike(this.data.id).subscribe(
       () => {
-        debugger;
         this.isLiked = false;
         this.storageService.removeItemInMyLikedList(this.data.id);
       },

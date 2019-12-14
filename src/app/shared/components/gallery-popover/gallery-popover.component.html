@@ -1,4 +1,4 @@
-<div class="gallery" fullscreen>
+<div class="gallery" fullscreen *ngIf="articleImages">
   <img
     *ngFor="let image of articleImages"
     [src]="getImageUrl(image.url)"

@@ -12,7 +12,7 @@
       fill="clear"
       (click)="addToMyList()"
     >
-      <ion-icon size="small" name="add"></ion-icon>
+      <ion-icon size="normal" name="add"></ion-icon>
     </ion-button>
     <ion-button
       *ngIf="isAddedInMyList"
@@ -20,7 +20,7 @@
       fill="clear"
       (click)="removeToMyList()"
     >
-      <ion-icon size="small" name="add" color="success"></ion-icon>
+      <ion-icon size="normal" name="add" color="success"></ion-icon>
     </ion-button>
     <ion-button
       *ngIf="showReadIcon"
@@ -28,7 +28,7 @@
       fill="solid"
       (click)="goToArticle(data)"
     >
-      <ion-icon slot="start" name="book"></ion-icon>
+      <ion-icon class="read" slot="start" name="book"></ion-icon>
       Leer
     </ion-button>
     <ion-button
@@ -37,7 +37,7 @@
       fill="clear"
       (click)="addLike()"
     >
-      <ion-icon size="small" name="heart-empty"></ion-icon>
+      <ion-icon size="normal" name="heart-empty"></ion-icon>
     </ion-button>
     <ion-button
       *ngIf="isLiked"

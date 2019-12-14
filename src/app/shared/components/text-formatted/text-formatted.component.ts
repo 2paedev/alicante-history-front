@@ -76,7 +76,7 @@ export class TextFormattedComponent implements OnInit, OnDestroy {
       translucent: true,
       cssClass: 'gallery-popover',
       componentProps: {
-        images: this.articleImages,
+        articleImages: this.articleImages,
       },
     });
     await popover.present();
