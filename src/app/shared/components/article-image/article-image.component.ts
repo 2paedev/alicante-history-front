@@ -86,13 +86,18 @@ export class ArticleImageComponent implements OnInit {
     this.storageService.getMyLikedList().then(value => {
       if (value !== null) {
         const valueAsJson = JSON.parse(value);
-        this.isLiked = valueAsJson.includes(this.data.id);
+        this.isLiked = valueAsJson.some(
+          (articleId: number) => articleId === this.data.id
+        );
+        console.log(valueAsJson);
       }
     });
     this.storageService.getMyList().then(value => {
       if (value !== null) {
         const valueAsJson = JSON.parse(value);
-        this.isAddedInMyList = valueAsJson.includes(this.data);
+        this.isAddedInMyList = valueAsJson.some(
+          (article: Article) => article.id === this.data.id
+        );
       }
     });
   }

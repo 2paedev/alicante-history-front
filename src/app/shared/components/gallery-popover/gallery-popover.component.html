@@ -1,8 +1,11 @@
 <div class="gallery" fullscreen *ngIf="articleImages">
-  <img
+  <img-loader
     *ngFor="let image of articleImages"
+    class="gallery--image"
     [src]="getImageUrl(image.url)"
-    tappable
     (click)="openPreview(image)"
-  />
+    width="120px"
+    height="120px"
+    backgroundSize="cover"
+  ></img-loader>
 </div>

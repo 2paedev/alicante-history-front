@@ -1,5 +1,9 @@
 <ion-card *ngIf="data" class="card faded faded-all text-shadow">
-  <img class="card__image" [src]="imageUrl" />
+  <img-loader
+    class="card__image"
+    [src]="imageUrl"
+    backgroundSize="cover"
+  ></img-loader>
 
   <div class="card__title">{{ title }}</div>
   <div class="card__tags">

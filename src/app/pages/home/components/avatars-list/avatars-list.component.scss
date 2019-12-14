@@ -8,11 +8,11 @@
   }
 
   &__wrapper {
-    @include aligns(flex-start, center, column);
+    @include aligns(center, center, column);
   }
 
   &__content {
-    @include aligns(center, flex-start, row);
+    @include aligns(center, center, row);
     flex-wrap: wrap;
     margin-bottom: 0;
 

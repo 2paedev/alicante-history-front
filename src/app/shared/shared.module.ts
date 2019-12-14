@@ -8,6 +8,7 @@ import {
 } from '@components/index';
 import { TagsListComponent } from '@components/tags-list/tags-list.component';
 import { IonicModule } from '@ionic/angular';
+import { IonicImageLoader } from 'ionic-image-loader';
 import { ArticleImageComponent } from './components/article-image/article-image.component';
 import { ArticlesSetComponent } from './components/articles-set/articles-set.component';
 import { AuthorAvatarComponent } from './components/author-avatar/author-avatar.component';
@@ -41,6 +42,7 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    IonicImageLoader,
   ],
   exports: [
     HeaderComponent,

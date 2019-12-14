@@ -1,7 +1,8 @@
+@import 'src/theme/partials/mixins';
+
 .gallery {
   background-color: var(--ion-color-primary-tint);
 
-  img {
-    padding: 1rem 0.3rem;
-  }
+  @include aligns(center, center, row);
+  flex-wrap: wrap;
 }
