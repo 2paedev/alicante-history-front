@@ -16,6 +16,7 @@ import { AvatarCardComponent } from './components/avatar-card/avatar-card.compon
 import { GalleryPopoverComponent } from './components/gallery-popover/gallery-popover.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ImageModalComponent } from './components/image-modal/image-modal.component';
+import { InfoPopoverComponent } from './components/info-popover/info-popover.component';
 import { TextFormattedComponent } from './components/text-formatted/text-formatted.component';
 import { HideHeaderDirective } from './directives/hide-header.directive';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
@@ -33,6 +34,7 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
     TagsListComponent,
     TextFormattedComponent,
     TextPopoverComponent,
+    InfoPopoverComponent,
     SafeHtmlPipe,
     HideHeaderDirective,
   ],
@@ -56,11 +58,13 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
     TagsListComponent,
     TextFormattedComponent,
     TextPopoverComponent,
+    InfoPopoverComponent,
     SafeHtmlPipe,
     HideHeaderDirective,
   ],
   entryComponents: [
     TextPopoverComponent,
+    InfoPopoverComponent,
     GalleryPopoverComponent,
     ImageModalComponent,
     SettingsModalComponent,

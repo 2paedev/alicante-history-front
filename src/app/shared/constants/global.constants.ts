@@ -53,3 +53,12 @@ export const ERRORS = {
     AD_MOBS: 'ERROR en AdMobs',
   },
 };
+
+export const INFO_POPOVER = {
+  CONTACT:
+    'Todos los artículos tienen su parte de ficción, aunque hay un estudio detrás de cada uno de ellos e intentamos acercarnos a los hechos reales lo máximo posible. Envía un correo a la dirección mostrada con sugerencias sobre la aplicación o sobre los artículos. Gracias por leernos.',
+  EMAIL:
+    'Introduce la dirección de un correo electrónico donde quiere que le enviemos información sobre nuevos artículos, actualizaciones y mucho más.',
+  READ_MODE:
+    'Puedes elegir entre un fondo más oscuro o más claro, así como el tamaño de letra.',
+};

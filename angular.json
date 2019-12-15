@@ -131,8 +131,8 @@
             "local-mocks": {
               "browserTarget": "app:build:local-mocks"
             },
-            "prod": {
-              "browserTarget": "app:build:prod"
+            "production": {
+              "browserTarget": "app:build:production"
             }
           }
         },

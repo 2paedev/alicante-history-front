@@ -7,8 +7,13 @@
   </ion-card-header>
   <ion-card-content>
     <div class="settings__item">
-      <ion-label class="settings__item--label"
-        >Modo de lectura
+      <ion-label class="settings__item--label">
+        <ion-icon
+          class="info-icon"
+          name="information-circle-outline"
+          (click)="presentReadModeInfoPopover($event)"
+        ></ion-icon>
+        Modo de lectura
         <ion-icon
           *ngIf="!readModeShowed"
           name="arrow-dropdown"
@@ -29,8 +34,13 @@
     </div>
 
     <div class="settings__item mail">
-      <ion-label class="settings__item--label"
-        >Email
+      <ion-label class="settings__item--label">
+        <ion-icon
+          class="info-icon"
+          name="information-circle-outline"
+          (click)="presentEmailInfoPopover($event)"
+        ></ion-icon>
+        Email
         <ion-icon
           *ngIf="!emailShowed"
           name="arrow-dropdown"
@@ -62,15 +72,20 @@
           >Enviar</ion-button
         >
       </div>
-      <div class="settings__item--block-row" *ngIf="isMailSent">
+      <div class="settings__item--block-row" *ngIf="isMailSent && emailShowed">
         <ion-icon color="success" name="cloud-done" size="large"></ion-icon>
         <ion-label class="mail--text">Email ya enviado.</ion-label>
       </div>
     </div>
 
     <div class="settings__item">
-      <ion-label class="settings__item--label"
-        >Contacto
+      <ion-label class="settings__item--label">
+        <ion-icon
+          class="info-icon"
+          name="information-circle-outline"
+          (click)="presentContactInfoPopover($event)"
+        ></ion-icon>
+        Contacto
         <ion-icon
           *ngIf="!contactShowed"
           name="arrow-dropdown"
@@ -86,7 +101,7 @@
         <ion-item class="settings__contact--item"
           ><ion-icon color="danger" name="mail"></ion-icon
           ><ion-label class="settings__contact--label"
-            >historiadealicanteapp@gmail.com</ion-label
+            >2paedev@gmail.com</ion-label
           ></ion-item
         >
         <ion-item class="settings__contact--item"

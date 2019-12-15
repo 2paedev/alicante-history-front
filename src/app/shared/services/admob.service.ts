@@ -10,7 +10,8 @@ export class AdMobService {
   public constructor(private readonly adMobFree: AdMobFree) {}
 
   public pushBanner(): void {
-    this.adMobFree.banner.config(this.getBannerConfig());
+    const config = this.getBannerConfig();
+    this.adMobFree.banner.config(config);
     this.adMobFree.banner
       .prepare()
       .then(() => {

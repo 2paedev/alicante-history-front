@@ -14,12 +14,12 @@
     --inner-padding-end: 0;
     --inner-padding-top: 0;
     max-width: 6rem;
-    max-height: 9rem;
+    max-height: 10.5rem;
 
     &--column {
       @include aligns(center, center, column);
       padding: 0;
-      max-height: 9rem;
+      max-height: 10.5rem;
     }
 
     &--thumbnail {
@@ -30,8 +30,11 @@
     &--title {
       padding: 0.7rem 0.2rem;
       font-size: 0.6rem;
+      display: flex;
+      align-items: center;
       text-align: center;
       width: 100%;
+      min-height: 4rem;
       --color: var(--ion-color-secondary);
     }
   }

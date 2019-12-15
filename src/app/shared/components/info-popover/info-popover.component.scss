@@ -1,0 +1,19 @@
+@import 'src/theme/partials/mixins';
+
+.info {
+  padding: 2rem;
+  color: var(--ion-color-primary-shade);
+  @include aligns(center, center, column);
+  background-color: var(--ion-color-secondary-shade);
+
+  &--title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+
+    &__icon {
+      font-size: 2rem;
+      vertical-align: middle;
+    }
+  }
+}

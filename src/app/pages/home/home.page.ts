@@ -22,7 +22,6 @@ export class HomePage implements OnInit, OnDestroy {
     private toastService: ToastService,
     private adMobService: AdMobService
   ) {
-    this.adMobService.pushBanner();
     this.articlesService.lastFive$
       .pipe(filter((lastFive): boolean => !!lastFive))
       .subscribe((lastFive): void => {
@@ -37,6 +36,7 @@ export class HomePage implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
+    this.adMobService.pushBanner();
     if (
       Array.isArray(this.lastFiveArticlesData) &&
       this.lastFiveArticlesData.length === 0

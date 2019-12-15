@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ERRORS, READ_MODE } from '@constants/index';
-import { ModalController } from '@ionic/angular';
+import { InfoPopoverComponent } from '@components/info-popover/info-popover.component';
+import { ERRORS, INFO_POPOVER, READ_MODE } from '@constants/index';
+import { ModalController, PopoverController } from '@ionic/angular';
 import { User } from '@models/index';
 import { StorageService, ToastService, UserService } from '@services/index';
 import { Subscription } from 'rxjs';
@@ -15,9 +16,9 @@ export class SettingsModalComponent implements OnInit, OnDestroy {
   public isCheckedNormal: boolean;
   public isMailSent: boolean;
   public mailText: string;
-  public readModeShowed = false;
-  public emailShowed = false;
-  public contactShowed = false;
+  public readModeShowed = true;
+  public emailShowed = true;
+  public contactShowed = true;
   public mailIsBeingSent = false;
 
   private userSubscription: Subscription;
@@ -26,7 +27,8 @@ export class SettingsModalComponent implements OnInit, OnDestroy {
     private readonly modalCtrl: ModalController,
     private readonly userService: UserService,
     private readonly storageService: StorageService,
-    private readonly toastService: ToastService
+    private readonly toastService: ToastService,
+    private readonly popoverController: PopoverController
   ) {}
 
   public ngOnInit(): void {
@@ -88,6 +90,42 @@ export class SettingsModalComponent implements OnInit, OnDestroy {
 
   public toggleContact(): void {
     this.contactShowed = !this.contactShowed;
+  }
+
+  public async presentContactInfoPopover(ev: any): Promise<void> {
+    const popover = await this.popoverController.create({
+      component: InfoPopoverComponent,
+      event: ev,
+      translucent: true,
+      componentProps: {
+        textInfo: INFO_POPOVER.CONTACT,
+      },
+    });
+    await popover.present();
+  }
+
+  public async presentReadModeInfoPopover(ev: any): Promise<void> {
+    const popover = await this.popoverController.create({
+      component: InfoPopoverComponent,
+      event: ev,
+      translucent: true,
+      componentProps: {
+        textInfo: INFO_POPOVER.READ_MODE,
+      },
+    });
+    await popover.present();
+  }
+
+  public async presentEmailInfoPopover(ev: any): Promise<void> {
+    const popover = await this.popoverController.create({
+      component: InfoPopoverComponent,
+      event: ev,
+      translucent: true,
+      componentProps: {
+        textInfo: INFO_POPOVER.EMAIL,
+      },
+    });
+    await popover.present();
   }
 
   public ngOnDestroy(): void {
