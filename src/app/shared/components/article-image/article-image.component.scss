@@ -8,6 +8,14 @@
   height: 18rem;
   max-height: 18rem;
 
+  &__icon {
+    font-size: 1.5rem;
+
+    &--star {
+      font-size: 1.8rem;
+    }
+  }
+
   &__image {
     max-width: 100%;
     min-height: 100%;
@@ -43,10 +51,6 @@
       &.fav {
         --color: red;
       }
-    }
-
-    ion-icon {
-      font-size: 1.6rem;
     }
 
     .read {

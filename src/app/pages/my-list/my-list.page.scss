@@ -3,7 +3,7 @@
 .articles-set {
   @include aligns(center, flex-start, column);
   height: 100vh;
-  margin-top: 7rem;
+  margin-top: 9rem;
 
   &__title {
     //border-bottom: 0.02rem solid var(--ion-color-secondary-shade);

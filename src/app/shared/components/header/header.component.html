@@ -5,10 +5,17 @@
         <ion-icon slot="icon-only" name="home"></ion-icon>
       </ion-button> -->
       <ion-button (click)="goToMyList()">
-        <ion-icon slot="icon-only" name="list-box"></ion-icon>
+        <ion-icon
+          class="header--icon header--icon__star"
+          size="big"
+          name="star-half"
+        ></ion-icon>
       </ion-button>
       <ion-button (click)="goToSearchPage()">
-        <ion-icon slot="icon-only" name="search"></ion-icon>
+        <ion-icon
+          class="header--icon header--icon__search"
+          name="search"
+        ></ion-icon>
       </ion-button>
       <ion-button (click)="presentSettingsModal()">
         <ion-icon slot="icon-only" name="settings"></ion-icon>

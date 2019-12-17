@@ -7,4 +7,14 @@
       max-width: 2rem;
     }
   }
+
+  &--icon {
+    &__star {
+      font-size: 2rem !important;
+    }
+
+    &__search {
+      font-size: 1.8rem !important;
+    }
+  }
 }

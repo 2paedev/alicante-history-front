@@ -1,14 +1,8 @@
-<ion-content
-  class="my-list"
-  hide-header
-  [scrollEvents]="true"
-  fullscreen
-  *ngIf="myListData"
->
+<ion-content class="my-list" hide-header [scrollEvents]="true" fullscreen>
   <ion-grid class="articles-set">
     <ion-row>
       <ion-col>
-        <ion-title class="articles-set__title">Mi lista</ion-title>
+        <ion-title class="articles-set__title">Mis favoritos</ion-title>
       </ion-col>
     </ion-row>
     <ion-row>
@@ -19,8 +13,8 @@
             [data]="article"
           ></app-avatar-card>
         </ion-list>
-        <ion-label *ngIf="!myListData" class="articles-set__warning"
-          >{{ noDataText }}</ion-label
+        <ion-label *ngIf="myListData.length == 0" class="articles-set__warning"
+          >Sin artículos guardados</ion-label
         >
       </ion-col>
     </ion-row>

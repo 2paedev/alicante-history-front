@@ -16,7 +16,10 @@
       fill="clear"
       (click)="addToMyList()"
     >
-      <ion-icon size="normal" name="add"></ion-icon>
+      <ion-icon
+        class="card__icon card__icon--star"
+        name="star-outline"
+      ></ion-icon>
     </ion-button>
     <ion-button
       *ngIf="isAddedInMyList"
@@ -24,7 +27,11 @@
       fill="clear"
       (click)="removeToMyList()"
     >
-      <ion-icon size="normal" name="add" color="success"></ion-icon>
+      <ion-icon
+        class="card__icon card__icon--star"
+        name="star"
+        color="warning"
+      ></ion-icon>
     </ion-button>
     <ion-button
       *ngIf="showReadIcon"
@@ -41,7 +48,7 @@
       fill="clear"
       (click)="addLike()"
     >
-      <ion-icon size="normal" name="heart-empty"></ion-icon>
+      <ion-icon class="card__icon" name="heart-empty"></ion-icon>
     </ion-button>
     <ion-button
       *ngIf="isLiked"
@@ -49,7 +56,7 @@
       fill="clear"
       (click)="removeLike()"
     >
-      <ion-icon size="normal" color="danger" name="heart"></ion-icon>
+      <ion-icon class="card__icon" color="danger" name="heart"></ion-icon>
     </ion-button>
   </ion-buttons>
 </ion-card>

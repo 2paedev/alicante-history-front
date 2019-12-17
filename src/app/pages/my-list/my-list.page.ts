@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Article } from '@models/index';
 import { StorageService } from '@services/index';
-import { Article } from '../../shared/models/articles';
 
 @Component({
   selector: 'app-my-list',
@@ -9,8 +9,6 @@ import { Article } from '../../shared/models/articles';
 })
 export class MyListPage implements OnInit {
   public myListData: Article[] = [];
-
-  public noDataText = 'Sin artículos';
 
   constructor(private readonly storageService: StorageService) {}
 
