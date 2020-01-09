@@ -12,6 +12,7 @@ import { IonicImageLoader } from 'ionic-image-loader';
 import { ArticleImageComponent } from './components/article-image/article-image.component';
 import { ArticlesSetComponent } from './components/articles-set/articles-set.component';
 import { AuthorAvatarComponent } from './components/author-avatar/author-avatar.component';
+import { AuthorModalComponent } from './components/author-modal/author-modal.component';
 import { AvatarCardComponent } from './components/avatar-card/avatar-card.component';
 import { GalleryPopoverComponent } from './components/gallery-popover/gallery-popover.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -26,6 +27,7 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
     HeaderComponent,
     ArticleImageComponent,
     ArticlesSetComponent,
+    AuthorModalComponent,
     AuthorAvatarComponent,
     AvatarCardComponent,
     GalleryPopoverComponent,
@@ -51,6 +53,7 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
     ArticleImageComponent,
     ArticlesSetComponent,
     AuthorAvatarComponent,
+    AuthorModalComponent,
     AvatarCardComponent,
     GalleryPopoverComponent,
     ImageModalComponent,
@@ -68,6 +71,7 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
     GalleryPopoverComponent,
     ImageModalComponent,
     SettingsModalComponent,
+    AuthorModalComponent,
   ],
 })
 export class SharedModule {}

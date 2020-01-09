@@ -1,9 +1,12 @@
 import { ActivatedRoute } from '@angular/router';
+import { AuthorModalComponent } from '@components/index';
+import { ModalController } from '@ionic/angular';
 import { Article } from '@models/index';
-import { ArticlesService } from '@services/index';
+import { AdMobService, ArticlesService } from '@services/index';
 import { Observable, of } from 'rxjs';
 import { Shallow } from 'shallow-render';
 import { buildArticleDetailFixture } from 'src/app/shared/fixtures/articles';
+import { ModalControllerMock } from 'src/app/shared/mocks/ionic-services.mocks';
 import { ArticleDetailPageModule } from './article-detail.module';
 import { ArticleDetailPage } from './article-detail.page';
 
@@ -21,16 +24,57 @@ const ARTICLES_SERVICE_MOCK = {
   },
 };
 
-const EXPECTED_ERROR = 'No se han podido obtener los datos.';
+const ADDMOB_SERVICE_MOCK = {
+  // eslint-disable-next-line no-empty-function
+  pushBanner(): void {},
+  getBannerConfig(): any {
+    return {
+      id: '',
+      isTesting: true,
+      autoShow: true,
+    };
+  },
+  // eslint-disable-next-line no-empty-function
+  pushInterstitial(): void {},
+  getInterstitialConfig(): any {
+    return {
+      id: '',
+      isTesting: true,
+      autoShow: true,
+    };
+  },
+};
+
+const authorData = {
+  id: 1,
+  image: '/images/aragorn.jpeg',
+  created: '2019-11-09T09:36:06.471000Z',
+  name: 'Diego',
+  surname: 'Martinez',
+  email: 'diego@elcorreo.com',
+  description: 'DESCRIPTION EXAMPLE',
+};
+
+const authorModalOptions = {
+  component: AuthorModalComponent,
+  cssClass: 'author-modal',
+  componentProps: {
+    data: authorData,
+  },
+};
+
+const EXPECTED_ERROR = 'ERROR al obtener la imagen';
 
 describe('ArticleDetailPage', () => {
   let shallow: Shallow<ArticleDetailPage>;
 
   beforeEach((): void => {
     shallow = new Shallow(ArticleDetailPage, ArticleDetailPageModule)
-      .provide(ActivatedRoute, ArticlesService)
+      .provide(ActivatedRoute, ArticlesService, AdMobService)
+      .mock(ModalController, ModalControllerMock)
       .mock(ArticlesService, ARTICLES_SERVICE_MOCK)
-      .mock(ActivatedRoute, ACTIVATED_ROUTE_MOCK);
+      .mock(ActivatedRoute, ACTIVATED_ROUTE_MOCK)
+      .mock(AdMobService, ADDMOB_SERVICE_MOCK);
   });
 
   it('should create', async (): Promise<void> => {
@@ -73,5 +117,15 @@ describe('ArticleDetailPage', () => {
     expect((): void => {
       instance.getArticleImage();
     }).toThrowError(EXPECTED_ERROR);
+  });
+
+  it('should open author modal when clickin on avatar', async (): Promise<
+    void
+  > => {
+    const { get, find, fixture } = await shallow.render();
+    fixture.detectChanges();
+    const modalController = get(ModalController);
+    find('app-author-avatar').nativeElement.click();
+    expect(modalController.create).toHaveBeenCalledWith(authorModalOptions);
   });
 });

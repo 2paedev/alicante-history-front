@@ -1,6 +1,7 @@
 export * from './article-image/article-image.component';
 export * from './articles-set/articles-set.component';
 export * from './author-avatar/author-avatar.component';
+export * from './author-modal/author-modal.component';
 export * from './avatar-card/avatar-card.component';
 export * from './gallery-popover/gallery-popover.component';
 export * from './header/header.component';

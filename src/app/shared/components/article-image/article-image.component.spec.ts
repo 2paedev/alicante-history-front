@@ -1,5 +1,4 @@
 import { Router } from '@angular/router';
-import { Article } from '@models/index';
 import {
   ArticlesService,
   HelpersService,
@@ -35,11 +34,11 @@ const STORAGE_SERVICE_MOCK = {
   setItemInMyLikedList(): void {},
   // eslint-disable-next-line no-empty-function
   removeItemInMyLikedList(): void {},
-  getMyLikedList(): number[] {
-    return [];
+  getMyLikedList(): Promise<any> {
+    return Promise.resolve([]);
   },
-  getMyList(): Article[] {
-    return buildLastFiveFixture();
+  getMyList(): Promise<any> {
+    return Promise.resolve(buildLastFiveFixture());
   },
 };
 

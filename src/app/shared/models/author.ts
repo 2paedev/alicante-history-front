@@ -5,4 +5,5 @@ export interface Author {
   surname: string;
   email: string;
   image: string;
+  description: string;
 }

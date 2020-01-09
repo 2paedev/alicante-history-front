@@ -19,7 +19,11 @@
     <ion-slides zoom [options]="sliderOpts" #slider>
       <ion-slide>
         <div class="swiper-zoom-container">
-          <img-loader [src]="imageUrl" backgroundSize="cover"></img-loader>
+          <img-loader
+            [src]="imageUrl"
+            backgroundSize="cover"
+            useImg
+          ></img-loader>
         </div>
       </ion-slide>
     </ion-slides>

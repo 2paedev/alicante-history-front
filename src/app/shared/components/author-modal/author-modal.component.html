@@ -1,0 +1,20 @@
+<ion-card class="author modal modal--fullscreen">
+  <ion-button class="modal__close" (click)="onDismissModal()">
+    <ion-icon name="close"></ion-icon>
+  </ion-button>
+  <ion-card-header class="modal__header">
+    <ion-title class="author__name">{{ completeName }}</ion-title>
+  </ion-card-header>
+  <ion-card-content class="author__content">
+    <ion-avatar class="author__content--image">
+      <img [src]="imageUrl" backgroundSize="cover" />
+    </ion-avatar>
+    <ion-textarea
+      class="author__content--description"
+      [autoGrow]="true"
+      [innerHTML]="data.description"
+      [disabled]="true"
+      [readonly]="true"
+    ></ion-textarea>
+  </ion-card-content>
+</ion-card>

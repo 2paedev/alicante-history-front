@@ -1,5 +1,5 @@
 import { Article, ArticleResume } from '@models/index';
-import { ArticlesService } from '@services/index';
+import { AdMobService, ArticlesService } from '@services/index';
 import { Observable, of } from 'rxjs';
 import { Shallow } from 'shallow-render';
 import {
@@ -20,13 +20,33 @@ const ARTICLES_SERVICE_MOCK = {
   },
 };
 
+const ADDMOB_SERVICE_MOCK = {
+  pushBanner(): void {},
+  getBannerConfig(): any {
+    return {
+      id: '',
+      isTesting: true,
+      autoShow: true,
+    };
+  },
+  pushInterstitial(): void {},
+  getInterstitialConfig(): any {
+    return {
+      id: '',
+      isTesting: true,
+      autoShow: true,
+    };
+  },
+};
+
 describe('HomePage', () => {
   let shallow: Shallow<HomePage>;
 
   beforeEach((): void => {
     shallow = new Shallow(HomePage, HomePageModule)
-      .provide(ArticlesService)
-      .mock(ArticlesService, ARTICLES_SERVICE_MOCK);
+      .provide(ArticlesService, AdMobService)
+      .mock(ArticlesService, ARTICLES_SERVICE_MOCK)
+      .mock(AdMobService, ADDMOB_SERVICE_MOCK);
   });
 
   it('should create', async (): Promise<void> => {

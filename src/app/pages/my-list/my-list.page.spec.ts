@@ -1,4 +1,3 @@
-import { Article } from '@models/index';
 import { StorageService } from '@services/index';
 import { Shallow } from 'shallow-render';
 import { buildLastFiveFixture } from 'src/app/shared/fixtures/resume';
@@ -6,8 +5,8 @@ import { MyListPageModule } from './my-list.module';
 import { MyListPage } from './my-list.page';
 
 const STORAGE_SERVICE_MOCK = {
-  getMyList(): Article[] {
-    return buildLastFiveFixture();
+  getMyList(): Promise<any> {
+    return Promise.resolve(buildLastFiveFixture());
   },
 };
 

@@ -12,7 +12,7 @@ export class StorageService {
     this.setReadModeSize(size);
   }
 
-  public getReadModeColor(): Promise<any> {
+  public getReadModeColor(): Promise<string> {
     return this.storage.get(STORAGE_KEY.READ_MODE.COLOR);
   }
 
@@ -20,7 +20,7 @@ export class StorageService {
     this.storage.set(STORAGE_KEY.READ_MODE.COLOR, value);
   }
 
-  public getReadModeSize(): Promise<any> {
+  public getReadModeSize(): Promise<string> {
     return this.storage.get(STORAGE_KEY.READ_MODE.SIZE);
   }
 
@@ -28,7 +28,7 @@ export class StorageService {
     this.storage.set(STORAGE_KEY.READ_MODE.SIZE, value);
   }
 
-  public getIsMailSent(): Promise<any> {
+  public getIsMailSent(): Promise<boolean> {
     return this.storage.get(STORAGE_KEY.MAIL.IS_SENDED);
   }
 

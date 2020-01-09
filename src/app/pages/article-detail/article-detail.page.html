@@ -5,9 +5,9 @@
   [scrollEvents]="true"
   fullscreen
 >
-  <ion-grid no-padding>
+  <ion-grid class="ion-no-padding">
     <ion-row>
-      <ion-col no-padding>
+      <ion-col class="ion-no-padding">
         <app-article-image
           [data]="articleData"
           [title]="articleData.title"
@@ -20,6 +20,7 @@
     <ion-row class="article-detail__info">
       <ion-col class="article-detail__info--author">
         <app-author-avatar
+          (click)="presentAuthorModal()"
           [name]="articleData.author.name"
           [surname]="articleData.author.surname"
           [image]="articleData.author.image"
@@ -30,7 +31,7 @@
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col class="article-detail__text" no-padding>
+      <ion-col class="article-detail__text" class="ion-no-padding">
         <app-text-formatted
           [articleImages]="articleData.images"
           [textAsHtml]="articleData.text"

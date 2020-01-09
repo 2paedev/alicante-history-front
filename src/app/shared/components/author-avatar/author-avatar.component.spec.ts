@@ -22,4 +22,18 @@ describe('AuthorAvatarComponent', () => {
     const { element } = await shallow.render();
     expect(element).toBeTruthy();
   });
+
+  it('should exists a ion-avatar', async (): Promise<void> => {
+    const { find } = await shallow.render();
+    expect(find('ion-avatar')).toHaveFoundOne();
+  });
+
+  it('should show the correct name and surname', async (): Promise<void> => {
+    const { find } = await shallow.render({
+      bind: { name: '2pae', surname: 'dev' },
+    });
+    expect(find('.author-avatar__text').nativeElement.innerText).toBe(
+      '2pae dev'
+    );
+  });
 });

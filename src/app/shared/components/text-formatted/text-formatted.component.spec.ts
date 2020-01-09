@@ -7,14 +7,14 @@ import { SharedModule } from '../../shared.module';
 import { TextFormattedComponent } from './text-formatted.component';
 
 const STORAGE_SERVICE_MOCK = {
-  getIsMailSent(): boolean {
-    return true;
+  getIsMailSent(): Promise<boolean> {
+    return Promise.resolve(true);
   },
-  getReadModeColor(): string {
-    return 'aFakeModeColor';
+  getReadModeColor(): Promise<string> {
+    return Promise.resolve('aFakeModeColor');
   },
-  getReadModeSize(): string {
-    return 'aFakeModeSize';
+  getReadModeSize(): Promise<string> {
+    return Promise.resolve('aFakeModeSize');
   },
   // eslint-disable-next-line no-empty-function
   setReadMode(): void {},

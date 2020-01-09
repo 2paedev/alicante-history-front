@@ -1,13 +1,13 @@
 <ion-content class="search" hide-header [scrollEvents]="true" fullscreen>
-  <ion-grid no-padding>
+  <ion-grid class="ion-no-padding">
     <ion-row>
-      <ion-col class="search__bar" no-padding>
+      <ion-col class="search__bar" class="ion-no-padding">
         <ion-searchbar
           [formControl]="searchControl"
           (ionChange)="onSearchInput()"
           placeholder="¿Qué quieres buscar?"
         ></ion-searchbar>
-        <div *ngIf="searching" class="spinner-container" no-padding>
+        <div *ngIf="searching" class="spinner-container" class="ion-no-padding">
           <ion-spinner></ion-spinner>
         </div>
       </ion-col>

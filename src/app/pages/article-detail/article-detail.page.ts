@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AuthorModalComponent } from '@components/index';
 import { ERRORS } from '@constants/index';
+import { ModalController } from '@ionic/angular';
 import { Article } from '@models/index';
 import { AdMobService, ArticlesService, ToastService } from '@services/index';
 
@@ -18,7 +20,8 @@ export class ArticleDetailPage implements OnInit {
     private readonly activatedRoute: ActivatedRoute,
     private readonly articlesService: ArticlesService,
     private readonly toastService: ToastService,
-    private readonly adMobService: AdMobService
+    private readonly adMobService: AdMobService,
+    private readonly modalController: ModalController
   ) {}
 
   public ngOnInit(): void {
@@ -44,5 +47,18 @@ export class ArticleDetailPage implements OnInit {
         throw new Error(ERRORS.MESSAGES.ONE_ARTICLE);
       }
     );
+  }
+
+  public async presentAuthorModal(): Promise<void> {
+    const modalOptions = {
+      component: AuthorModalComponent,
+      cssClass: 'author-modal',
+      componentProps: {
+        data: this.articleData.author,
+      },
+    };
+
+    const modal = await this.modalController.create(modalOptions);
+    await modal.present();
   }
 }
