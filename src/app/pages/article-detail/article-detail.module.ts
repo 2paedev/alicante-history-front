@@ -6,7 +6,6 @@ import { IonicModule } from '@ionic/angular';
 import { SharedModule } from '../../shared/shared.module';
 import { ArticleDetailPage } from './article-detail.page';
 import { ARTICLE_DETAIL_ROUTES } from './article-detail.routes';
-import { BibliographyModalComponent } from './components/bibliography-modal/bibliography-modal.component';
 
 @NgModule({
   imports: [
@@ -16,6 +15,6 @@ import { BibliographyModalComponent } from './components/bibliography-modal/bibl
     RouterModule.forChild(ARTICLE_DETAIL_ROUTES),
     SharedModule,
   ],
-  declarations: [ArticleDetailPage, BibliographyModalComponent],
+  declarations: [ArticleDetailPage],
 })
 export class ArticleDetailPageModule {}

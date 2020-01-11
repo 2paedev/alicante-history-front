@@ -25,7 +25,6 @@ const ARTICLES_SERVICE_MOCK = {
 };
 
 const ADDMOB_SERVICE_MOCK = {
-  // eslint-disable-next-line no-empty-function
   pushBanner(): void {},
   getBannerConfig(): any {
     return {
@@ -34,7 +33,6 @@ const ADDMOB_SERVICE_MOCK = {
       autoShow: true,
     };
   },
-  // eslint-disable-next-line no-empty-function
   pushInterstitial(): void {},
   getInterstitialConfig(): any {
     return {

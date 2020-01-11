@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import {
+  BibliographyModalComponent,
   SettingsModalComponent,
   TextPopoverComponent,
 } from '@components/index';
@@ -28,6 +29,7 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
     ArticleImageComponent,
     ArticlesSetComponent,
     AuthorModalComponent,
+    BibliographyModalComponent,
     AuthorAvatarComponent,
     AvatarCardComponent,
     GalleryPopoverComponent,
@@ -52,6 +54,7 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
     HeaderComponent,
     ArticleImageComponent,
     ArticlesSetComponent,
+    BibliographyModalComponent,
     AuthorAvatarComponent,
     AuthorModalComponent,
     AvatarCardComponent,
@@ -72,6 +75,7 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
     ImageModalComponent,
     SettingsModalComponent,
     AuthorModalComponent,
+    BibliographyModalComponent,
   ],
 })
 export class SharedModule {}

@@ -1,16 +1,29 @@
-<div *ngIf="textAsHtml" class="text-format" [ngClass]="[getColorClass(), getSizeClass()]">
+<div
+  *ngIf="textAsHtml"
+  class="text-format"
+  [ngClass]="[getColorClass(), getSizeClass()]"
+>
   <ion-buttons class="text-format__buttons">
-    <ion-button
-      (click)="presentGalleryPopover($event)"
-      [ngClass]="[getColorClass(), getSizeClass()]"
-      class="text-format__buttons--camera"
-      fill="outline"
-      ><ion-icon name="camera"></ion-icon
-    ></ion-button>
+    <div>
+      <ion-button
+        (click)="presentGalleryPopover($event)"
+        [ngClass]="[getColorClass(), getSizeClass()]"
+        class="text-format__buttons--icon"
+        fill="outline"
+        ><ion-icon name="camera"></ion-icon
+      ></ion-button>
+      <ion-button
+        (click)="presentBibliographyModal()"
+        [ngClass]="[getColorClass(), getSizeClass()]"
+        class="text-format__buttons--icon bibliography"
+        fill="outline"
+        ><ion-icon name="bookmarks"></ion-icon
+      ></ion-button>
+    </div>
     <ion-button
       (click)="presentReadModePopover($event)"
       [ngClass]="[getColorClass(), getSizeClass()]"
-      class="text-format__buttons--menu"
+      class="text-format__buttons--icon"
       fill="outline"
       ><ion-icon name="menu"></ion-icon
     ></ion-button>

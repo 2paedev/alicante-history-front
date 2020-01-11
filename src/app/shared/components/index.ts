@@ -3,6 +3,7 @@ export * from './articles-set/articles-set.component';
 export * from './author-avatar/author-avatar.component';
 export * from './author-modal/author-modal.component';
 export * from './avatar-card/avatar-card.component';
+export * from './bibliography-modal/bibliography-modal.component';
 export * from './gallery-popover/gallery-popover.component';
 export * from './header/header.component';
 export * from './image-modal/image-modal.component';

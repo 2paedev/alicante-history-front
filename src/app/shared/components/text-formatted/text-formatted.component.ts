@@ -6,10 +6,11 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { READ_MODE } from '@constants/index';
-import { PopoverController } from '@ionic/angular';
+import { ModalController, PopoverController } from '@ionic/angular';
 import { CustomImage, User } from '@models/index';
 import { StorageService, UserService } from '@services/index';
 import { Subscription } from 'rxjs';
+import { BibliographyModalComponent } from '../bibliography-modal/bibliography-modal.component';
 import { GalleryPopoverComponent } from '../gallery-popover/gallery-popover.component';
 import { TextPopoverComponent } from '../text-popover/text-popover.component';
 
@@ -22,6 +23,7 @@ import { TextPopoverComponent } from '../text-popover/text-popover.component';
 export class TextFormattedComponent implements OnInit, OnDestroy {
   @Input() public textAsHtml: string;
   @Input() public articleImages: CustomImage[];
+  @Input() public bibliography: string[];
 
   private userSubscription: Subscription;
   private userData: User;
@@ -31,7 +33,8 @@ export class TextFormattedComponent implements OnInit, OnDestroy {
   constructor(
     public readonly popoverController: PopoverController,
     private readonly userService: UserService,
-    private readonly storageService: StorageService
+    private readonly storageService: StorageService,
+    private readonly modalController: ModalController
   ) {}
 
   public ngOnInit(): void {
@@ -92,5 +95,17 @@ export class TextFormattedComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy(): void {
     this.userSubscription.unsubscribe();
+  }
+
+  public async presentBibliographyModal(): Promise<void> {
+    const modalOptions = {
+      component: BibliographyModalComponent,
+      cssClass: 'bibliography-modal',
+      componentProps: {
+        data: this.bibliography,
+      },
+    };
+    const modal = await this.modalController.create(modalOptions);
+    await modal.present();
   }
 }

@@ -1,0 +1,15 @@
+<ion-card class="bibliography modal modal--fullscreen">
+  <ion-button class="modal__close" (click)="onDismissModal()">
+    <ion-icon name="close"></ion-icon>
+  </ion-button>
+  <ion-card-header class="modal__header">
+    <ion-title class="bibliography__title">Bibliografía</ion-title>
+  </ion-card-header>
+  <ion-card-content class="bibliography__content">
+    <ion-list>
+      <ion-item *ngFor="let link of data" class="bibliography__content--link">
+        <ion-label>- {{ link.description }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+</ion-card>

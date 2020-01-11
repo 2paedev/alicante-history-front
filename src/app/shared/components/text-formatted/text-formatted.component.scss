@@ -8,8 +8,7 @@
     width: 100%;
     @include aligns(center, space-between, row);
 
-    &--menu,
-    &--camera {
+    &--icon {
       width: 3rem;
       --border-radius: 0.5rem !important;
 
@@ -19,6 +18,10 @@
 
       &.night {
         --border-color: var(--ion-color-secondary-shade);
+      }
+
+      &.bibliography {
+        margin-left: 0.7rem;
       }
     }
   }
@@ -38,8 +41,7 @@
   }
 }
 .text-format,
-.text-format__buttons--menu,
-.text-format__buttons--camera,
+.text-format__buttons--icon,
 .text-format__content {
   &.day {
     --color: var(--ion-color-primary-shade);
