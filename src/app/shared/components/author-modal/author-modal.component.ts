@@ -13,6 +13,7 @@ export class AuthorModalComponent implements OnInit {
 
   public completeName: string;
   public imageUrl: string;
+  public textAsHtml: string;
 
   constructor(
     private readonly helper: HelpersService,
@@ -22,6 +23,7 @@ export class AuthorModalComponent implements OnInit {
   public ngOnInit(): void {
     this.completeName = `${this.data.name} ${this.data.surname}`;
     this.imageUrl = this.helper.getImageUrl(this.data.image);
+    this.textAsHtml = this.data.description;
   }
 
   public onDismissModal(): void {

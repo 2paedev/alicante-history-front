@@ -11,16 +11,16 @@
   &__content {
     @include aligns(center, center, column);
     margin-top: 3rem;
+    width: 100%;
     ion-list {
-      background-color: var(--ion-color-primary-tint);
+      background-color: var(--ion-color-primary-shade);
+      width: 100%;
     }
 
     &--link {
-      --background: var(--ion-color-primary-tint);
-    }
-
-    ion-icon {
-      background-color: var(--ion-color-secondary-tint);
+      --background: var(--ion-color-primary-shade);
+      margin-top: 1rem;
+      color: var(--ion-color-secondary-shade);
     }
   }
 }

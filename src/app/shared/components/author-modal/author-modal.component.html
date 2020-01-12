@@ -9,12 +9,12 @@
     <ion-avatar class="author__content--image">
       <img [src]="imageUrl" backgroundSize="cover" />
     </ion-avatar>
-    <ion-textarea
+    <section
       class="author__content--description"
-      [autoGrow]="true"
-      [innerHTML]="data.description"
-      [disabled]="true"
-      [readonly]="true"
-    ></ion-textarea>
+      [innerHtml]="textAsHtml"
+      auto-grow
+      disabled
+      readonly
+    ></section>
   </ion-card-content>
 </ion-card>
