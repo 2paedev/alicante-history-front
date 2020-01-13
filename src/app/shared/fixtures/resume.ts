@@ -37,6 +37,7 @@ export function buildLastFiveFixture(): Article[] {
           name: 'Fortalezas',
         },
       ],
+      bibliography: ['enlace 1, enlace 2'],
     },
     {
       id: 4,
@@ -73,6 +74,7 @@ export function buildLastFiveFixture(): Article[] {
           name: 'Fortalezas',
         },
       ],
+      bibliography: ['enlace 1, enlace 2'],
     },
     {
       id: 3,
@@ -109,6 +111,7 @@ export function buildLastFiveFixture(): Article[] {
           name: 'Fortalezas',
         },
       ],
+      bibliography: ['enlace 1, enlace 2'],
     },
     {
       id: 2,
@@ -145,6 +148,7 @@ export function buildLastFiveFixture(): Article[] {
           name: 'Fortalezas',
         },
       ],
+      bibliography: ['enlace 1, enlace 2'],
     },
     {
       id: 1,
@@ -181,6 +185,7 @@ export function buildLastFiveFixture(): Article[] {
           name: 'Fortalezas',
         },
       ],
+      bibliography: ['enlace 1, enlace 2'],
     },
   ];
 }

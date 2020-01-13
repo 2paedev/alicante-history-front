@@ -38,6 +38,7 @@ export function buildArticleDetailFixture(id: number): Article {
         name: 'Fortalezas',
       },
     ],
+    bibliography: ['enlace 1, enlace 2'],
   };
 }
 
@@ -85,6 +86,7 @@ export function buildArticlePageFixture(): ArticlePage {
             name: 'Fortalezas',
           },
         ],
+        bibliography: ['enlace 1, enlace 2'],
       },
       {
         id: 2,
@@ -117,6 +119,7 @@ export function buildArticlePageFixture(): ArticlePage {
             name: 'Batallas',
           },
         ],
+        bibliography: ['enlace 1, enlace 2'],
       },
     ],
   };
