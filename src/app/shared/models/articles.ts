@@ -20,6 +20,7 @@ export interface Article {
   author: Author;
   text: string;
   likes: number;
+  bibliography: string[];
 }
 
 export interface ArticleResume {
