@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { InfoPopoverComponent } from '@components/info-popover/info-popover.component';
-import { ERRORS, INFO_POPOVER, READ_MODE } from '@constants/index';
+import { ERRORS, INFO_POPOVER, READ_MODE, ROUTE } from '@constants/index';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { User } from '@models/index';
 import { StorageService, ToastService, UserService } from '@services/index';
@@ -19,11 +20,13 @@ export class SettingsModalComponent implements OnInit, OnDestroy {
   public readModeShowed = true;
   public emailShowed = true;
   public contactShowed = true;
+  public privacyPolicyShowed = true;
   public mailIsBeingSent = false;
 
   private userSubscription: Subscription;
 
   constructor(
+    private readonly router: Router,
     private readonly modalCtrl: ModalController,
     private readonly userService: UserService,
     private readonly storageService: StorageService,
@@ -92,6 +95,10 @@ export class SettingsModalComponent implements OnInit, OnDestroy {
     this.contactShowed = !this.contactShowed;
   }
 
+  public togglePrivacyPolicy(): void {
+    this.privacyPolicyShowed = !this.privacyPolicyShowed;
+  }
+
   public async presentContactInfoPopover(ev: any): Promise<void> {
     const popover = await this.popoverController.create({
       component: InfoPopoverComponent,
@@ -123,6 +130,23 @@ export class SettingsModalComponent implements OnInit, OnDestroy {
       translucent: true,
       componentProps: {
         textInfo: INFO_POPOVER.EMAIL,
+      },
+    });
+    await popover.present();
+  }
+
+  public goToPrivacyPolicyPage(): void {
+    this.close();
+    this.router.navigate([ROUTE.PRIVACY_POLICY]);
+  }
+
+  public async presentPrivacyPolicyInfoPopover(ev: any): Promise<void> {
+    const popover = await this.popoverController.create({
+      component: InfoPopoverComponent,
+      event: ev,
+      translucent: true,
+      componentProps: {
+        textInfo: INFO_POPOVER.PRIVACY_POLICY,
       },
     });
     await popover.present();

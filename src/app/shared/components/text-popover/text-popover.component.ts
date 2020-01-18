@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ReadMode } from '@models/index';
 import { UserService } from '@services/index';
 import { READ_MODE } from '../../constants/global.constants';
@@ -8,7 +8,7 @@ import { READ_MODE } from '../../constants/global.constants';
   templateUrl: './text-popover.component.html',
   styleUrls: ['./text-popover.component.scss'],
 })
-export class TextPopoverComponent {
+export class TextPopoverComponent implements OnInit {
   @Input() public isCheckedDay: boolean;
   @Input() public isCheckedNormal: boolean;
 
@@ -16,6 +16,15 @@ export class TextPopoverComponent {
   private readMode: ReadMode;
 
   constructor(private readonly userService: UserService) {}
+
+  public ngOnInit(): void {
+    if (this.isCheckedDay === null) {
+      this.isCheckedDay = true;
+    }
+    if (this.isCheckedNormal === null) {
+      this.isCheckedNormal = true;
+    }
+  }
 
   public segmentChanged(ev: any): void {
     const newValue = ev.detail.value;

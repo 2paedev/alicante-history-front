@@ -61,4 +61,6 @@ export const INFO_POPOVER = {
     'Introduce la dirección de un correo electrónico donde quiere que le enviemos información sobre nuevos artículos, actualizaciones y mucho más.',
   READ_MODE:
     'Puedes elegir entre un fondo más oscuro o más claro, así como el tamaño de letra.',
+  PRIVACY_POLICY:
+    'Tiene a su disposición la politica de privacidad de la aplicación, pero cabe recordar que Historia de Alicante no hace uso de ningún tipo de dato referente al usuario final de la aplicación.',
 };

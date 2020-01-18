@@ -21,6 +21,11 @@ const routes: Routes = [
     path: ROUTE.SEARCH,
     loadChildren: './pages/search/search.module#SearchPageModule',
   },
+  {
+    path: ROUTE.PRIVACY_POLICY,
+    loadChildren:
+      './pages/privacy-policy/privacy-policy.module#PrivacyPolicyPageModule',
+  },
 ];
 
 @NgModule({

@@ -13,8 +13,8 @@ import { IonicImageLoader } from 'ionic-image-loader';
 import { ArticleImageComponent } from './components/article-image/article-image.component';
 import { ArticlesSetComponent } from './components/articles-set/articles-set.component';
 import { AuthorAvatarComponent } from './components/author-avatar/author-avatar.component';
-import { AuthorModalComponent } from './components/author-modal/author-modal.component';
 import { AvatarCardComponent } from './components/avatar-card/avatar-card.component';
+import { BasicTextModalComponent } from './components/basic-text-modal/basic-text-modal.component';
 import { GalleryPopoverComponent } from './components/gallery-popover/gallery-popover.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ImageModalComponent } from './components/image-modal/image-modal.component';
@@ -28,7 +28,7 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
     HeaderComponent,
     ArticleImageComponent,
     ArticlesSetComponent,
-    AuthorModalComponent,
+    BasicTextModalComponent,
     BibliographyModalComponent,
     AuthorAvatarComponent,
     AvatarCardComponent,
@@ -56,7 +56,7 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
     ArticlesSetComponent,
     BibliographyModalComponent,
     AuthorAvatarComponent,
-    AuthorModalComponent,
+    BasicTextModalComponent,
     AvatarCardComponent,
     GalleryPopoverComponent,
     ImageModalComponent,
@@ -74,7 +74,7 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
     GalleryPopoverComponent,
     ImageModalComponent,
     SettingsModalComponent,
-    AuthorModalComponent,
+    BasicTextModalComponent,
     BibliographyModalComponent,
   ],
 })

@@ -1,4 +1,6 @@
-import { ModalController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { ROUTE } from '@constants/index';
+import { ModalController, PopoverController } from '@ionic/angular';
 import { CustomPost, User } from '@models/index';
 import { StorageService, UserService } from '@services/index';
 import { Observable, of } from 'rxjs';
@@ -23,6 +25,11 @@ const STORAGE_SERVICE_MOCK = {
   setIsMailSent(): void {},
 };
 
+const router = {
+  navigate: jasmine.createSpy('navigate'),
+  events: of({}),
+};
+
 const USER_SERVICE_MOCK = {
   getUser(): Observable<User> {
     return of({
@@ -45,14 +52,69 @@ describe('SettingsModalComponent', () => {
 
   beforeEach((): void => {
     shallow = new Shallow(SettingsModalComponent, SharedModule)
-      .provide(UserService, ModalController, StorageService)
+      .provide(
+        UserService,
+        ModalController,
+        StorageService,
+        Router,
+        PopoverController
+      )
       .mock(UserService, USER_SERVICE_MOCK)
       .mock(StorageService, STORAGE_SERVICE_MOCK)
-      .mock(ModalController, ModalControllerMock);
+      .mock(ModalController, ModalControllerMock)
+      .mock(PopoverController, ModalControllerMock)
+      .mock(Router, router);
   });
 
   it('should create', async (): Promise<void> => {
     const { element } = await shallow.render();
     expect(element).toBeTruthy();
+  });
+
+  it('should render the title', async (): Promise<void> => {
+    const { find } = await shallow.render();
+    const title = find('.privacy-policy ion-label');
+    expect(title.nativeElement.innerText).toEqual('Política de privacidad');
+  });
+
+  it('should show the privacy policy when click icon and is in closed state and default state', async (): Promise<
+    void
+  > => {
+    const { find, fixture } = await shallow.render();
+    fixture.detectChanges();
+    const text = find('.privacy-policy .settings__options--text');
+    expect(text).toHaveFoundOne();
+  });
+
+  it('should hide the privacy policy when click icon and is in opened state ', async (): Promise<
+    void
+  > => {
+    const { find, fixture } = await shallow.render();
+    fixture.detectChanges();
+    const iconCollapse = find('.privacy-policy ion-icon');
+    iconCollapse[1].nativeElement.click();
+    fixture.detectChanges();
+    const text = find('.privacy-policy .settings__options--text');
+    expect(text).not.toHaveFoundOne();
+  });
+
+  it('should open the privacy policy popover when click icon info', async (): Promise<
+    void
+  > => {
+    const { find, fixture, get } = await shallow.render();
+    fixture.detectChanges();
+    const popoverController = get(PopoverController);
+    const iconCollapse = find('.privacy-policy ion-icon');
+    iconCollapse[0].nativeElement.click();
+    expect(popoverController.create).toHaveBeenCalled();
+  });
+
+  it('should go to privacy page when click in button', async (): Promise<
+    void
+  > => {
+    const { find } = await shallow.render();
+    const buttonPrivacy = find('.settings__privacy-policy ion-button');
+    buttonPrivacy.nativeElement.click();
+    expect(router.navigate).toHaveBeenCalledWith([ROUTE.PRIVACY_POLICY]);
   });
 });

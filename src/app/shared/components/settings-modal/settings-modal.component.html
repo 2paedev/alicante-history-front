@@ -6,7 +6,7 @@
     <ion-title>Ajustes</ion-title>
   </ion-card-header>
   <ion-card-content>
-    <div class="settings__item">
+    <section class="settings__item">
       <ion-label class="settings__item--label">
         <ion-icon
           class="info-icon"
@@ -31,9 +31,9 @@
         [isCheckedDay]="isCheckedDay"
         [isCheckedNormal]="isCheckedNormal"
       ></app-text-popover>
-    </div>
+    </section>
 
-    <div class="settings__item mail">
+    <section class="settings__item mail" *ngIf="false">
       <ion-label class="settings__item--label">
         <ion-icon
           class="info-icon"
@@ -52,7 +52,7 @@
           (click)="toggleEmail()"
         ></ion-icon>
       </ion-label>
-      <div class="settings__item--block" *ngIf="!isMailSent && emailShowed">
+      <section class="settings__item--block" *ngIf="!isMailSent && emailShowed">
         <ion-text class="mail--text"
           >Introduce tu email si quiere que le avisemos cuando un nuevo artículo
           esté disponible.</ion-text
@@ -71,14 +71,17 @@
           [disabled]="!isEmailValid(mailText) && mailIsBeingSent"
           >Enviar</ion-button
         >
-      </div>
-      <div class="settings__item--block-row" *ngIf="isMailSent && emailShowed">
+      </section>
+      <section
+        class="settings__item--block-row"
+        *ngIf="isMailSent && emailShowed"
+      >
         <ion-icon color="success" name="cloud-done" size="large"></ion-icon>
         <ion-label class="mail--text">Email ya enviado.</ion-label>
-      </div>
-    </div>
+      </section>
+    </section>
 
-    <div class="settings__item">
+    <section class="settings__item">
       <ion-label class="settings__item--label">
         <ion-icon
           class="info-icon"
@@ -111,6 +114,34 @@
           ></ion-item
         >
       </ion-list>
-    </div>
+    </section>
+
+    <section class="settings__item privacy-policy">
+      <ion-label class="settings__item--label">
+        <ion-icon
+          class="info-icon"
+          name="information-circle-outline"
+          (click)="presentPrivacyPolicyInfoPopover($event)"
+        ></ion-icon>
+        Política de privacidad
+        <ion-icon
+          *ngIf="!privacyPolicyShowed"
+          name="arrow-dropdown"
+          (click)="togglePrivacyPolicy()"
+        ></ion-icon>
+        <ion-icon
+          *ngIf="privacyPolicyShowed"
+          name="arrow-dropup"
+          (click)="togglePrivacyPolicy()"
+        ></ion-icon>
+      </ion-label>
+      <ion-button
+        *ngIf="privacyPolicyShowed"
+        color="success"
+        size="small"
+        (click)="goToPrivacyPolicyPage()"
+        >Leer</ion-button
+      >
+    </section>
   </ion-card-content>
 </ion-card>

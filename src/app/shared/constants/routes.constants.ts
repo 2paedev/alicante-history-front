@@ -7,4 +7,5 @@ export const ROUTE = {
   },
   SEARCH: 'search',
   MY_LIST: 'my-list',
+  PRIVACY_POLICY: 'privacy-policy',
 };

@@ -1,5 +1,5 @@
 import { ActivatedRoute } from '@angular/router';
-import { AuthorModalComponent } from '@components/index';
+import { BasicTextModalComponent } from '@components/index';
 import { ModalController } from '@ionic/angular';
 import { Article } from '@models/index';
 import { AdMobService, ArticlesService } from '@services/index';
@@ -54,10 +54,12 @@ const authorData = {
 };
 
 const authorModalOptions = {
-  component: AuthorModalComponent,
+  component: BasicTextModalComponent,
   cssClass: 'author-modal',
   componentProps: {
-    data: authorData,
+    title: 'Diego Martinez',
+    contentText: 'DESCRIPTION EXAMPLE',
+    image: '/images/aragorn.jpeg',
   },
 };
 

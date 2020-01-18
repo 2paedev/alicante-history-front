@@ -1,0 +1,20 @@
+<ion-card class="basic-text modal modal--fullscreen">
+  <ion-button class="modal__close" (click)="onDismissModal()">
+    <ion-icon name="close"></ion-icon>
+  </ion-button>
+  <ion-card-header class="modal__header basic-text__header">
+    <ion-avatar class="basic-text__header--avatar" *ngIf="image">
+      <img [src]="imageUrl" backgroundSize="cover" />
+    </ion-avatar>
+    <ion-title class="basic-text__header--title">{{ title }}</ion-title>
+  </ion-card-header>
+  <ion-card-content class="basic-text__content">
+    <section
+      class="basic-text__content--text"
+      [innerHtml]="contentText"
+      auto-grow
+      disabled
+      readonly
+    ></section>
+  </ion-card-content>
+</ion-card>

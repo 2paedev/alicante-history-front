@@ -1,0 +1,21 @@
+@import 'src/theme/partials/mixins';
+
+.privacy-policy {
+  height: 100vh;
+
+  &__title {
+    margin-top: 5rem;
+    text-align: center;
+    color: var(--ion-color-secondary-tint);
+  }
+
+  &__content {
+    @include aligns(center, center, column);
+    color: var(--ion-color-secondary-shade);
+    margin: 2rem 1rem;
+
+    ion-label {
+      font-weight: 500;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+@import 'src/theme/partials/mixins';
+
+.basic-text {
+  @include aligns(center, flex-start, column);
+  padding-top: 1rem;
+
+  &__header {
+    &--title {
+      font-size: 1.2rem;
+    }
+    &--avatar {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+
+  &__content {
+    @include aligns(center, center, column);
+
+    &--text {
+      padding: 0.4rem 0.8rem;
+    }
+  }
+}

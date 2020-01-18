@@ -1,4 +1,4 @@
-<ion-list class="text-popover">
+<ion-list class="text-popover" *ngIf="isCheckedDay && isCheckedNormal">
   <ion-segment (ionChange)="segmentChanged($event)">
     <ion-segment-button [checked]="isCheckedDay" [value]="READ_MODE.DAY">
       <ion-icon name="sunny"></ion-icon>

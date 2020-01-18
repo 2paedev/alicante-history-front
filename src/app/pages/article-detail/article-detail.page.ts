@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AuthorModalComponent } from '@components/index';
+import { BasicTextModalComponent } from '@components/index';
 import { ERRORS } from '@constants/index';
 import { ModalController } from '@ionic/angular';
-import { Article } from '@models/index';
+import { Article, Author, BasicText } from '@models/index';
 import { AdMobService, ArticlesService, ToastService } from '@services/index';
 
 @Component({
@@ -51,14 +51,20 @@ export class ArticleDetailPage implements OnInit {
 
   public async presentAuthorModal(): Promise<void> {
     const modalOptions = {
-      component: AuthorModalComponent,
+      component: BasicTextModalComponent,
       cssClass: 'author-modal',
-      componentProps: {
-        data: this.articleData.author,
-      },
+      componentProps: this.getAuthorModalProps(this.articleData.author),
     };
 
     const modal = await this.modalController.create(modalOptions);
     await modal.present();
+  }
+
+  private getAuthorModalProps(data: Author): BasicText {
+    return {
+      title: `${data.name} ${data.surname}`,
+      contentText: data.description,
+      image: data.image,
+    };
   }
 }
