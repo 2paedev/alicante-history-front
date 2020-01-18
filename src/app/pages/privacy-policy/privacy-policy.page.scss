@@ -21,5 +21,9 @@
     &--note {
       font-style: italic;
     }
+
+    &--go-back {
+      @include aligns(center, center, column);
+    }
   }
 }

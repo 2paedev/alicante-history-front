@@ -1,12 +1,22 @@
+import { Router } from '@angular/router';
+import { ROUTE } from '@constants/index';
+import { of } from 'rxjs';
 import { Shallow } from 'shallow-render';
 import { PrivacyPolicyPageModule } from './privacy-policy.module';
 import { PrivacyPolicyPage } from './privacy-policy.page';
+
+const router = {
+  navigate: jasmine.createSpy('navigate'),
+  events: of({}),
+};
 
 describe('PrivacyPolicyPage', () => {
   let shallow: Shallow<PrivacyPolicyPage>;
 
   beforeEach((): void => {
-    shallow = new Shallow(PrivacyPolicyPage, PrivacyPolicyPageModule);
+    shallow = new Shallow(PrivacyPolicyPage, PrivacyPolicyPageModule)
+      .provide(Router)
+      .mock(Router, router);
   });
 
   it('should create', async (): Promise<void> => {
@@ -26,5 +36,12 @@ describe('PrivacyPolicyPage', () => {
     expect(contentParagraphs.length).toEqual(4);
     const contentParagraphsLabels = find('.privacy-policy__content ion-label');
     expect(contentParagraphsLabels.length).toEqual(3);
+  });
+
+  it('should go to home page when click in button', async (): Promise<void> => {
+    const { find } = await shallow.render();
+    const goBackButton = find('.privacy-policy__content--go-back ion-button');
+    goBackButton.nativeElement.click();
+    expect(router.navigate).toHaveBeenCalledWith([ROUTE.HOME]);
   });
 });
