@@ -23,7 +23,7 @@ describe('PrivacyPolicyPage', () => {
   it('should render the content paragraphs', async (): Promise<void> => {
     const { find } = await shallow.render();
     const contentParagraphs = find('.privacy-policy__content p');
-    expect(contentParagraphs.length).toEqual(3);
+    expect(contentParagraphs.length).toEqual(4);
     const contentParagraphsLabels = find('.privacy-policy__content ion-label');
     expect(contentParagraphsLabels.length).toEqual(3);
   });

@@ -82,7 +82,7 @@ describe('SettingsModalComponent', () => {
   > => {
     const { find, fixture } = await shallow.render();
     fixture.detectChanges();
-    const text = find('.privacy-policy .settings__options--text');
+    const text = find('.privacy-policy ion-button');
     expect(text).toHaveFoundOne();
   });
 
@@ -94,7 +94,7 @@ describe('SettingsModalComponent', () => {
     const iconCollapse = find('.privacy-policy ion-icon');
     iconCollapse[1].nativeElement.click();
     fixture.detectChanges();
-    const text = find('.privacy-policy .settings__options--text');
+    const text = find('.privacy-policy ion-button');
     expect(text).not.toHaveFoundOne();
   });
 
@@ -113,7 +113,7 @@ describe('SettingsModalComponent', () => {
     void
   > => {
     const { find } = await shallow.render();
-    const buttonPrivacy = find('.settings__privacy-policy ion-button');
+    const buttonPrivacy = find('.privacy-policy ion-button');
     buttonPrivacy.nativeElement.click();
     expect(router.navigate).toHaveBeenCalledWith([ROUTE.PRIVACY_POLICY]);
   });
