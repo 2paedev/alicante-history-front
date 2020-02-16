@@ -27,8 +27,8 @@ export class TextFormattedComponent implements OnInit, OnDestroy {
 
   private userSubscription: Subscription;
   private userData: User;
-  private isCheckedDay: boolean;
-  private isCheckedNormal: boolean;
+  private checkedColorValue = READ_MODE.DAY;
+  private checkedSizeValue = READ_MODE.NORMAL;
 
   constructor(
     public readonly popoverController: PopoverController,
@@ -46,16 +46,20 @@ export class TextFormattedComponent implements OnInit, OnDestroy {
           this.userData.readMode.color,
           this.userData.readMode.size
         );
-        this.isCheckedDay = this.userData.readMode.color === READ_MODE.DAY;
-        this.isCheckedNormal = this.userData.readMode.size === READ_MODE.NORMAL;
+        this.checkedColorValue = this.userData.readMode.color;
+        this.checkedSizeValue = this.userData.readMode.size;
       });
 
     this.storageService.getReadModeColor().then(value => {
-      this.isCheckedDay = value === READ_MODE.DAY;
+      if (value != null) {
+        this.checkedColorValue = value;
+      }
     });
 
     this.storageService.getReadModeSize().then(value => {
-      this.isCheckedNormal = value === READ_MODE.NORMAL;
+      if (value != null) {
+        this.checkedSizeValue = value;
+      }
     });
   }
 
@@ -65,8 +69,8 @@ export class TextFormattedComponent implements OnInit, OnDestroy {
       event: ev,
       translucent: true,
       componentProps: {
-        isCheckedDay: this.isCheckedDay,
-        isCheckedNormal: this.isCheckedNormal,
+        checkedColorValue: this.checkedColorValue,
+        checkedSizeValue: this.checkedSizeValue,
       },
     });
     await popover.present();
@@ -86,11 +90,11 @@ export class TextFormattedComponent implements OnInit, OnDestroy {
   }
 
   public getColorClass(): string {
-    return this.isCheckedDay ? 'day' : 'night';
+    return this.checkedColorValue;
   }
 
   public getSizeClass(): string {
-    return this.isCheckedNormal ? 'normal' : 'big';
+    return this.checkedSizeValue;
   }
 
   public ngOnDestroy(): void {

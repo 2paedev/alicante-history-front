@@ -4,8 +4,9 @@
   margin: 0;
 
   &__content {
-    padding: 0;
+    padding: 0.1rem;
     @include aligns(center, center, row);
+    background-color: var(--ion-color-primary-tint);
   }
 
   &__image {

@@ -39,7 +39,7 @@
       fill="solid"
       (click)="goToArticle(data)"
     >
-      <ion-icon class="read" slot="start" name="book"></ion-icon>
+      <ion-icon class="read" slot="start" name="book-outline"></ion-icon>
       Leer
     </ion-button>
     <ion-button
@@ -48,7 +48,7 @@
       fill="clear"
       (click)="addLike()"
     >
-      <ion-icon class="card__icon" name="heart-empty"></ion-icon>
+      <ion-icon class="card__icon" name="heart-dislike"></ion-icon>
     </ion-button>
     <ion-button
       *ngIf="isLiked"

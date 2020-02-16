@@ -66,3 +66,9 @@ ion-popover.gallerypopover {
 ion-backdrop {
   background-color: var(--ion-color-primary-shade);
 }
+
+.gallery-popover {
+  .popover-content {
+    width: 95%;
+  }
+}

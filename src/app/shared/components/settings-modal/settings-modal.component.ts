@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { InfoPopoverComponent } from '@components/info-popover/info-popover.component';
-import { ERRORS, INFO_POPOVER, READ_MODE, ROUTE } from '@constants/index';
+import { ERRORS, INFO_POPOVER, ROUTE } from '@constants/index';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { User } from '@models/index';
 import { StorageService, ToastService, UserService } from '@services/index';
@@ -13,8 +13,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['settings-modal.component.scss'],
 })
 export class SettingsModalComponent implements OnInit, OnDestroy {
-  public isCheckedDay: boolean;
-  public isCheckedNormal: boolean;
+  public checkedColorValue: string;
+  public checkedSizeValue: string;
   public isMailSent: boolean;
   public mailText: string;
   public readModeShowed = true;
@@ -39,10 +39,10 @@ export class SettingsModalComponent implements OnInit, OnDestroy {
       this.isMailSent = value;
     });
     this.storageService.getReadModeColor().then(value => {
-      this.isCheckedDay = value === READ_MODE.DAY;
+      this.checkedColorValue = value;
     });
     this.storageService.getReadModeSize().then(value => {
-      this.isCheckedNormal = value === READ_MODE.NORMAL;
+      this.checkedSizeValue = value;
     });
 
     this.userSubscription = this.userService

@@ -89,7 +89,6 @@ export class ArticleImageComponent implements OnInit {
         this.isLiked = valueAsJson.some(
           (articleId: number) => articleId === this.data.id
         );
-        console.log(valueAsJson);
       }
     });
     this.storageService.getMyList().then(value => {

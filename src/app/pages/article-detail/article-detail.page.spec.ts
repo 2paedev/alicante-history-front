@@ -25,6 +25,7 @@ const ARTICLES_SERVICE_MOCK = {
 };
 
 const ADDMOB_SERVICE_MOCK = {
+  // eslint-disable-next-line no-empty-function
   pushBanner(): void {},
   getBannerConfig(): any {
     return {
@@ -33,6 +34,7 @@ const ADDMOB_SERVICE_MOCK = {
       autoShow: true,
     };
   },
+  // eslint-disable-next-line no-empty-function
   pushInterstitial(): void {},
   getInterstitialConfig(): any {
     return {
@@ -43,15 +45,15 @@ const ADDMOB_SERVICE_MOCK = {
   },
 };
 
-const authorData = {
-  id: 1,
-  image: '/images/aragorn.jpeg',
-  created: '2019-11-09T09:36:06.471000Z',
-  name: 'Diego',
-  surname: 'Martinez',
-  email: 'diego@elcorreo.com',
-  description: 'DESCRIPTION EXAMPLE',
-};
+// const authorData = {
+//   id: 1,
+//   image: '/images/aragorn.jpeg',
+//   created: '2019-11-09T09:36:06.471000Z',
+//   name: 'Diego',
+//   surname: 'Martinez',
+//   email: 'diego@elcorreo.com',
+//   description: 'DESCRIPTION EXAMPLE',
+// };
 
 const authorModalOptions = {
   component: BasicTextModalComponent,

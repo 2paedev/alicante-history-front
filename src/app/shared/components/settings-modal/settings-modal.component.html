@@ -16,20 +16,20 @@
         Modo de lectura
         <ion-icon
           *ngIf="!readModeShowed"
-          name="arrow-dropdown"
+          name="chevron-down"
           (click)="toggleReadMode()"
         ></ion-icon>
         <ion-icon
           *ngIf="readModeShowed"
-          name="arrow-dropup"
+          name="chevron-up"
           (click)="toggleReadMode()"
         ></ion-icon>
       </ion-label>
       <app-text-popover
         *ngIf="readModeShowed"
         class="settings__item--options"
-        [isCheckedDay]="isCheckedDay"
-        [isCheckedNormal]="isCheckedNormal"
+        [checkedColorValue]="checkedColorValue"
+        [checkedSizeValue]="checkedSizeValue"
       ></app-text-popover>
     </section>
 
@@ -43,12 +43,12 @@
         Email
         <ion-icon
           *ngIf="!emailShowed"
-          name="arrow-dropdown"
+          name="chevron-down"
           (click)="toggleEmail()"
         ></ion-icon>
         <ion-icon
           *ngIf="emailShowed"
-          name="arrow-dropup"
+          name="chevron-up"
           (click)="toggleEmail()"
         ></ion-icon>
       </ion-label>
@@ -91,12 +91,12 @@
         Contacto
         <ion-icon
           *ngIf="!contactShowed"
-          name="arrow-dropdown"
+          name="chevron-down"
           (click)="toggleContact()"
         ></ion-icon>
         <ion-icon
           *ngIf="contactShowed"
-          name="arrow-dropup"
+          name="chevron-up"
           (click)="toggleContact()"
         ></ion-icon>
       </ion-label>
@@ -126,12 +126,12 @@
         Política de privacidad
         <ion-icon
           *ngIf="!privacyPolicyShowed"
-          name="arrow-dropdown"
+          name="chevron-down"
           (click)="togglePrivacyPolicy()"
         ></ion-icon>
         <ion-icon
           *ngIf="privacyPolicyShowed"
-          name="arrow-dropup"
+          name="chevron-up"
           (click)="togglePrivacyPolicy()"
         ></ion-icon>
       </ion-label>

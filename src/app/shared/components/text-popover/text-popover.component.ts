@@ -9,8 +9,8 @@ import { READ_MODE } from '../../constants/global.constants';
   styleUrls: ['./text-popover.component.scss'],
 })
 export class TextPopoverComponent implements OnInit {
-  @Input() public isCheckedDay: boolean;
-  @Input() public isCheckedNormal: boolean;
+  @Input() public checkedColorValue: string;
+  @Input() public checkedSizeValue: string;
 
   public READ_MODE = READ_MODE;
   private readMode: ReadMode;
@@ -18,11 +18,15 @@ export class TextPopoverComponent implements OnInit {
   constructor(private readonly userService: UserService) {}
 
   public ngOnInit(): void {
-    if (this.isCheckedDay === null) {
-      this.isCheckedDay = true;
+    this.setDefaultValues();
+  }
+
+  private setDefaultValues(): void {
+    if (this.checkedColorValue == null) {
+      this.checkedColorValue = this.READ_MODE.DAY;
     }
-    if (this.isCheckedNormal === null) {
-      this.isCheckedNormal = true;
+    if (this.checkedSizeValue == null) {
+      this.checkedSizeValue = this.READ_MODE.NORMAL;
     }
   }
 
@@ -36,12 +40,16 @@ export class TextPopoverComponent implements OnInit {
   private checkColor(color: string): void {
     if (color === READ_MODE.DAY || color === READ_MODE.NIGHT) {
       this.readMode = { ...this.readMode, color };
+      this.readMode = { ...this.readMode, size: this.checkedSizeValue };
+      this.checkedColorValue = color;
     }
   }
 
   private checkSize(size: string): void {
     if (size === READ_MODE.NORMAL || size === READ_MODE.BIG) {
       this.readMode = { ...this.readMode, size };
+      this.readMode = { ...this.readMode, color: this.checkedColorValue };
+      this.checkedSizeValue = size;
     }
   }
 }
