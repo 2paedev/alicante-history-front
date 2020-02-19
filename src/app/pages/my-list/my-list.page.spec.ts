@@ -7,7 +7,7 @@ import { MyListPage } from './my-list.page';
 
 const STORAGE_SERVICE_MOCK = {
   myList$: of(null),
-  getStorageValue(key: string): Promise<any> {
+  getStorageValue(): Promise<any> {
     return Promise.resolve(buildLastFiveFixture());
   },
 };

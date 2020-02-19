@@ -9,13 +9,13 @@ import { BibliographyModalComponent } from '../bibliography-modal/bibliography-m
 import { TextFormattedComponent } from './text-formatted.component';
 
 const STORAGE_SERVICE_MOCK = {
-  getStorageValue(key: string): Promise<string> {
+  getStorageValue(): Promise<string> {
     return Promise.resolve('aFakeModeColor');
   },
   // eslint-disable-next-line no-empty-function
   setReadMode(): void {},
   // eslint-disable-next-line no-empty-function
-  setStorageValue(key: string, value: string | boolean): void {},
+  setStorageValue(): void {},
 };
 
 const USER_SERVICE_MOCK = {
