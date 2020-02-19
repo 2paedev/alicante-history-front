@@ -1,5 +1,5 @@
-<ion-card class="avatar-card" *ngIf="data" (click)="goToArticle(data)">
-  <ion-item class="avatar-card__item">
+<ion-card class="avatar-card" *ngIf="data">
+  <ion-item class="avatar-card__item" (click)="goToArticle(data)">
     <div class="avatar-card__item--column">
       <ion-thumbnail class="avatar-card__item--thumbnail">
         <img-loader [src]="imageUrl" backgroundSize="cover"></img-loader>
@@ -12,4 +12,13 @@
       </ion-button>
     </div>
   </ion-item>
+  <ion-button
+    size="small"
+    fill="outline"
+    color="danger"
+    class="avatar-card__remove"
+    (click)="removeArticle()"
+  >
+    <ion-icon color="danger" name="trash-outline"></ion-icon>
+  </ion-button>
 </ion-card>

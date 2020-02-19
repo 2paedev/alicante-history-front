@@ -1,11 +1,13 @@
 import { StorageService } from '@services/index';
+import { of } from 'rxjs';
 import { Shallow } from 'shallow-render';
 import { buildLastFiveFixture } from 'src/app/shared/fixtures/resume';
 import { MyListPageModule } from './my-list.module';
 import { MyListPage } from './my-list.page';
 
 const STORAGE_SERVICE_MOCK = {
-  getMyList(): Promise<any> {
+  myList$: of(null),
+  getStorageValue(key: string): Promise<any> {
     return Promise.resolve(buildLastFiveFixture());
   },
 };

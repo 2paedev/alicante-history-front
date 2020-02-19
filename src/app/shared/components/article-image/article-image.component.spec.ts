@@ -27,17 +27,10 @@ const HELPERS_SERVICE_MOCK = {
 
 const STORAGE_SERVICE_MOCK = {
   // eslint-disable-next-line no-empty-function
-  setItemInMyList(): void {},
+  addItemInList(): void {},
   // eslint-disable-next-line no-empty-function
-  removeItemInMyList(): void {},
-  // eslint-disable-next-line no-empty-function
-  setItemInMyLikedList(): void {},
-  // eslint-disable-next-line no-empty-function
-  removeItemInMyLikedList(): void {},
-  getMyLikedList(): Promise<any> {
-    return Promise.resolve([]);
-  },
-  getMyList(): Promise<any> {
+  removeItemInList(): void {},
+  getStorageValue(): Promise<any> {
     return Promise.resolve(buildLastFiveFixture());
   },
 };

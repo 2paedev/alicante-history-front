@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ROUTE } from '@constants/index';
+import { ROUTE, STORAGE_KEY } from '@constants/index';
 import { Article } from '@models/index';
-import { HelpersService } from '@services/index';
+import { HelpersService, StorageService } from '@services/index';
 
 @Component({
   selector: 'app-avatar-card',
@@ -16,7 +16,8 @@ export class AvatarCardComponent implements OnInit {
 
   constructor(
     private readonly router: Router,
-    private readonly helper: HelpersService
+    private readonly helper: HelpersService,
+    private readonly storageService: StorageService
   ) {}
 
   public ngOnInit(): void {
@@ -25,5 +26,9 @@ export class AvatarCardComponent implements OnInit {
 
   public goToArticle(article: Article): void {
     this.router.navigate([ROUTE.ARTICLE_DETAIL(article.id)]);
+  }
+
+  public removeArticle(): void {
+    this.storageService.removeItemInList(this.data.id, STORAGE_KEY.MY_LIST);
   }
 }

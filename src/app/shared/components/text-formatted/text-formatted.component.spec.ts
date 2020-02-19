@@ -9,19 +9,13 @@ import { BibliographyModalComponent } from '../bibliography-modal/bibliography-m
 import { TextFormattedComponent } from './text-formatted.component';
 
 const STORAGE_SERVICE_MOCK = {
-  getIsMailSent(): Promise<boolean> {
-    return Promise.resolve(true);
-  },
-  getReadModeColor(): Promise<string> {
+  getStorageValue(key: string): Promise<string> {
     return Promise.resolve('aFakeModeColor');
-  },
-  getReadModeSize(): Promise<string> {
-    return Promise.resolve('aFakeModeSize');
   },
   // eslint-disable-next-line no-empty-function
   setReadMode(): void {},
   // eslint-disable-next-line no-empty-function
-  setIsMailSent(): void {},
+  setStorageValue(key: string, value: string | boolean): void {},
 };
 
 const USER_SERVICE_MOCK = {

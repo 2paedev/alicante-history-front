@@ -3,6 +3,12 @@
 .avatar-card {
   margin: 0.3rem;
 
+  &__remove {
+    width: 95%;
+    --border-radius: 0.2rem;
+    --border-width: 0.1rem;
+  }
+
   &__item {
     --background: var(--ion-color-primary-shade);
     --background-activated: var(--ion-color-primary-tint);

@@ -24,10 +24,7 @@ export class ArticlesService {
     }),
   };
 
-  public constructor(private readonly http: HttpClient) {
-    // this.articlesSubject.next([]);
-    // this.resumeSubject.next([]);
-  }
+  public constructor(private readonly http: HttpClient) {}
 
   public filterArticles(searchTerm: string, articles: Article[]): Article[] {
     return articles.filter(article => {

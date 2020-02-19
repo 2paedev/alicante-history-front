@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ERRORS, ROUTE } from '@constants/index';
+import { ERRORS, ROUTE, STORAGE_KEY } from '@constants/index';
 import { Article, Tag } from '@models/index';
 import {
   ArticlesService,
@@ -39,12 +39,12 @@ export class ArticleImageComponent implements OnInit {
 
   public addToMyList(): void {
     this.isAddedInMyList = true;
-    this.storageService.setItemInMyList(this.data);
+    this.storageService.addItemInList(this.data, STORAGE_KEY.MY_LIST);
   }
 
   public removeToMyList(): void {
     this.isAddedInMyList = false;
-    this.storageService.removeItemInMyList(this.data);
+    this.storageService.removeItemInList(this.data.id, STORAGE_KEY.MY_LIST);
   }
 
   public goToArticle(article: Article): void {
@@ -55,7 +55,10 @@ export class ArticleImageComponent implements OnInit {
     this.articlesService.setLike(this.data.id).subscribe(
       () => {
         this.isLiked = true;
-        this.storageService.setItemInMyLikedList(this.data.id);
+        this.storageService.addItemInList(
+          this.data.id,
+          STORAGE_KEY.MY_LIKED_LIST
+        );
       },
       () => {
         this.toastService.presentToastError(ERRORS.MESSAGES.UPDATE);
@@ -68,7 +71,10 @@ export class ArticleImageComponent implements OnInit {
     this.articlesService.removeLike(this.data.id).subscribe(
       () => {
         this.isLiked = false;
-        this.storageService.removeItemInMyLikedList(this.data.id);
+        this.storageService.removeItemInList(
+          this.data.id,
+          STORAGE_KEY.MY_LIKED_LIST
+        );
       },
       () => {
         this.toastService.presentToastError(ERRORS.MESSAGES.UPDATE);
@@ -83,15 +89,17 @@ export class ArticleImageComponent implements OnInit {
 
   private assembleDataCard(): void {
     this.imageUrl = this.helper.getImageUrl(this.image);
-    this.storageService.getMyLikedList().then(value => {
-      if (value !== null) {
-        const valueAsJson = JSON.parse(value);
-        this.isLiked = valueAsJson.some(
-          (articleId: number) => articleId === this.data.id
-        );
-      }
-    });
-    this.storageService.getMyList().then(value => {
+    this.storageService
+      .getStorageValue(STORAGE_KEY.MY_LIKED_LIST)
+      .then(value => {
+        if (value !== null) {
+          const valueAsJson = JSON.parse(value);
+          this.isLiked = valueAsJson.some(
+            (articleId: number) => articleId === this.data.id
+          );
+        }
+      });
+    this.storageService.getStorageValue(STORAGE_KEY.MY_LIST).then(value => {
       if (value !== null) {
         const valueAsJson = JSON.parse(value);
         this.isAddedInMyList = valueAsJson.some(

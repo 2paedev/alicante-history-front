@@ -5,7 +5,7 @@ import {
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
-import { READ_MODE } from '@constants/index';
+import { READ_MODE, STORAGE_KEY } from '@constants/index';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { CustomImage, User } from '@models/index';
 import { StorageService, UserService } from '@services/index';
@@ -50,17 +50,21 @@ export class TextFormattedComponent implements OnInit, OnDestroy {
         this.checkedSizeValue = this.userData.readMode.size;
       });
 
-    this.storageService.getReadModeColor().then(value => {
-      if (value != null) {
-        this.checkedColorValue = value;
-      }
-    });
+    this.storageService
+      .getStorageValue(STORAGE_KEY.READ_MODE.COLOR)
+      .then(value => {
+        if (value != null) {
+          this.checkedColorValue = value;
+        }
+      });
 
-    this.storageService.getReadModeSize().then(value => {
-      if (value != null) {
-        this.checkedSizeValue = value;
-      }
-    });
+    this.storageService
+      .getStorageValue(STORAGE_KEY.READ_MODE.SIZE)
+      .then(value => {
+        if (value != null) {
+          this.checkedSizeValue = value;
+        }
+      });
   }
 
   public async presentReadModePopover(ev: any): Promise<void> {

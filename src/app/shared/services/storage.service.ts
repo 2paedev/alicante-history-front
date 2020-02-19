@@ -2,93 +2,60 @@ import { Injectable } from '@angular/core';
 import { STORAGE_KEY } from '@constants/index';
 import { Storage } from '@ionic/storage';
 import { Article } from '@models/index';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class StorageService {
+  public readonly myListSubject = new BehaviorSubject<string>(null);
+  public readonly myList$ = this.myListSubject.asObservable();
+
   constructor(private readonly storage: Storage) {}
 
+  public getStorageValue(key: string): Promise<any> {
+    return this.storage.get(key);
+  }
+
+  public setStorageValue(key: string, value: boolean | string | any[]): void {
+    this.storage.set(key, value);
+  }
+
   public setReadMode(color: string, size: string): void {
-    this.setReadModeColor(color);
-    this.setReadModeSize(size);
+    this.setStorageValue(STORAGE_KEY.READ_MODE.COLOR, color);
+    this.setStorageValue(STORAGE_KEY.READ_MODE.SIZE, size);
   }
 
-  public getReadModeColor(): Promise<string> {
-    return this.storage.get(STORAGE_KEY.READ_MODE.COLOR);
-  }
-
-  private setReadModeColor(value: string): void {
-    this.storage.set(STORAGE_KEY.READ_MODE.COLOR, value);
-  }
-
-  public getReadModeSize(): Promise<string> {
-    return this.storage.get(STORAGE_KEY.READ_MODE.SIZE);
-  }
-
-  private setReadModeSize(value: string): void {
-    this.storage.set(STORAGE_KEY.READ_MODE.SIZE, value);
-  }
-
-  public getIsMailSent(): Promise<boolean> {
-    return this.storage.get(STORAGE_KEY.MAIL.IS_SENDED);
-  }
-
-  public setIsMailSent(value: boolean): void {
-    this.storage.set(STORAGE_KEY.MAIL.IS_SENDED, value);
-  }
-
-  public getMyList(): Promise<any> {
-    return this.storage.get(STORAGE_KEY.MY_LIST);
-  }
-
-  public setItemInMyList(item: Article): void {
+  public addItemInList(item: Article | number, key: string): void {
     let previousList = [];
-    this.getMyList().then(value => {
+    this.getStorageValue(key).then(value => {
       previousList = JSON.parse(value);
       let newList = [item];
       if (previousList !== null) {
         newList = [...previousList, item];
       }
-      this.storage.set(STORAGE_KEY.MY_LIST, JSON.stringify(newList));
+      this.setStorageValue(key, JSON.stringify(newList));
+      if (key === STORAGE_KEY.MY_LIST) {
+        this.updateMyList(JSON.stringify(newList));
+      }
     });
   }
 
-  public removeItemInMyList(item: Article): void {
+  public removeItemInList(itemId: number, key: string): void {
     let previousList = [];
-    this.getMyList().then(value => {
+    this.getStorageValue(key).then(value => {
       previousList = JSON.parse(value);
       let newList = [];
       if (previousList !== null) {
-        newList = previousList.filter(data => data.id !== item.id);
+        newList = previousList.filter(data => data.id !== itemId);
       }
-      this.storage.set(STORAGE_KEY.MY_LIST, JSON.stringify(newList));
+      this.setStorageValue(key, JSON.stringify(newList));
+      if (key === STORAGE_KEY.MY_LIST) {
+        this.updateMyList(JSON.stringify(newList));
+      }
     });
   }
 
-  public getMyLikedList(): Promise<any> {
-    return this.storage.get(STORAGE_KEY.MY_LIKED_LIST);
-  }
-
-  public setItemInMyLikedList(itemId: number): void {
-    let previousList = [];
-    this.getMyLikedList().then(value => {
-      previousList = JSON.parse(value);
-      let newList = [itemId];
-      if (previousList !== null) {
-        newList = [...previousList, itemId];
-      }
-      this.storage.set(STORAGE_KEY.MY_LIKED_LIST, JSON.stringify(newList));
-    });
-  }
-
-  public removeItemInMyLikedList(itemId: number): void {
-    let previousList = [];
-    this.getMyLikedList().then(value => {
-      previousList = JSON.parse(value);
-      let newList = [];
-      if (previousList !== null) {
-        newList = previousList.filter(id => id !== itemId);
-      }
-      this.storage.set(STORAGE_KEY.MY_LIKED_LIST, JSON.stringify(newList));
-    });
+  public updateMyList(myList?: string): void {
+    const currentMyList = this.myListSubject.value;
+    this.myListSubject.next(myList || currentMyList);
   }
 }

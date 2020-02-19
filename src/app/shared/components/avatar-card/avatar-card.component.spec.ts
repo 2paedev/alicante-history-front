@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { HelpersService } from '@services/index';
+import { HelpersService, StorageService } from '@services/index';
 import { of } from 'rxjs';
 import { Shallow } from 'shallow-render';
 import { SharedModule } from '../../shared.module';
@@ -9,6 +9,11 @@ const HELPERS_SERVICE_MOCK = {
   getImageUrl(): string {
     return 'aFakeUrl';
   },
+};
+
+const STORAGE_SERVICE_MOCK = {
+  // eslint-disable-next-line no-empty-function
+  removeItemInList(): void {},
 };
 
 const ROUTER_MOCK = {
@@ -29,8 +34,9 @@ describe('AvatarCardComponent', () => {
 
   beforeEach((): void => {
     shallow = new Shallow(AvatarCardComponent, SharedModule)
-      .provide(HelpersService, Router)
+      .provide(HelpersService, Router, StorageService)
       .mock(HelpersService, HELPERS_SERVICE_MOCK)
+      .mock(StorageService, STORAGE_SERVICE_MOCK)
       .mock(Router, ROUTER_MOCK);
   });
 

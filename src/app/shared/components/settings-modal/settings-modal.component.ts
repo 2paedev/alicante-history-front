@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { InfoPopoverComponent } from '@components/info-popover/info-popover.component';
-import { ERRORS, INFO_POPOVER, ROUTE } from '@constants/index';
+import { ERRORS, INFO_POPOVER, ROUTE, STORAGE_KEY } from '@constants/index';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { User } from '@models/index';
 import { StorageService, ToastService, UserService } from '@services/index';
@@ -35,15 +35,21 @@ export class SettingsModalComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit(): void {
-    this.storageService.getIsMailSent().then(value => {
-      this.isMailSent = value;
-    });
-    this.storageService.getReadModeColor().then(value => {
-      this.checkedColorValue = value;
-    });
-    this.storageService.getReadModeSize().then(value => {
-      this.checkedSizeValue = value;
-    });
+    this.storageService
+      .getStorageValue(STORAGE_KEY.MAIL.IS_SENDED)
+      .then(value => {
+        this.isMailSent = value;
+      });
+    this.storageService
+      .getStorageValue(STORAGE_KEY.READ_MODE.COLOR)
+      .then(value => {
+        this.checkedColorValue = value;
+      });
+    this.storageService
+      .getStorageValue(STORAGE_KEY.READ_MODE.SIZE)
+      .then(value => {
+        this.checkedSizeValue = value;
+      });
 
     this.userSubscription = this.userService
       .getUser()
@@ -62,7 +68,10 @@ export class SettingsModalComponent implements OnInit, OnDestroy {
       () => {
         this.isMailSent = true;
         this.mailIsBeingSent = false;
-        this.storageService.setIsMailSent(this.isMailSent);
+        this.storageService.setStorageValue(
+          STORAGE_KEY.MAIL.IS_SENDED,
+          this.isMailSent
+        );
       },
       () => {
         this.mailIsBeingSent = true;
