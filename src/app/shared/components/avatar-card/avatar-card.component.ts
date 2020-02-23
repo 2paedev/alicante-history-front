@@ -29,6 +29,6 @@ export class AvatarCardComponent implements OnInit {
   }
 
   public removeArticle(): void {
-    this.storageService.removeItemInList(this.data.id, STORAGE_KEY.MY_LIST);
+    this.storageService.removeItemInMyList(this.data.id, STORAGE_KEY.MY_LIST);
   }
 }

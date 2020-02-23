@@ -8,6 +8,8 @@ import { BehaviorSubject } from 'rxjs';
 export class StorageService {
   public readonly myListSubject = new BehaviorSubject<string>(null);
   public readonly myList$ = this.myListSubject.asObservable();
+  public readonly myLikedListSubject = new BehaviorSubject<string>(null);
+  public readonly myLikedList$ = this.myLikedListSubject.asObservable();
 
   constructor(private readonly storage: Storage) {}
 
@@ -36,26 +38,47 @@ export class StorageService {
       if (key === STORAGE_KEY.MY_LIST) {
         this.updateMyList(JSON.stringify(newList));
       }
+      if (key === STORAGE_KEY.MY_LIKED_LIST) {
+        this.updateMyLikedList(JSON.stringify(newList));
+      }
     });
   }
 
-  public removeItemInList(itemId: number, key: string): void {
+  public removeItemInMyLikedList(itemId: number, key: string): void {
     let previousList = [];
     this.getStorageValue(key).then(value => {
       previousList = JSON.parse(value);
       let newList = [];
+
+      if (previousList !== null) {
+        newList = previousList.filter(data => data !== itemId);
+      }
+      this.setStorageValue(key, JSON.stringify(newList));
+      this.updateMyLikedList(JSON.stringify(newList));
+    });
+  }
+
+  public removeItemInMyList(itemId: number, key: string): void {
+    let previousList = [];
+    this.getStorageValue(key).then(value => {
+      previousList = JSON.parse(value);
+      let newList = [];
+
       if (previousList !== null) {
         newList = previousList.filter(data => data.id !== itemId);
       }
       this.setStorageValue(key, JSON.stringify(newList));
-      if (key === STORAGE_KEY.MY_LIST) {
-        this.updateMyList(JSON.stringify(newList));
-      }
+      this.updateMyList(JSON.stringify(newList));
     });
   }
 
   public updateMyList(myList?: string): void {
     const currentMyList = this.myListSubject.value;
     this.myListSubject.next(myList || currentMyList);
+  }
+
+  public updateMyLikedList(myLikedList?: string): void {
+    const currentMyLikedList = this.myLikedListSubject.value;
+    this.myLikedListSubject.next(myLikedList || currentMyLikedList);
   }
 }
