@@ -2,7 +2,7 @@
 <widget id="historia.de.alicante" version="1.0.9" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Historia de Alicante</name>
     <description>Conoce la historia de la provincia de Alicante</description>
-    <author email="2paedev@gmail.com" href="">2PaeDev</author>
+    <author email="historiadealicante@gmail.com" href="">Historia de Alicante</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
