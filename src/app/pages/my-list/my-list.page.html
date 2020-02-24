@@ -11,6 +11,7 @@
           <app-avatar-card
             *ngFor="let article of myListData"
             [data]="article"
+            [showRemove]="true"
           ></app-avatar-card>
         </ion-list>
         <ion-label *ngIf="myListData.length == 0" class="articles-set__warning"

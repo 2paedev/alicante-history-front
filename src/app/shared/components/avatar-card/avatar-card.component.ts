@@ -11,6 +11,7 @@ import { HelpersService, StorageService } from '@services/index';
 })
 export class AvatarCardComponent implements OnInit {
   @Input() public data: Article;
+  @Input() public showRemove: boolean;
 
   public imageUrl: string;
 
