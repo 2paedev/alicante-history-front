@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ERRORS } from '@constants/index';
+import { Platform } from '@ionic/angular';
 import { Article, ArticleResume } from '@models/index';
 import { AdMobService, ArticlesService, ToastService } from '@services/index';
 import { Subscription } from 'rxjs';
@@ -16,11 +17,13 @@ export class HomePage implements OnInit, OnDestroy {
   public lastFiveArticlesData: Article[] = [];
 
   private articlesSubscription: Subscription;
+  private backButtonSubscription: Subscription;
 
   constructor(
     private articlesService: ArticlesService,
     private toastService: ToastService,
-    private adMobService: AdMobService
+    private adMobService: AdMobService,
+    private platform: Platform
   ) {
     this.articlesService.lastFive$
       .pipe(filter((lastFive): boolean => !!lastFive))
@@ -49,8 +52,16 @@ export class HomePage implements OnInit, OnDestroy {
     }
   }
 
+  public ngAfterViewInit(): void {
+    this.backButtonSubscription = this.platform.backButton.subscribe(() => {
+      /* eslint-disable dot-notation */
+      navigator['app'].exitApp();
+    });
+  }
+
   public ngOnDestroy(): void {
     this.articlesSubscription.unsubscribe();
+    this.backButtonSubscription.unsubscribe();
   }
 
   public refreshPage(event: any): void {

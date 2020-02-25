@@ -17,10 +17,10 @@ export class SettingsModalComponent implements OnInit, OnDestroy {
   public checkedSizeValue: string;
   public isMailSent: boolean;
   public mailText: string;
-  public readModeShowed = true;
-  public emailShowed = true;
-  public contactShowed = true;
-  public privacyPolicyShowed = true;
+  public readModeShowed = false;
+  public emailShowed = false;
+  public contactShowed = false;
+  public privacyPolicyShowed = false;
   public mailIsBeingSent = false;
 
   private userSubscription: Subscription;
