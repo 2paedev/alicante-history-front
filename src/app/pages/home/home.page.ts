@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ERRORS } from '@constants/index';
 import { Platform } from '@ionic/angular';
 import { Article, ArticleResume } from '@models/index';
@@ -11,7 +11,7 @@ import { filter } from 'rxjs/operators';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit, OnDestroy {
+export class HomePage {
   public homePageData: ArticleResume[] = [];
   public lastArticleData: Article;
   public lastFiveArticlesData: Article[] = [];
@@ -38,7 +38,7 @@ export class HomePage implements OnInit, OnDestroy {
       });
   }
 
-  public ngOnInit(): void {
+  public ionViewDidEnter(): void {
     this.adMobService.pushBanner();
     if (
       Array.isArray(this.lastFiveArticlesData) &&
@@ -50,16 +50,13 @@ export class HomePage implements OnInit, OnDestroy {
     if (Array.isArray(this.homePageData) && this.homePageData.length === 0) {
       this.getResumeData();
     }
-  }
-
-  public ngAfterViewInit(): void {
     this.backButtonSubscription = this.platform.backButton.subscribe(() => {
       /* eslint-disable dot-notation */
       navigator['app'].exitApp();
     });
   }
 
-  public ngOnDestroy(): void {
+  public ionViewDidLeave(): void {
     this.articlesSubscription.unsubscribe();
     this.backButtonSubscription.unsubscribe();
   }

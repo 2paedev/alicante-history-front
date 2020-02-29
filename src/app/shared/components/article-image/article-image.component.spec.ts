@@ -26,6 +26,8 @@ const HELPERS_SERVICE_MOCK = {
 };
 
 const STORAGE_SERVICE_MOCK = {
+  myLikedList$: of({}),
+  myList$: of({}),
   // eslint-disable-next-line no-empty-function
   addItemInList(): void {},
   // eslint-disable-next-line no-empty-function
@@ -33,6 +35,10 @@ const STORAGE_SERVICE_MOCK = {
   getStorageValue(): Promise<any> {
     return Promise.resolve(buildLastFiveFixture());
   },
+  // eslint-disable-next-line no-empty-function
+  updateMyList(): void {},
+  // eslint-disable-next-line no-empty-function
+  updateMyLikedList(): void {},
 };
 
 const ROUTER_MOCK = {

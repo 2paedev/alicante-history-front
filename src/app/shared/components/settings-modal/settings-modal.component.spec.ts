@@ -71,25 +71,16 @@ describe('SettingsModalComponent', () => {
     expect(title.nativeElement.innerText).toEqual('Política de privacidad');
   });
 
-  it('should show the privacy policy when click icon and is in closed state and default state', async (): Promise<
-    void
-  > => {
-    const { find, fixture } = await shallow.render();
-    fixture.detectChanges();
-    const text = find('.privacy-policy ion-button');
-    expect(text).toHaveFoundOne();
-  });
-
   it('should hide the privacy policy when click icon and is in opened state ', async (): Promise<
     void
   > => {
     const { find, fixture } = await shallow.render();
     fixture.detectChanges();
-    const iconCollapse = find('.privacy-policy ion-icon');
-    iconCollapse[1].nativeElement.click();
+    const iconCollapse = find('.privacy-policy .down');
+    iconCollapse[0].nativeElement.click();
     fixture.detectChanges();
     const text = find('.privacy-policy ion-button');
-    expect(text).not.toHaveFoundOne();
+    expect(text).toHaveFoundOne();
   });
 
   it('should open the privacy policy popover when click icon info', async (): Promise<
@@ -98,7 +89,7 @@ describe('SettingsModalComponent', () => {
     const { find, fixture, get } = await shallow.render();
     fixture.detectChanges();
     const popoverController = get(PopoverController);
-    const iconCollapse = find('.privacy-policy ion-icon');
+    const iconCollapse = find('.privacy-policy .info-icon');
     iconCollapse[0].nativeElement.click();
     expect(popoverController.create).toHaveBeenCalled();
   });
@@ -106,7 +97,11 @@ describe('SettingsModalComponent', () => {
   it('should go to privacy page when click in button', async (): Promise<
     void
   > => {
-    const { find } = await shallow.render();
+    const { find, fixture } = await shallow.render();
+    fixture.detectChanges();
+    const iconCollapse = find('.privacy-policy .down');
+    iconCollapse[0].nativeElement.click();
+    fixture.detectChanges();
     const buttonPrivacy = find('.privacy-policy ion-button');
     buttonPrivacy.nativeElement.click();
     expect(router.navigate).toHaveBeenCalledWith([ROUTE.PRIVACY_POLICY]);

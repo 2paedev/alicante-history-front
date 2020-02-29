@@ -13,7 +13,7 @@ const HELPERS_SERVICE_MOCK = {
 
 const STORAGE_SERVICE_MOCK = {
   // eslint-disable-next-line no-empty-function
-  removeItemInList(): void {},
+  removeItemInMyList(): void {},
 };
 
 const ROUTER_MOCK = {

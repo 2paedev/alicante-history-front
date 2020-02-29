@@ -109,8 +109,10 @@
         >
         <ion-item class="settings__contact--item"
           ><ion-icon color="tertiary" name="logo-twitter"></ion-icon
-          ><ion-label class="settings__contact--label"
-            >@historiadealicanteapp</ion-label
+          ><ion-label class="settings__contact--label">
+            <a href="twitter://twitter.com/historiadealic1"
+              >@historiadealic1</a
+            ></ion-label
           ></ion-item
         >
       </ion-list>
@@ -126,11 +128,13 @@
         Política de privacidad
         <ion-icon
           *ngIf="!privacyPolicyShowed"
+          class="down"
           name="chevron-down"
           (click)="togglePrivacyPolicy()"
         ></ion-icon>
         <ion-icon
           *ngIf="privacyPolicyShowed"
+          class="up"
           name="chevron-up"
           (click)="togglePrivacyPolicy()"
         ></ion-icon>
