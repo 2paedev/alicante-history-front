@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { Article, ArticlePage } from '@models/index';
-import { ArticlesService } from '@services/index';
+import { ERRORS } from '@constants/index';
+import { ArticlePage } from '@models/index';
+import { ArticlesService, ToastService } from '@services/index';
 
 @Component({
   selector: 'app-articles-set',
@@ -10,11 +11,13 @@ import { ArticlesService } from '@services/index';
 export class ArticlesSetComponent {
   @Input() public title: string;
   @Input() public data: ArticlePage;
-  @Input() public results: Article[];
 
   public noDataText = 'Sin artículos';
 
-  constructor(private readonly articlesService: ArticlesService) {}
+  constructor(
+    private readonly articlesService: ArticlesService,
+    private readonly toastService: ToastService
+  ) {}
 
   public loadData(event: any): void {
     const loadEvent = event;
@@ -34,7 +37,8 @@ export class ArticlesSetComponent {
         this.data = this.assembleNewPageData(response);
       },
       () => {
-        // error
+        this.toastService.presentToastError(ERRORS.MESSAGES.ALL_ARTICLES);
+        throw new Error(ERRORS.MESSAGES.ALL_ARTICLES);
       }
     );
   }
@@ -42,7 +46,6 @@ export class ArticlesSetComponent {
   private assembleNewPageData(newData: ArticlePage): ArticlePage {
     const formattedData = newData;
     formattedData.results = [...this.data.results, ...newData.results];
-    this.results = formattedData.results;
     return formattedData;
   }
 }

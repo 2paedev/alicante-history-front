@@ -5,8 +5,8 @@ import { CustomPost, User } from '@models/index';
 import { StorageService, UserService } from '@services/index';
 import { Observable, of } from 'rxjs';
 import { Shallow } from 'shallow-render';
-import { ModalControllerMock } from '../../mocks/ionic-services.mocks';
 import { SharedModule } from '../../shared.module';
+import { ModalControllerMock } from '../../testing/mocks/ionic-services.mocks';
 import { SettingsModalComponent } from './settings-modal.component';
 
 const STORAGE_SERVICE_MOCK = {

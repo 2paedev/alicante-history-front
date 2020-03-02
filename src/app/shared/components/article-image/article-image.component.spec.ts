@@ -1,77 +1,159 @@
 import { Router } from '@angular/router';
+import { ToastService } from '@services/index';
 import {
-  ArticlesService,
-  HelpersService,
-  StorageService,
-} from '@services/index';
-import { Observable, of } from 'rxjs';
-import { Shallow } from 'shallow-render';
-import { buildLastFiveFixture } from '../../fixtures/resume';
-import { SharedModule } from '../../shared.module';
-import { ArticleImageComponent } from './article-image.component';
-
-const ARTICLES_SERVICE_MOCK = {
-  setLike(): Observable<any> {
-    return of({});
-  },
-  removeLike(): Observable<any> {
-    return of({});
-  },
-};
-
-const HELPERS_SERVICE_MOCK = {
-  getImageUrl(): string {
-    return 'aFakeUrl';
-  },
-};
-
-const STORAGE_SERVICE_MOCK = {
-  myLikedList$: of({}),
-  myList$: of({}),
-  // eslint-disable-next-line no-empty-function
-  addItemInList(): void {},
-  // eslint-disable-next-line no-empty-function
-  removeItemInList(): void {},
-  getStorageValue(): Promise<any> {
-    return Promise.resolve(buildLastFiveFixture());
-  },
-  // eslint-disable-next-line no-empty-function
-  updateMyList(): void {},
-  // eslint-disable-next-line no-empty-function
-  updateMyLikedList(): void {},
-};
-
-const ROUTER_MOCK = {
-  navigate: jasmine.createSpy('navigate'),
-  events: of({}),
-};
-
-function buildBind(): any {
-  return {
-    showReadIcon: false,
-    image: 'aFakeImage',
-    title: 'theTitle',
-    tags: [],
-    data: {
-      id: 1,
-    },
-  };
-}
+  buildBindWithReadButton,
+  searchSetupWithErrorsWhenAddLike,
+  searchSetupWithErrorsWhenRemoveLike,
+  searchSetupWithoutErrorsInArticles,
+} from '@testing/index';
 
 describe('ArticleImageComponent', () => {
-  let shallow: Shallow<ArticleImageComponent>;
-
-  beforeEach((): void => {
-    shallow = new Shallow(ArticleImageComponent, SharedModule)
-      .provide(ArticlesService, StorageService, HelpersService, Router)
-      .mock(ArticlesService, ARTICLES_SERVICE_MOCK)
-      .mock(HelpersService, HELPERS_SERVICE_MOCK)
-      .mock(StorageService, STORAGE_SERVICE_MOCK)
-      .mock(Router, ROUTER_MOCK);
-  });
-
   it('should create', async (): Promise<void> => {
-    const { element } = await shallow.render({ bind: buildBind() });
+    const { shallow } = searchSetupWithoutErrorsInArticles();
+    const { element } = await shallow.render({
+      bind: buildBindWithReadButton(),
+    });
     expect(element).toBeTruthy();
   });
+
+  it('should render an image', async (): Promise<void> => {
+    const { shallow } = searchSetupWithoutErrorsInArticles();
+    const { find } = await shallow.render({ bind: buildBindWithReadButton() });
+    const image = find('.card__image');
+    expect(image).toHaveFoundOne();
+  });
+
+  it('should render the correct title', async (): Promise<void> => {
+    const { shallow } = searchSetupWithoutErrorsInArticles();
+    const { find } = await shallow.render({ bind: buildBindWithReadButton() });
+    const title = find('.card__title');
+    expect(title).toHaveFoundOne();
+    expect(title.nativeElement.innerText).toEqual('theTitle');
+  });
+
+  it('should render the tags component', async (): Promise<void> => {
+    const { shallow } = searchSetupWithoutErrorsInArticles();
+    const { find } = await shallow.render({ bind: buildBindWithReadButton() });
+    const tags = find('app-tags-list');
+    expect(tags).toHaveFoundOne();
+  });
+
+  it('should change star icon when click under him', async (): Promise<
+    void
+  > => {
+    const { shallow } = searchSetupWithoutErrorsInArticles();
+    const { find, fixture } = await shallow.render({
+      bind: buildBindWithReadButton(),
+    });
+    const starButton = find('.card__buttons--star');
+    const starIcon = find('.card__buttons--star ion-icon');
+    expect(starIcon.nativeElement.getAttribute('name')).toEqual('star-outline');
+    starButton.nativeElement.click();
+    fixture.detectChanges();
+    const otherIcon = find('.card__buttons--star ion-icon');
+    expect(otherIcon.nativeElement.getAttribute('name')).toEqual('star');
+  });
+
+  it('should change like icon when click under him', async (): Promise<
+    void
+  > => {
+    const { shallow } = searchSetupWithoutErrorsInArticles();
+    const { find, fixture } = await shallow.render({
+      bind: buildBindWithReadButton(),
+    });
+    const likeButton = find('.card__buttons--like');
+    const likeIcon = find('.card__buttons--like ion-icon');
+    expect(likeIcon.nativeElement.getAttribute('name')).toEqual(
+      'heart-dislike'
+    );
+    likeButton.nativeElement.click();
+    fixture.detectChanges();
+    const otherIcon = find('.card__buttons--like ion-icon');
+    expect(otherIcon.nativeElement.getAttribute('name')).toEqual('heart');
+  });
+
+  it('should change like icon when is activated', async (): Promise<void> => {
+    const { shallow } = searchSetupWithoutErrorsInArticles();
+    const { find, fixture, instance } = await shallow.render({
+      bind: buildBindWithReadButton(),
+    });
+    instance.isLiked = true;
+    fixture.detectChanges();
+    const likeButton = find('.card__buttons--like');
+    const likeIcon = find('.card__buttons--like ion-icon');
+    expect(likeIcon.nativeElement.getAttribute('name')).toEqual('heart');
+    likeButton.nativeElement.click();
+    fixture.detectChanges();
+    const otherIcon = find('.card__buttons--like ion-icon');
+    expect(otherIcon.nativeElement.getAttribute('name')).toEqual(
+      'heart-dislike'
+    );
+  });
+
+  it('should go to article when click in read button', async (): Promise<
+    void
+  > => {
+    const { shallow } = searchSetupWithoutErrorsInArticles();
+    const { find, fixture, get } = await shallow.render({
+      bind: buildBindWithReadButton(),
+    });
+    const router = get(Router);
+    const readButton = find('.card__buttons--read');
+    readButton.nativeElement.click();
+    fixture.detectChanges();
+    expect(router.navigate).toHaveBeenCalledWith(['article/1']);
+  });
+
+  it('should not appear the read button', async (): Promise<void> => {
+    const { shallow } = searchSetupWithoutErrorsInArticles();
+    const { find } = await shallow.render({
+      bind: { ...buildBindWithReadButton(), showReadIcon: false },
+    });
+    const readButton = find('.card__buttons--read');
+    expect(readButton).toHaveFound(0);
+  });
+
+  it('should unsubscribe when destroy the page', async (): Promise<void> => {
+    const { shallow } = searchSetupWithoutErrorsInArticles();
+    const { instance } = await shallow.render({
+      bind: buildBindWithReadButton(),
+    });
+    spyOn(instance.myListSubscription, 'unsubscribe').and.callThrough();
+    spyOn(instance.myLikedListSubscription, 'unsubscribe').and.callThrough();
+    instance.ngOnDestroy();
+    expect(instance.myListSubscription.unsubscribe).toHaveBeenCalled();
+    expect(instance.myLikedListSubscription.unsubscribe).toHaveBeenCalled();
+  });
+
+  it('should present toast error when addLike observable fail', async (): Promise<
+    void
+  > => {
+    const { shallow } = searchSetupWithErrorsWhenAddLike();
+    const { find, fixture, get } = await shallow.render({
+      bind: buildBindWithReadButton(),
+    });
+    const likeButton = find('.card__buttons--like');
+    likeButton.nativeElement.click();
+    fixture.detectChanges();
+    const toast = get(ToastService);
+    expect(toast.presentToastError).toHaveBeenCalled();
+  });
+
+  it('should present toast error when removeLike observable fail', async (): Promise<
+    void
+  > => {
+    const { shallow } = searchSetupWithErrorsWhenRemoveLike();
+    const { find, fixture, get } = await shallow.render({
+      bind: buildBindWithReadButton(),
+    });
+    const likeButton = find('.card__buttons--like');
+    likeButton.nativeElement.click();
+    fixture.detectChanges();
+    const otherButton = find('.card__buttons--like');
+    otherButton.nativeElement.click();
+    const toast = get(ToastService);
+    expect(toast.presentToastError).toHaveBeenCalled();
+  });
+
+  // Testear el metodo getColorClass y ver como cambia
 });

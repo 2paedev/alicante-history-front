@@ -27,8 +27,8 @@ export class ArticleImageComponent implements OnInit, OnDestroy {
   public isLiked: boolean;
   public imageUrl;
 
-  private myListSubscription: Subscription;
-  private myLikedListSubscription: Subscription;
+  public myListSubscription: Subscription;
+  public myLikedListSubscription: Subscription;
 
   constructor(
     private readonly router: Router,
@@ -53,18 +53,14 @@ export class ArticleImageComponent implements OnInit, OnDestroy {
           (article: Article) => article.id === this.data.id
         );
       });
-    this.assembleDataCard();
   }
 
   public ngOnInit(): void {
-    this.assembleImage();
+    this.getDataForComponent();
   }
 
-  private assembleImage(): void {
+  private getDataForComponent(): void {
     this.imageUrl = this.helper.getImageUrl(this.image);
-  }
-
-  private assembleDataCard(): void {
     this.storageService.getStorageValue(STORAGE_KEY.MY_LIST).then(value => {
       this.storageService.updateMyList(value);
     });

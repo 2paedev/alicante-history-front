@@ -17,7 +17,8 @@
       "@models/*": ["src/app/shared/models/*"],
       "@services/*": ["src/app/shared/services/*"],
       "@constants/*": ["src/app/shared/constants/*"],
-      "@components/*": ["src/app/shared/components/*"]
+      "@components/*": ["src/app/shared/components/*"],
+      "@testing/*": ["src/app/shared/testing/*"]
     }
   },
   "angularCompilerOptions": {

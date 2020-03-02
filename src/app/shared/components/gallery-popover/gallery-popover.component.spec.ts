@@ -1,8 +1,8 @@
 import { ModalController } from '@ionic/angular';
 import { HelpersService } from '@services/index';
 import { Shallow } from 'shallow-render';
-import { ModalControllerMock } from '../../mocks/ionic-services.mocks';
 import { SharedModule } from '../../shared.module';
+import { ModalControllerMock } from '../../testing/mocks/ionic-services.mocks';
 import { GalleryPopoverComponent } from './gallery-popover.component';
 
 const HELPERS_SERVICE_MOCK = {

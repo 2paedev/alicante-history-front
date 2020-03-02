@@ -1,30 +1,37 @@
 import { ArticlesService } from '@services/index';
-import { of } from 'rxjs';
+import { ARTICLES_SERVICE_MOCK } from '@testing/index';
 import { Shallow } from 'shallow-render';
-import { buildArticlePageFixture } from 'src/app/shared/fixtures/articles';
 import { SearchPageModule } from './search.module';
 import { SearchPage } from './search.page';
 
-const ARTICLES_SERVICE_MOCK = {
-  articles$: of(buildArticlePageFixture()),
-};
+function searchSetupWithoutErrorsInArticles(): {
+  shallow: Shallow<SearchPage>;
+} {
+  const shallow = new Shallow(SearchPage, SearchPageModule)
+    .provide(ArticlesService)
+    .mock(ArticlesService, ARTICLES_SERVICE_MOCK);
+  return { shallow };
+}
 
 describe('SearchPage', () => {
-  let shallow: Shallow<SearchPage>;
-
-  beforeEach((): void => {
-    shallow = new Shallow(SearchPage, SearchPageModule)
-      .provide(ArticlesService)
-      .mock(ArticlesService, ARTICLES_SERVICE_MOCK);
-  });
-
   it('should create', async (): Promise<void> => {
+    const { shallow } = searchSetupWithoutErrorsInArticles();
     const { element } = await shallow.render();
     expect(element).toBeTruthy();
   });
 
   it('should render a searchbar', async (): Promise<void> => {
+    const { shallow } = searchSetupWithoutErrorsInArticles();
     const { find } = await shallow.render();
     expect(find('ion-searchbar')).toHaveFoundOne();
+  });
+
+  it('should unsubscribe when leave the page', async (): Promise<void> => {
+    const { shallow } = searchSetupWithoutErrorsInArticles();
+    const { instance } = await shallow.render();
+    instance.ionViewDidEnter();
+    spyOn(instance.articlesSubscription, 'unsubscribe').and.callThrough();
+    instance.ionViewDidLeave();
+    expect(instance.articlesSubscription.unsubscribe).toHaveBeenCalled();
   });
 });

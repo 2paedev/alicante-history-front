@@ -6,7 +6,7 @@ import { AdMobService, ArticlesService } from '@services/index';
 import { Observable, of } from 'rxjs';
 import { Shallow } from 'shallow-render';
 import { buildArticleDetailFixture } from 'src/app/shared/fixtures/articles';
-import { ModalControllerMock } from 'src/app/shared/mocks/ionic-services.mocks';
+import { ModalControllerMock } from 'src/app/shared/testing/mocks/ionic-services.mocks';
 import { ArticleDetailPageModule } from './article-detail.module';
 import { ArticleDetailPage } from './article-detail.page';
 

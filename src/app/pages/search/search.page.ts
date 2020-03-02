@@ -1,7 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ERRORS } from '@constants/index';
-import { Article, ArticlePage } from '@models/index';
+import { ArticlePage } from '@models/index';
 import { ArticlesService, ToastService } from '@services/index';
 import { Subscription } from 'rxjs';
 import { debounceTime, filter } from 'rxjs/operators';
@@ -11,14 +11,12 @@ import { debounceTime, filter } from 'rxjs/operators';
   templateUrl: 'search.page.html',
   styleUrls: ['search.page.scss'],
 })
-export class SearchPage implements OnInit, OnDestroy {
+export class SearchPage {
   public searchData: ArticlePage;
-  public results: Article[];
   public searchControl: FormControl;
-  public items: any;
   public searching = false;
 
-  private articlesSubscription: Subscription;
+  public articlesSubscription: Subscription;
 
   constructor(
     private readonly articlesService: ArticlesService,
@@ -27,14 +25,18 @@ export class SearchPage implements OnInit, OnDestroy {
     this.searchControl = new FormControl();
     this.articlesSubscription = this.articlesService.articles$
       .pipe(filter((articles: ArticlePage): boolean => !!articles))
-      .subscribe((articles: ArticlePage): void => {
-        this.searchData = articles;
-        this.results = this.searchData.results;
-      });
+      .subscribe(
+        (articles: ArticlePage): void => {
+          this.searchData = articles;
+        },
+        () => {
+          this.toastService.presentToastError(ERRORS.MESSAGES.ALL_ARTICLES);
+          throw new Error(ERRORS.MESSAGES.ALL_ARTICLES);
+        }
+      );
   }
 
-  public ngOnInit(): void {
-    // this.setFilteredItems("");
+  public ionViewDidEnter(): void {
     this.searchControl.valueChanges
       .pipe(debounceTime(700))
       .subscribe(search => {
@@ -42,12 +44,8 @@ export class SearchPage implements OnInit, OnDestroy {
         this.setFilteredItems(search);
       });
     if (!this.searchData) {
-      this.getAllArticles();
+      this.articlesService.getAll().subscribe();
     }
-  }
-
-  public ngOnDestroy(): void {
-    this.articlesSubscription.unsubscribe();
   }
 
   public onSearchInput(): void {
@@ -55,22 +53,13 @@ export class SearchPage implements OnInit, OnDestroy {
   }
 
   public setFilteredItems(searchTerm: string): void {
-    this.results = this.articlesService.filterArticles(
+    this.searchData.results = this.articlesService.filterArticles(
       searchTerm,
       this.searchData.results
     );
   }
 
-  private getAllArticles(): void {
-    this.articlesService.getAll().subscribe(
-      (response: ArticlePage) => {
-        this.searchData = response;
-        this.results = this.searchData.results;
-      },
-      () => {
-        this.toastService.presentToastError(ERRORS.MESSAGES.ALL_ARTICLES);
-        throw new Error(ERRORS.MESSAGES.ALL_ARTICLES);
-      }
-    );
+  public ionViewDidLeave(): void {
+    this.articlesSubscription.unsubscribe();
   }
 }

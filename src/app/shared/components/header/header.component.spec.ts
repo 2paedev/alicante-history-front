@@ -1,11 +1,11 @@
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { Shallow } from 'shallow-render';
+import { SharedModule } from '../../shared.module';
 import {
   ModalControllerMock,
   RouterMock,
-} from '../../mocks/ionic-services.mocks';
-import { SharedModule } from '../../shared.module';
+} from '../../testing/mocks/ionic-services.mocks';
 import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {

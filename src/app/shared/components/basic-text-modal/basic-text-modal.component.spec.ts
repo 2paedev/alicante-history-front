@@ -1,7 +1,7 @@
 import { ModalController } from '@ionic/angular';
 import { Shallow } from 'shallow-render';
-import { ModalControllerMock } from '../../mocks/ionic-services.mocks';
 import { SharedModule } from '../../shared.module';
+import { ModalControllerMock } from '../../testing/mocks/ionic-services.mocks';
 import { BasicTextModalComponent } from './basic-text-modal.component';
 
 const bindWithoutImage = {

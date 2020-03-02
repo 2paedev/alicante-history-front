@@ -13,6 +13,7 @@
     <ion-button
       *ngIf="!isAddedInMyList"
       color="secondary"
+      class="card__buttons--star"
       fill="clear"
       (click)="addToMyList()"
     >
@@ -24,6 +25,7 @@
     <ion-button
       *ngIf="isAddedInMyList"
       color="secondary"
+      class="card__buttons--star"
       fill="clear"
       (click)="removeToMyList()"
     >
@@ -33,18 +35,22 @@
         color="warning"
       ></ion-icon>
     </ion-button>
+
     <ion-button
       *ngIf="showReadIcon"
       color="secondary"
+      class="card__buttons--read"
       fill="solid"
       (click)="goToArticle(data)"
     >
       <ion-icon class="read" slot="start" name="book-outline"></ion-icon>
       Leer
     </ion-button>
+
     <ion-button
       *ngIf="!isLiked"
       color="secondary"
+      class="card__buttons--like"
       fill="clear"
       (click)="addLike()"
     >
@@ -53,6 +59,7 @@
     <ion-button
       *ngIf="isLiked"
       color="secondary"
+      class="card__buttons--like"
       fill="clear"
       (click)="removeLike()"
     >

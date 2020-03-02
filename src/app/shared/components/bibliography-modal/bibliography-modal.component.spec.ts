@@ -1,7 +1,7 @@
 import { ModalController } from '@ionic/angular';
 import { Shallow } from 'shallow-render';
-import { ModalControllerMock } from '../../mocks/ionic-services.mocks';
 import { SharedModule } from '../../shared.module';
+import { ModalControllerMock } from '../../testing/mocks/ionic-services.mocks';
 import { BibliographyModalComponent } from './bibliography-modal.component';
 
 const bibliographyData = ['enlace 1', 'enlace 2'];

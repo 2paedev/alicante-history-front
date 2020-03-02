@@ -1,11 +1,11 @@
 import { ModalController, NavParams } from '@ionic/angular';
 import { HelpersService } from '@services/index';
 import { Shallow } from 'shallow-render';
+import { SharedModule } from '../../shared.module';
 import {
   ModalControllerMock,
   NavParamsMock,
-} from '../../mocks/ionic-services.mocks';
-import { SharedModule } from '../../shared.module';
+} from '../../testing/mocks/ionic-services.mocks';
 import { ImageModalComponent } from './image-modal.component';
 
 const HELPERS_SERVICE_MOCK = {

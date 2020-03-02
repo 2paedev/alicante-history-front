@@ -4,11 +4,11 @@
       <ion-title class="articles-set__title">{{ title }}</ion-title>
     </ion-col>
   </ion-row>
-  <ion-row *ngIf="data && results">
+  <ion-row *ngIf="data && data.results">
     <ion-col>
       <ion-list class="articles-set__content">
         <app-avatar-card
-          *ngFor="let article of results"
+          *ngFor="let article of data.results"
           [data]="article"
           [showRemove]="false"
         ></app-avatar-card>
