@@ -15,7 +15,7 @@
     <ion-row>
       <ion-col>
         <app-articles-set
-          *ngIf="searchData && results"
+          *ngIf="searchData && searchData.results"
           title="Historias encontradas"
           [data]="searchData"
           noDataText="No hay historias actualmente."
