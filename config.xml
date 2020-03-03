@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.twopaeapps.historiadealicante" version="1.1.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.twopaeapps.historiadealicante" version="1.1.1" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Historia de Alicante</name>
     <description>Conoce la historia de la provincia de Alicante</description>
     <author email="historiadealicante@gmail.com" href="">Historia de Alicante</author>
@@ -44,6 +44,16 @@
         <splash density="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
         <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
+        <resource-file src="resources/fcm-push-icons/drawable-xhdpi/fcm_push_icon.png" target="app/src/main/res/drawable/fcm_push_icon.png" />
+        <resource-file src="resources/fcm-push-icons/drawable-hdpi/fcm_push_icon.png" target="platforms/android/res/drawable-hdpi/fcm_push_icon.png" />
+        <resource-file src="resources/fcm-push-icons/drawable-mdpi/fcm_push_icon.png" target="platforms/android/res/drawable-mdpi/fcm_push_icon.png" />
+        <resource-file src="resources/fcm-push-icons/drawable-xhdpi/fcm_push_icon.png" target="platforms/android/res/drawable-xhdpi/fcm_push_icon.png" />
+        <resource-file src="resources/fcm-push-icons/drawable-xxhdpi/fcm_push_icon.png" target="platforms/android/res/drawable-xxhdpi/fcm_push_icon.png" />
+        <resource-file src="resources/fcm-push-icons/drawable-xxxhdpi/fcm_push_icon.png" target="platforms/android/res/drawable-xxxhdpi/fcm_push_icon.png" />
+        <resource-file src="colors-notifications.xml" target="app/src/main/res/values/colors.xml" />
+        <config-file parent="/manifest/application/" target="app/src/main/AndroidManifest.xml">
+            <meta-data android:name="com.google.firebase.messaging.default_notification_color" android:resource="@color/colorPrimary" />
+        </config-file>
     </platform>
     <plugin name="cordova-plugin-whitelist" spec="1.3.3" />
     <plugin name="cordova-plugin-statusbar" spec="2.4.2" />
@@ -51,4 +61,5 @@
     <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^4.0.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
+    <allow-navigation href="http://localhost:8100" sessionid="296f46ec" />
 </widget>
