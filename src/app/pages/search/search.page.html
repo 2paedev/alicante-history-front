@@ -4,21 +4,16 @@
       <ion-col class="search__bar" class="ion-no-padding">
         <ion-searchbar
           [formControl]="searchControl"
-          (ionChange)="onSearchInput()"
           placeholder="¿Qué quieres buscar?"
         ></ion-searchbar>
-        <div *ngIf="searching" class="spinner-container ion-no-padding">
-          <ion-spinner></ion-spinner>
-        </div>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row class="search__list">
       <ion-col>
         <app-articles-set
-          *ngIf="searchData && searchData.results"
           title="Historias encontradas"
           [data]="searchData"
-          noDataText="No hay historias actualmente."
+          noDataText="Sin coincidencias"
         ></app-articles-set>
       </ion-col>
     </ion-row>

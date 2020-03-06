@@ -11,8 +11,7 @@ import { ArticlesService, ToastService } from '@services/index';
 export class ArticlesSetComponent {
   @Input() public title: string;
   @Input() public data: ArticlePage;
-
-  public noDataText = 'Sin artículos';
+  @Input() public noDataText: string;
 
   constructor(
     private readonly articlesService: ArticlesService,

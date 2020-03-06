@@ -4,7 +4,7 @@
   ion-grid {
     @include aligns(center, flex-start, column);
     height: 100vh;
-    margin-top: 4rem;
+    margin-top: 6rem;
   }
 
   &__bar {
@@ -16,5 +16,9 @@
   ion-searchbar {
     --background: var(--ion-color-secondary-shade);
     --color: var(--ion-color-primary-shade);
+  }
+
+  &__list {
+    margin-top: 2rem;
   }
 }

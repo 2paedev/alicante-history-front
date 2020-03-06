@@ -13,9 +13,11 @@
           [showRemove]="false"
         ></app-avatar-card>
       </ion-list>
-      <ion-label *ngIf="!data.results" class="articles-set__warning">{{
-        noDataText
-      }}</ion-label>
+      <ion-label
+        *ngIf="!data.results || data.results.length == 0"
+        class="articles-set__warning"
+        >{{ noDataText }}</ion-label
+      >
     </ion-col>
   </ion-row>
   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
