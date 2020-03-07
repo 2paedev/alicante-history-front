@@ -2,7 +2,6 @@ import { ArticlesService } from '@services/index';
 import { ARTICLES_SERVICE_MOCK } from '@testing/index';
 import { Shallow } from 'shallow-render';
 import { buildArticlePageFixture } from '../../fixtures/articles';
-import { buildLastFiveFixture } from '../../fixtures/resume';
 import { SharedModule } from '../../shared.module';
 import { ArticlesSetComponent } from './articles-set.component';
 
@@ -18,20 +17,23 @@ function searchSetupWithoutErrorsInArticles(): {
 function buildBindWithoutData(): any {
   return {
     title: 'theTitle',
-    results: [],
-    data: {},
+    data: {
+      next: null,
+      results: [],
+    },
+    noDataText: 'Without articles',
   };
 }
 
 function buildBindWithData(): any {
   return {
     title: 'theTitle',
-    results: buildLastFiveFixture(),
     data: buildArticlePageFixture(),
+    noDataText: 'Without articles',
   };
 }
 
-fdescribe('ArticlesSetComponent', () => {
+describe('ArticlesSetComponent', () => {
   it('should create', async (): Promise<void> => {
     const { shallow } = searchSetupWithoutErrorsInArticles();
     const { element } = await shallow.render();
@@ -46,36 +48,23 @@ fdescribe('ArticlesSetComponent', () => {
     expect(title.nativeElement.innerText).toEqual('theTitle');
   });
 
-  it('should render the avatar-card when there are content', async (): Promise<
-    void
-  > => {
+  it('should render cards when there are content', async (): Promise<void> => {
     const { shallow } = searchSetupWithoutErrorsInArticles();
     const { find } = await shallow.render({ bind: buildBindWithData() });
     const avatarCardItems = find('app-avatar-card');
-    expect(avatarCardItems).toHaveFound(5);
+    expect(avatarCardItems).toHaveFound(2);
   });
 
-  it('should message noData when there is not data', async (): Promise<
+  it('should show a message when there is not data', async (): Promise<
     void
   > => {
     const { shallow } = searchSetupWithoutErrorsInArticles();
-    const { find, instance, fixture } = await shallow.render({
+    const { find, fixture } = await shallow.render({
       bind: buildBindWithoutData(),
     });
     const noDataText = find('.articles-set__warning');
-    instance.noDataText = 'No data';
     fixture.detectChanges();
     expect(noDataText).toHaveFoundOne();
-    expect(noDataText.nativeElement.innerText).toEqual('No data');
-  });
-
-  it('should load data when doing scroll', async (): Promise<void> => {
-    const EXPECTED_PAGE = '2';
-    const { shallow } = searchSetupWithoutErrorsInArticles();
-    const { find, get, instance } = await shallow.render();
-    // instance.ionViewDidEnter();
-
-    find('ion-infinite-scroll').triggerEventHandler('ionInfinite', {});
-    expect(get(ArticlesService).getAll).toHaveBeenCalledWith(EXPECTED_PAGE);
+    expect(noDataText.nativeElement.innerText).toEqual('Without articles');
   });
 });

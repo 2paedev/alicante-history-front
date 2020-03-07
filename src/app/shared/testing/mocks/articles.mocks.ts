@@ -27,6 +27,13 @@ export const ARTICLES_SERVICE_MOCK = {
   },
 };
 
+export const ARTICLES_SERVICE_ERRORS_MOCK = {
+  articles$: throwError(''),
+  getAll(): Observable<ArticlePage> {
+    return of(buildArticlePageFixture());
+  },
+};
+
 export const ARTICLES_ADD_LIKE_ERROR_MOCK = {
   lastFive$: throwError(''),
   resume$: of(buildResumeFixture()),

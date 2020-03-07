@@ -41,9 +41,6 @@ export class SearchPage {
     this.searchControl.valueChanges.subscribe(search => {
       this.setFilteredItems(search);
     });
-    if (!this.searchData) {
-      this.articlesService.getAll().subscribe();
-    }
   }
 
   public setFilteredItems(searchTerm: string): void {

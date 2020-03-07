@@ -38,10 +38,10 @@ export function searchSetupWithoutErrorsInArticles(): {
 } {
   const shallow = new Shallow(ArticleImageComponent, SharedModule)
     .provide(ArticlesService, StorageService, HelpersService, Router)
-    .mock(ArticlesService, ARTICLES_SERVICE_MOCK)
-    .mock(HelpersService, HELPERS_SERVICE_MOCK)
-    .mock(StorageService, STORAGE_SERVICE_MOCK)
-    .mock(Router, RouterMock);
+    .mock(ArticlesService, { ...ARTICLES_SERVICE_MOCK })
+    .mock(HelpersService, { ...HELPERS_SERVICE_MOCK })
+    .mock(StorageService, { ...STORAGE_SERVICE_MOCK })
+    .mock(Router, { ...RouterMock });
   return { shallow };
 }
 
@@ -50,11 +50,11 @@ export function searchSetupWithErrorsWhenAddLike(): {
 } {
   const shallow = new Shallow(ArticleImageComponent, SharedModule)
     .provide(ArticlesService, StorageService, HelpersService, Router)
-    .mock(ArticlesService, ARTICLES_ADD_LIKE_ERROR_MOCK)
-    .mock(HelpersService, HELPERS_SERVICE_MOCK)
-    .mock(StorageService, STORAGE_SERVICE_MOCK)
-    .mock(ToastService, TOAST_SERVICE_MOCK)
-    .mock(Router, RouterMock);
+    .mock(ArticlesService, { ...ARTICLES_ADD_LIKE_ERROR_MOCK })
+    .mock(HelpersService, { ...HELPERS_SERVICE_MOCK })
+    .mock(StorageService, { ...STORAGE_SERVICE_MOCK })
+    .mock(ToastService, { ...TOAST_SERVICE_MOCK })
+    .mock(Router, { ...RouterMock });
   return { shallow };
 }
 
@@ -63,10 +63,10 @@ export function searchSetupWithErrorsWhenRemoveLike(): {
 } {
   const shallow = new Shallow(ArticleImageComponent, SharedModule)
     .provide(ArticlesService, StorageService, HelpersService, Router)
-    .mock(ArticlesService, ARTICLES_REMOVE_LIKE_ERROR_MOCK)
-    .mock(HelpersService, HELPERS_SERVICE_MOCK)
-    .mock(StorageService, STORAGE_SERVICE_MOCK)
-    .mock(ToastService, TOAST_SERVICE_MOCK)
-    .mock(Router, RouterMock);
+    .mock(ArticlesService, { ...ARTICLES_REMOVE_LIKE_ERROR_MOCK })
+    .mock(HelpersService, { ...HELPERS_SERVICE_MOCK })
+    .mock(StorageService, { ...STORAGE_SERVICE_MOCK })
+    .mock(ToastService, { ...TOAST_SERVICE_MOCK })
+    .mock(Router, { ...RouterMock });
   return { shallow };
 }

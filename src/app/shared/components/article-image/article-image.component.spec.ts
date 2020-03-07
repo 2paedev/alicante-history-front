@@ -125,7 +125,7 @@ describe('ArticleImageComponent', () => {
     expect(instance.myLikedListSubscription.unsubscribe).toHaveBeenCalled();
   });
 
-  it('should present toast error when addLike observable fail', async (): Promise<
+  xit('should present toast error when addLike observable fail', async (): Promise<
     void
   > => {
     const { shallow } = searchSetupWithErrorsWhenAddLike();
@@ -139,7 +139,7 @@ describe('ArticleImageComponent', () => {
     expect(toast.presentToastError).toHaveBeenCalled();
   });
 
-  it('should present toast error when removeLike observable fail', async (): Promise<
+  xit('should present toast error when removeLike observable fail', async (): Promise<
     void
   > => {
     const { shallow } = searchSetupWithErrorsWhenRemoveLike();
