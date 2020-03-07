@@ -28,6 +28,7 @@ export class AppComponent {
       this.storage
         .getStorageValue(STORAGE_KEY.NOTIFICATIONS)
         .then((isChecked: boolean) => {
+          debugger;
           if (!isChecked) {
             this.fcmService.saveToken();
           }

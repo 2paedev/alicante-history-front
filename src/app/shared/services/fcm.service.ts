@@ -24,23 +24,24 @@ export class FCMService {
 
   public saveToken(): void {
     this.fcm.getToken().then((token: string) => {
-      console.log(token);
       this.saveTokenInBBDD(this.device.uuid, { token }).subscribe();
     });
   }
 
   private saveTokenInBBDD(
-    idDevice: string,
+    deviceId: string,
     bodyParams: any
   ): Observable<CustomPost> {
     return this.http.put<any>(
-      `${API_ROUTE.FCM.TOKEN(idDevice)}`,
+      `${API_ROUTE.FCM.TOKEN_DETAIL(deviceId)}`,
       bodyParams,
       this.httpOptions
     );
   }
 
   public removeNotificationSubscription(): Observable<CustomPost> {
-    return this.http.delete<any>(`${API_ROUTE.FCM.TOKEN(this.device.uuid)}`);
+    return this.http.delete<any>(
+      `${API_ROUTE.FCM.TOKEN_DETAIL(this.device.uuid)}`
+    );
   }
 }

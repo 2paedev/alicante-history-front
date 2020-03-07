@@ -14,7 +14,7 @@
     "android:build:pro": "ionic cordova build --release android --configuration production",
     "android:run": "ionic cordova run android",
     "android:run:prod": "ionic cordova run android --configuration production",
-    "android:run:livereload": "ionic cordova run 'android' --livereload",
+    "android:run:livereload": "ionic cordova run android --livereload",
     "test": "ng test --watch=false --code-coverage",
     "test:watch": "ng test --code-coverage",
     "test:html": "ng test --karma-config='src/karma.conf.html.js'",
