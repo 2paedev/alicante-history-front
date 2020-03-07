@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "643493383937",
-    "firebase_url": "https://historia-de-alicante.firebaseio.com",
-    "project_id": "historia-de-alicante",
-    "storage_bucket": "historia-de-alicante.appspot.com"
+    "project_number": "69482533908",
+    "firebase_url": "https://historiadealicante-bb7f9.firebaseio.com",
+    "project_id": "historiadealicante-bb7f9",
+    "storage_bucket": "historiadealicante-bb7f9.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:643493383937:android:34dab2f0bac421cc49d500",
+        "mobilesdk_app_id": "1:69482533908:android:697c1a20f5267aa3ae4301",
         "android_client_info": {
-          "package_name": "com.twopaeapps.historiadealicante"
+          "package_name": "historia.de.alicante"
         }
       },
       "oauth_client": [
         {
-          "client_id": "643493383937-gcut9ucbit9n5suodbv0rg44itj5on1d.apps.googleusercontent.com",
+          "client_id": "69482533908-e95an1vfa4hmltchr0sreq75q6shsulb.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDIG4GaGy71BPw3oEscpNf9qGsiN_mONaY"
+          "current_key": "AIzaSyBdi48WHfdX7dNcyLeNI_owQpWm7hkxbI0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "643493383937-gcut9ucbit9n5suodbv0rg44itj5on1d.apps.googleusercontent.com",
+              "client_id": "69482533908-e95an1vfa4hmltchr0sreq75q6shsulb.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
