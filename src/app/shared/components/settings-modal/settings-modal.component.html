@@ -6,34 +6,34 @@
     <ion-title>Ajustes</ion-title>
   </ion-card-header>
   <ion-card-content>
-    <section class="settings__item">
+    <section class="settings__item read-mode">
       <ion-label class="settings__item--label">
         <ion-icon
           class="info-icon"
           name="information-circle-outline"
-          (click)="presentReadModeInfoPopover($event)"
+          (click)="presentPopover($event, 'readMode')"
         ></ion-icon>
         Modo de lectura
         <ion-icon
-          *ngIf="!readModeShowed"
+          *ngIf="!popoverShowed.readMode"
           name="chevron-down"
-          (click)="toggleReadMode()"
+          (click)="popoverShowed.readMode = !popoverShowed.readMode"
         ></ion-icon>
         <ion-icon
-          *ngIf="readModeShowed"
+          *ngIf="popoverShowed.readMode"
           name="chevron-up"
-          (click)="toggleReadMode()"
+          (click)="popoverShowed.readMode = !popoverShowed.readMode"
         ></ion-icon>
       </ion-label>
       <app-text-popover
-        *ngIf="readModeShowed"
+        *ngIf="popoverShowed.readMode"
         class="settings__item--options"
         [checkedColorValue]="checkedColorValue"
         [checkedSizeValue]="checkedSizeValue"
       ></app-text-popover>
     </section>
 
-    <section class="settings__item mail" *ngIf="false">
+    <!-- <section class="settings__item mail" *ngIf="false">
       <ion-label class="settings__item--label">
         <ion-icon
           class="info-icon"
@@ -79,28 +79,28 @@
         <ion-icon color="success" name="cloud-done" size="large"></ion-icon>
         <ion-label class="mail--text">Email ya enviado.</ion-label>
       </section>
-    </section>
+    </section> -->
 
-    <section class="settings__item">
+    <section class="settings__item contact">
       <ion-label class="settings__item--label">
         <ion-icon
           class="info-icon"
           name="information-circle-outline"
-          (click)="presentContactInfoPopover($event)"
+          (click)="presentPopover($event, 'contact')"
         ></ion-icon>
         Contacto
         <ion-icon
-          *ngIf="!contactShowed"
+          *ngIf="!popoverShowed.contact"
           name="chevron-down"
-          (click)="toggleContact()"
+          (click)="popoverShowed.contact = !popoverShowed.contact"
         ></ion-icon>
         <ion-icon
-          *ngIf="contactShowed"
+          *ngIf="popoverShowed.contact"
           name="chevron-up"
-          (click)="toggleContact()"
+          (click)="popoverShowed.contact = !popoverShowed.contact"
         ></ion-icon>
       </ion-label>
-      <ion-list class="settings__contact" *ngIf="contactShowed">
+      <ion-list class="settings__contact" *ngIf="popoverShowed.contact">
         <ion-item class="settings__contact--item">
           <ion-icon color="danger" name="mail"></ion-icon>
           <ion-label class="settings__contact--label">
@@ -116,29 +116,60 @@
       </ion-list>
     </section>
 
+    <section class="settings__item notifications">
+      <ion-label class="settings__item--label">
+        <ion-icon
+          class="info-icon"
+          name="information-circle-outline"
+          (click)="presentPopover($event, 'notifications')"
+        ></ion-icon>
+        Notificaciones
+        <ion-icon
+          *ngIf="!popoverShowed.notifications"
+          class="down"
+          name="chevron-down"
+          (click)="popoverShowed.notifications = !popoverShowed.notifications"
+        ></ion-icon>
+        <ion-icon
+          *ngIf="popoverShowed.notifications"
+          class="up"
+          name="chevron-up"
+          (click)="popoverShowed.notifications = !popoverShowed.notifications"
+        ></ion-icon>
+      </ion-label>
+      <ion-item *ngIf="popoverShowed.notifications">
+        <ion-checkbox
+          (ionChange)="onChangeNotifications($event)"
+          [(ngModel)]="notificationsIsChecked"
+          [checked]="notificationsIsChecked"
+        ></ion-checkbox>
+        <ion-label>No deseo recibir notificaciones</ion-label>
+      </ion-item>
+    </section>
+
     <section class="settings__item privacy-policy">
       <ion-label class="settings__item--label">
         <ion-icon
           class="info-icon"
           name="information-circle-outline"
-          (click)="presentPrivacyPolicyInfoPopover($event)"
+          (click)="presentPopover($event, popoverShowed.privacyPolicy)"
         ></ion-icon>
         Política de privacidad
         <ion-icon
-          *ngIf="!privacyPolicyShowed"
+          *ngIf="!popoverShowed.privacyPolicy"
           class="down"
           name="chevron-down"
-          (click)="togglePrivacyPolicy()"
+          (click)="popoverShowed.privacyPolicy = !popoverShowed.privacyPolicy"
         ></ion-icon>
         <ion-icon
-          *ngIf="privacyPolicyShowed"
+          *ngIf="popoverShowed.privacyPolicy"
           class="up"
           name="chevron-up"
-          (click)="togglePrivacyPolicy()"
+          (click)="popoverShowed.privacyPolicy = !popoverShowed.privacyPolicy"
         ></ion-icon>
       </ion-label>
       <ion-button
-        *ngIf="privacyPolicyShowed"
+        *ngIf="popoverShowed.privacyPolicy"
         color="success"
         size="small"
         (click)="goToPrivacyPolicyPage()"

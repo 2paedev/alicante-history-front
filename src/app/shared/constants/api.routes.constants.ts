@@ -14,4 +14,7 @@ export const API_ROUTE = {
   USER: {
     MAIL_SUBSCRIPTION: `${API_URL}/email-subscription/`,
   },
+  FCM: {
+    TOKEN: (idDevice: string): string => `${API_URL}/fcm/${idDevice}/`,
+  },
 };

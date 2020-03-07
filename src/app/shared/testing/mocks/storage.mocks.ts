@@ -16,4 +16,8 @@ export const STORAGE_SERVICE_MOCK = {
   updateMyList(): void {},
   // eslint-disable-next-line no-empty-function
   updateMyLikedList(): void {},
+  // eslint-disable-next-line no-empty-function
+  setReadMode(): void {},
+  // eslint-disable-next-line no-empty-function
+  setStorageValue(): void {},
 };

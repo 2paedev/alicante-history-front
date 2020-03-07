@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { AdMobFree } from '@ionic-native/admob-free/ngx';
+import { Device } from '@ionic-native/device/ngx';
 import { FCM } from '@ionic-native/fcm/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -31,6 +32,7 @@ import { SharedModule } from './shared/shared.module';
     StatusBar,
     SplashScreen,
     AdMobFree,
+    Device,
     FCM,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],

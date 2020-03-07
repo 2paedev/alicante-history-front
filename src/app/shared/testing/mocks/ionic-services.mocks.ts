@@ -5,6 +5,14 @@
 import { NavigationEnd } from '@angular/router';
 import { Observable, of, Subject } from 'rxjs';
 
+export const FCMMock = {
+  getToken: (): Promise<string> => Promise.resolve('aFakeToken'),
+};
+
+export const DeviceMock = {
+  uuid: 'aFakeUUID',
+};
+
 let ops: any;
 const modal = {
   data: null,

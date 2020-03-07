@@ -36,4 +36,8 @@ export class UserService {
       this.httpOptions
     );
   }
+
+  public setNotifications(notificationsActivated: boolean): void {
+    this.$user.next({ notificationsActivated });
+  }
 }
