@@ -57,11 +57,11 @@ export class SettingsModalComponent implements OnInit, OnDestroy {
         this.checkedSizeValue = value;
       });
 
-    this.storageService
-      .getStorageValue(STORAGE_KEY.NOTIFICATIONS)
-      .then(value => {
-        this.notificationsIsChecked = value;
-      });
+    // this.storageService
+    //   .getStorageValue(STORAGE_KEY.NOTIFICATIONS)
+    //   .then(value => {
+    //     this.notificationsIsChecked = value;
+    //   });
 
     this.userSubscription = this.userService
       .getUser()

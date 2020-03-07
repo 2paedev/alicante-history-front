@@ -84,17 +84,17 @@ describe('SettingsModalComponent', () => {
     expect(popoverController.create).toHaveBeenCalled();
   });
 
-  it('should open the notifications info popover when click icon info', async (): Promise<
-    void
-  > => {
-    const { shallow } = setupSettings();
-    const { find, fixture, get } = await shallow.render();
-    fixture.detectChanges();
-    const popoverController = get(PopoverController);
-    const iconCollapse = find('.notifications .info-icon');
-    iconCollapse[0].nativeElement.click();
-    expect(popoverController.create).toHaveBeenCalled();
-  });
+  // it('should open the notifications info popover when click icon info', async (): Promise<
+  //   void
+  // > => {
+  //   const { shallow } = setupSettings();
+  //   const { find, fixture, get } = await shallow.render();
+  //   fixture.detectChanges();
+  //   const popoverController = get(PopoverController);
+  //   const iconCollapse = find('.notifications .info-icon');
+  //   iconCollapse[0].nativeElement.click();
+  //   expect(popoverController.create).toHaveBeenCalled();
+  // });
 
   it('should open the privacy policy popover when click icon info', async (): Promise<
     void

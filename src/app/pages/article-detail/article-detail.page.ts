@@ -1,18 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BasicTextModalComponent } from '@components/index';
 import { ERRORS } from '@constants/index';
 import { ModalController } from '@ionic/angular';
 import { Article, Author, BasicText } from '@models/index';
 import { AdMobService, ArticlesService, ToastService } from '@services/index';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-article-detail',
   templateUrl: 'article-detail.page.html',
   styleUrls: ['article-detail.page.scss'],
 })
-export class ArticleDetailPage implements OnInit {
+export class ArticleDetailPage {
   public articleData: Article;
+
+  private articleSubscription: Subscription;
 
   private id: number;
 
@@ -24,7 +27,7 @@ export class ArticleDetailPage implements OnInit {
     private readonly modalController: ModalController
   ) {}
 
-  public ngOnInit(): void {
+  public ionViewDidEnter(): void {
     this.adMobService.pushInterstitial();
     [this.id] = this.activatedRoute.snapshot.params.id;
     this.getArticleData();
@@ -38,15 +41,17 @@ export class ArticleDetailPage implements OnInit {
   }
 
   public getArticleData(): void {
-    this.articlesService.getDetail(this.id).subscribe(
-      (response: Article) => {
-        this.articleData = response;
-      },
-      () => {
-        this.toastService.presentToastError(ERRORS.MESSAGES.ONE_ARTICLE);
-        throw new Error(ERRORS.MESSAGES.ONE_ARTICLE);
-      }
-    );
+    this.articleSubscription = this.articlesService
+      .getDetail(this.id)
+      .subscribe(
+        (response: Article) => {
+          this.articleData = response;
+        },
+        () => {
+          this.toastService.presentToastError(ERRORS.MESSAGES.ONE_ARTICLE);
+          throw new Error(ERRORS.MESSAGES.ONE_ARTICLE);
+        }
+      );
   }
 
   public async presentAuthorModal(): Promise<void> {
@@ -66,5 +71,9 @@ export class ArticleDetailPage implements OnInit {
       contentText: data.description,
       image: data.image,
     };
+  }
+
+  public ionViewDidLeave(): void {
+    this.articleSubscription.unsubscribe();
   }
 }

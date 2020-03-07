@@ -35,6 +35,7 @@ export class SearchPage {
           throw new Error(ERRORS.MESSAGES.ALL_ARTICLES);
         }
       );
+    this.articlesService.getAll().subscribe();
   }
 
   public ionViewDidEnter(): void {

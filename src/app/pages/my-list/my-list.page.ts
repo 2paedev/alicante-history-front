@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { Article } from '@models/index';
 import { StorageService } from '@services/index';
 import { Subscription } from 'rxjs';
@@ -9,7 +9,7 @@ import { filter } from 'rxjs/operators';
   templateUrl: 'my-list.page.html',
   styleUrls: ['my-list.page.scss'],
 })
-export class MyListPage implements OnDestroy {
+export class MyListPage {
   public myListData: Article[] = [];
 
   private myListSubscription: Subscription;
@@ -22,7 +22,7 @@ export class MyListPage implements OnDestroy {
       });
   }
 
-  public ngOnDestroy(): void {
+  public ionViewDidLeave(): void {
     this.myListSubscription.unsubscribe();
   }
 }

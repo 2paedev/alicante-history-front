@@ -29,6 +29,7 @@ export class ArticleImageComponent implements OnInit, OnDestroy {
 
   public myListSubscription: Subscription;
   public myLikedListSubscription: Subscription;
+  public articleSubscription: Subscription;
 
   constructor(
     private readonly router: Router,
@@ -41,17 +42,21 @@ export class ArticleImageComponent implements OnInit, OnDestroy {
       .pipe(filter((data: any): boolean => !!data))
       .subscribe(value => {
         const myLikedListJson = JSON.parse(value);
-        this.isLiked = myLikedListJson.some(
-          (articleId: number) => articleId === this.data.id
-        );
+        if (this.data) {
+          this.isLiked = myLikedListJson.some(
+            (articleId: number) => articleId === this.data.id
+          );
+        }
       });
     this.myListSubscription = this.storageService.myList$
       .pipe(filter((data: any): boolean => !!data))
       .subscribe(value => {
         const myListJson = JSON.parse(value);
-        this.isAddedInMyList = myListJson.some(
-          (article: Article) => article.id === this.data.id
-        );
+        if (this.data) {
+          this.isAddedInMyList = myListJson.some(
+            (article: Article) => article.id === this.data.id
+          );
+        }
       });
   }
 
@@ -86,35 +91,39 @@ export class ArticleImageComponent implements OnInit, OnDestroy {
   }
 
   public addLike(): void {
-    this.articlesService.setLike(this.data.id).subscribe(
-      () => {
-        this.isLiked = true;
-        this.storageService.addItemInList(
-          this.data.id,
-          STORAGE_KEY.MY_LIKED_LIST
-        );
-      },
-      () => {
-        this.toastService.presentToastError(ERRORS.MESSAGES.UPDATE);
-        throw new Error(ERRORS.MESSAGES.UPDATE);
-      }
-    );
+    this.articleSubscription = this.articlesService
+      .setLike(this.data.id)
+      .subscribe(
+        () => {
+          this.isLiked = true;
+          this.storageService.addItemInList(
+            this.data.id,
+            STORAGE_KEY.MY_LIKED_LIST
+          );
+        },
+        () => {
+          this.toastService.presentToastError(ERRORS.MESSAGES.UPDATE);
+          throw new Error(ERRORS.MESSAGES.UPDATE);
+        }
+      );
   }
 
   public removeLike(): void {
-    this.articlesService.removeLike(this.data.id).subscribe(
-      () => {
-        this.isLiked = false;
-        this.storageService.removeItemInMyLikedList(
-          this.data.id,
-          STORAGE_KEY.MY_LIKED_LIST
-        );
-      },
-      () => {
-        this.toastService.presentToastError(ERRORS.MESSAGES.UPDATE);
-        throw new Error(ERRORS.MESSAGES.UPDATE);
-      }
-    );
+    this.articleSubscription = this.articlesService
+      .removeLike(this.data.id)
+      .subscribe(
+        () => {
+          this.isLiked = false;
+          this.storageService.removeItemInMyLikedList(
+            this.data.id,
+            STORAGE_KEY.MY_LIKED_LIST
+          );
+        },
+        () => {
+          this.toastService.presentToastError(ERRORS.MESSAGES.UPDATE);
+          throw new Error(ERRORS.MESSAGES.UPDATE);
+        }
+      );
   }
 
   public getColorClass(): string {
@@ -124,5 +133,8 @@ export class ArticleImageComponent implements OnInit, OnDestroy {
   public ngOnDestroy(): void {
     this.myListSubscription.unsubscribe();
     this.myLikedListSubscription.unsubscribe();
+    if (this.articleSubscription) {
+      this.articleSubscription.unsubscribe();
+    }
   }
 }

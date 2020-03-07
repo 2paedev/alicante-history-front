@@ -11,6 +11,7 @@
     <ion-row class="search__list">
       <ion-col>
         <app-articles-set
+          *ngIf="searchData"
           title="Historias encontradas"
           [data]="searchData"
           noDataText="Sin coincidencias"

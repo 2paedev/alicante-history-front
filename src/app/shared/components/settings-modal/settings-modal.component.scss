@@ -41,26 +41,26 @@
       @include aligns(center, center, row);
       margin: 1rem 0;
     }
-    &--check {
-      @include aligns(center, center, row);
-      --background: transparent;
+    // &--check {
+    //   @include aligns(center, center, row);
+    //   --background: transparent;
 
-      ion-checkbox {
-        --background: var(--ion-color-secondary-tint);
-        --background-checked: var(--ion-color-secondary-tint);
-        --border-color: var(--ion-color-primary-tint);
-        --border-color-checked: var(--ion-color-primary-tint);
-        --checkmark-color: var(--ion-color-primary-tint);
-        --checkmark-width: 0.2rem;
-        --size: 1.6rem;
-      }
+    //   ion-checkbox {
+    //     --background: var(--ion-color-secondary-tint);
+    //     --background-checked: var(--ion-color-secondary-tint);
+    //     --border-color: var(--ion-color-primary-tint);
+    //     --border-color-checked: var(--ion-color-primary-tint);
+    //     --checkmark-color: var(--ion-color-primary-tint);
+    //     --checkmark-width: 0.2rem;
+    //     --size: 1.6rem;
+    //   }
 
-      ion-label {
-        margin-left: 1rem;
-        --color: var(--ion-color-secondary-shade);
-        font-size: 0.8rem;
-      }
-    }
+    //   ion-label {
+    //     margin-left: 1rem;
+    //     --color: var(--ion-color-secondary-shade);
+    //     font-size: 0.8rem;
+    //   }
+    // }
   }
 
   &__contact {
