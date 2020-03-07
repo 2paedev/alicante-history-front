@@ -1,8 +1,8 @@
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Platform } from '@ionic/angular';
-import { FCMService, UserService } from '@services/index';
-import { FCM_SERVICE_MOCK, USER_SERVICE_MOCK } from '@testing/index';
+import { FCMService, StorageService } from '@services/index';
+import { FCM_SERVICE_MOCK, STORAGE_SERVICE_MOCK } from '@testing/index';
 import { Shallow } from 'shallow-render';
 import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
@@ -16,12 +16,12 @@ function appSetup(): {
   shallow: Shallow<AppComponent>;
 } {
   const shallow = new Shallow(AppComponent, AppModule)
-    .provide(Platform, SplashScreen, StatusBar, FCMService, UserService)
+    .provide(Platform, SplashScreen, StatusBar, FCMService, StorageService)
     .mock(Platform, PlatformMock)
     .mock(SplashScreen, SplashScreenMock)
     .mock(StatusBar, StatusBarMock)
     .mock(FCMService, FCM_SERVICE_MOCK)
-    .mock(UserService, USER_SERVICE_MOCK);
+    .mock(StorageService, STORAGE_SERVICE_MOCK);
   return { shallow };
 }
 

@@ -4,6 +4,5 @@ export interface ReadMode {
 }
 
 export interface User {
-  readMode?: ReadMode;
-  notificationsActivated?: boolean;
+  readMode: ReadMode;
 }

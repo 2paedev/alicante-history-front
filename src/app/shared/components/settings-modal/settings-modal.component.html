@@ -137,7 +137,10 @@
           (click)="popoverShowed.notifications = !popoverShowed.notifications"
         ></ion-icon>
       </ion-label>
-      <ion-item *ngIf="popoverShowed.notifications">
+      <ion-item
+        *ngIf="popoverShowed.notifications"
+        class="settings__item--check"
+      >
         <ion-checkbox
           (ionChange)="onChangeNotifications($event)"
           [(ngModel)]="notificationsIsChecked"

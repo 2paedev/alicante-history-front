@@ -22,16 +22,14 @@ function setupSettings(): { shallow: Shallow<SettingsModalComponent> } {
       UserService,
       StorageService,
       FCMService,
-      PopoverController,
-      UserService
+      PopoverController
     )
     .mock(Router, { ...RouterMock })
     .mock(ModalController, { ...ModalControllerMock })
     .mock(UserService, { ...USER_SERVICE_MOCK })
     .mock(StorageService, { ...STORAGE_SERVICE_MOCK })
     .mock(PopoverController, { ...ModalControllerMock })
-    .mock(FCMService, { ...FCM_SERVICE_MOCK })
-    .mock(UserService, { ...USER_SERVICE_MOCK });
+    .mock(FCMService, { ...FCM_SERVICE_MOCK });
   return { shallow };
 }
 

@@ -37,8 +37,7 @@ export class SettingsModalComponent implements OnInit, OnDestroy {
     private readonly userService: UserService,
     private readonly storageService: StorageService,
     private readonly popoverController: PopoverController,
-    private readonly fcm: FCMService,
-    private readonly user: UserService
+    private readonly fcm: FCMService
   ) {}
 
   public ngOnInit(): void {
@@ -56,6 +55,12 @@ export class SettingsModalComponent implements OnInit, OnDestroy {
       .getStorageValue(STORAGE_KEY.READ_MODE.SIZE)
       .then(value => {
         this.checkedSizeValue = value;
+      });
+
+    this.storageService
+      .getStorageValue(STORAGE_KEY.NOTIFICATIONS)
+      .then(value => {
+        this.notificationsIsChecked = value;
       });
 
     this.userSubscription = this.userService
@@ -97,11 +102,14 @@ export class SettingsModalComponent implements OnInit, OnDestroy {
 
   public onChangeNotifications(event: CustomEvent): void {
     this.notificationsIsChecked = event.detail.checked;
-    this.user.setNotifications(this.notificationsIsChecked);
+    this.storageService.setStorageValue(
+      STORAGE_KEY.NOTIFICATIONS,
+      this.notificationsIsChecked
+    );
     if (this.notificationsIsChecked) {
-      this.fcm.saveToken();
-    } else {
       this.fcm.removeNotificationSubscription();
+    } else {
+      this.fcm.saveToken();
     }
   }
 

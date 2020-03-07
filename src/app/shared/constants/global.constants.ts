@@ -19,6 +19,7 @@ export const STORAGE_KEY = {
   },
   MY_LIST: 'my-list',
   MY_LIKED_LIST: 'my-liked-list',
+  NOTIFICATIONS: 'notifications',
 };
 
 export const ADD_MOBS = {

@@ -24,6 +24,7 @@ export class FCMService {
 
   public saveToken(): void {
     this.fcm.getToken().then((token: string) => {
+      console.log(token);
       this.saveTokenInBBDD(this.device.uuid, { token }).subscribe();
     });
   }
