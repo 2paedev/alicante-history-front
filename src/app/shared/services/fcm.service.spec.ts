@@ -61,10 +61,9 @@ describe('FCMService', (): void => {
         expect(response).toEqual(EXPECTED_RESPONSE);
       });
 
-    const req = httpTestingController.expectOne((request): boolean => {
-      debugger;
-      return request.url === API_ROUTE.FCM.TOKEN_DETAIL(UUID);
-    });
+    const req = httpTestingController.expectOne(
+      (request): boolean => request.url === API_ROUTE.FCM.TOKEN_DETAIL(UUID)
+    );
     req.flush(EXPECTED_RESPONSE);
   });
 });

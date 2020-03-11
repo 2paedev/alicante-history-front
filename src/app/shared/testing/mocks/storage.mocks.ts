@@ -8,6 +8,7 @@ export const STORAGE_SERVICE_MOCK = {
   addItemInList(): void {},
   // eslint-disable-next-line no-empty-function
   removeItemInMyList(): void {},
+  // eslint-disable-next-line no-empty-function
   removeItemInMyLikedList(): void {},
   getStorageValue(): Promise<any> {
     return Promise.resolve(buildLastFiveFixture());
