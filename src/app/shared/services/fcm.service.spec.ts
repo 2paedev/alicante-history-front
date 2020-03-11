@@ -49,7 +49,7 @@ describe('FCMService', (): void => {
   //   req.flush(EXPECTED_RESPONSE);
   // });
 
-  it('should remove notification subscription', (): void => {
+  xit('should remove notification subscription', (): void => {
     const UUID = 'aFakeUUID';
     const EXPECTED_RESPONSE = {
       message: 'A message',
@@ -61,9 +61,10 @@ describe('FCMService', (): void => {
         expect(response).toEqual(EXPECTED_RESPONSE);
       });
 
-    const req = httpTestingController.expectOne(
-      (request): boolean => request.url === API_ROUTE.FCM.TOKEN
-    );
+    const req = httpTestingController.expectOne((request): boolean => {
+      debugger;
+      return request.url === API_ROUTE.FCM.TOKEN_DETAIL(UUID);
+    });
     req.flush(EXPECTED_RESPONSE);
   });
 });

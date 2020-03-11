@@ -85,23 +85,31 @@ describe('ArticleDetailPage', () => {
   });
 
   it('should render the main article image', async (): Promise<void> => {
-    const { find } = await shallow.render();
+    const { find, instance, fixture } = await shallow.render();
+    instance.ionViewDidEnter();
+    fixture.detectChanges();
     expect(find('app-article-image')).toHaveFoundOne();
   });
 
   it('should render the author avatar', async (): Promise<void> => {
-    const { find } = await shallow.render();
+    const { find, instance, fixture } = await shallow.render();
+    instance.ionViewDidEnter();
+    fixture.detectChanges();
     expect(find('app-author-avatar')).toHaveFoundOne();
   });
 
   it('should render the article publish date', async (): Promise<void> => {
-    const { find } = await shallow.render();
+    const { find, instance, fixture } = await shallow.render();
+    instance.ionViewDidEnter();
+    fixture.detectChanges();
     const dateText = find('.article-detail__info--date')[0].children[0];
     expect(dateText.nativeElement.textContent).toEqual('2019-11-09');
   });
 
   it('should render the text formatted', async (): Promise<void> => {
-    const { find } = await shallow.render();
+    const { find, instance, fixture } = await shallow.render();
+    instance.ionViewDidEnter();
+    fixture.detectChanges();
     expect(find('app-text-formatted')).toHaveFoundOne();
   });
 
@@ -124,7 +132,8 @@ describe('ArticleDetailPage', () => {
   it('should open author modal when clickin on avatar', async (): Promise<
     void
   > => {
-    const { get, find, fixture } = await shallow.render();
+    const { get, find, fixture, instance } = await shallow.render();
+    instance.ionViewDidEnter();
     fixture.detectChanges();
     const modalController = get(ModalController);
     find('app-author-avatar').nativeElement.click();

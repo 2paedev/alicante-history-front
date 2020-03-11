@@ -162,6 +162,12 @@
                 "input": "src/assets",
                 "output": "/assets"
               }
+            ],
+            "codeCoverageExclude": [
+              "/**/index.ts",
+              "/**/*.module.ts",
+              "/**/*.routes.ts",
+              "/**/*.mocks.ts"
             ]
           },
           "configurations": {

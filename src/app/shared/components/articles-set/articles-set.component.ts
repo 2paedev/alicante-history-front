@@ -43,7 +43,7 @@ export class ArticlesSetComponent {
   }
 
   private assembleNewPageData(newData: ArticlePage): ArticlePage {
-    const formattedData = newData;
+    const formattedData = { ...newData };
     formattedData.results = [...this.data.results, ...newData.results];
     return formattedData;
   }
